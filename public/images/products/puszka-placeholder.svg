@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800" role="img" aria-label="Placeholder produktu  puszka">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F4F6F8"/>
+      <stop offset="100%" stop-color="#E9EDF1"/>
+    </linearGradient>
+    <linearGradient id="metal" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8EEF3"/>
+      <stop offset="100%" stop-color="#9AA7B2"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="800" fill="url(#bg)"/>
+  <ellipse cx="400" cy="220" rx="160" ry="48" fill="#D7DEE5" stroke="#778692" stroke-width="2"/>
+  <path d="M240 220 V520 C240 575 310 610 400 610 C490 610 560 575 560 520 V220" fill="url(#metal)" stroke="#778692" stroke-width="2"/>
+  <ellipse cx="400" cy="220" rx="160" ry="48" fill="#F8FAFC" opacity="0.55"/>
+</svg>
