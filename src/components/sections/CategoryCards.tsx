@@ -11,7 +11,6 @@ export function CategoryCards() {
     <section className="section-pad bg-white">
       <Container>
         <SectionHeading
-          eyebrow="Oferta"
           title="Trzy kategorie produktów"
           description="Wybierz obszar oferty i przejdź do szczegółów lub od razu wyślij zapytanie."
         />

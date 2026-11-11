@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 import { blogCategories, blogCategoryLabels } from "@/lib/blog/categories";
 import { getPublishedPosts, searchPosts } from "@/lib/blog/repository";
 import { createMetadata } from "@/lib/seo/metadata";
@@ -22,9 +21,10 @@ export default async function BlogPage({
   const params = searchParams ? await searchParams : {};
   const query = params.q || "";
   const posts = query ? searchPosts(query) : getPublishedPosts();
+  const [featured, ...rest] = posts;
 
   return (
-    <section className="section-pad bg-white">
+    <section className="section-pad bg-white pt-12">
       <Container>
         <Breadcrumbs
           items={[
@@ -32,13 +32,15 @@ export default async function BlogPage({
             { label: "Blog" },
           ]}
         />
-        <SectionHeading
-          eyebrow="Blog"
-          title="Wiedza dla zakupów B2B"
-          description="Materiały pomagające przygotować zapytanie i ocenić ofertę opakowań oraz folii."
-        />
+        <h1 className="mt-4 font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl lg:text-6xl">
+          Wiedza dla zakupów B2B
+        </h1>
+        <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted">
+          Materiały pomagające przygotować zapytanie i ocenić ofertę opakowań
+          oraz folii — bez niepotwierdzonych deklaracji eksperckich.
+        </p>
 
-        <form className="mt-8 flex flex-col gap-3 sm:flex-row" action="/blog" method="get">
+        <form className="mt-10 flex flex-col gap-3 sm:flex-row" action="/blog" method="get">
           <label htmlFor="q" className="sr-only">
             Szukaj artykułów
           </label>
@@ -69,22 +71,41 @@ export default async function BlogPage({
           ))}
         </div>
 
-        <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {posts.map((post) => (
-            <article key={post.slug} className="border-t border-border pt-5">
+        {featured ? (
+          <article className="mt-14 border-t border-border pt-10">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent-dark">
+              {blogCategoryLabels[featured.category]}
+            </p>
+            <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+              <Link href={`/blog/${featured.slug}`} className="hover:text-primary">
+                {featured.title}
+              </Link>
+            </h2>
+            <p className="mt-5 max-w-3xl text-base leading-relaxed text-muted">
+              {featured.description}
+            </p>
+            <div className="mt-5 flex gap-4 text-sm text-muted">
+              <time dateTime={featured.publishedAt}>{formatDate(featured.publishedAt)}</time>
+              <span>{featured.readingTimeMinutes} min</span>
+            </div>
+          </article>
+        ) : null}
+
+        <div className="mt-10 grid gap-0 divide-y divide-border border-t border-border md:grid-cols-2 md:gap-x-10 md:divide-y-0">
+          {rest.map((post) => (
+            <article key={post.slug} className="border-b border-border py-8">
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent-dark">
                 {blogCategoryLabels[post.category]}
               </p>
-              <h2 className="mt-3 text-xl font-semibold text-ink">
+              <h2 className="mt-3 font-display text-2xl font-semibold text-ink">
                 <Link href={`/blog/${post.slug}`} className="hover:text-primary">
                   {post.title}
                 </Link>
               </h2>
               <p className="mt-3 text-sm leading-relaxed text-muted">{post.description}</p>
-              <div className="mt-4 flex items-center justify-between text-sm text-muted">
-                <time dateTime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
-                <span>{post.readingTimeMinutes} min</span>
-              </div>
+              <time className="mt-4 block text-sm text-muted" dateTime={post.publishedAt}>
+                {formatDate(post.publishedAt)}
+              </time>
             </article>
           ))}
         </div>

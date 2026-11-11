@@ -1,52 +1,61 @@
-import { Handshake, Layers3, MessageSquareText, ShieldCheck } from "lucide-react";
+import { SmartImage } from "@/components/ui/SmartImage";
+import { stockMedia } from "@/data/media";
+import { siteConfig } from "@/data/site";
 import { Container } from "@/components/ui/Container";
-import { Reveal } from "@/components/ui/Reveal";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 
-const items = [
+const points = [
   {
-    icon: Layers3,
-    title: "Kilka kategorii w jednym miejscu",
-    text: "Puszki aluminiowe, folia spożywcza i folia fryzjerska — czytelny podział oferty dla odbiorców biznesowych.",
+    title: "Oferta zebrana w jednym miejscu",
+    text: "Puszki aluminiowe, folia spożywcza i folia fryzjerska — z jasnym podziałem kategorii dla odbiorców biznesowych.",
   },
   {
-    icon: Handshake,
-    title: "Partner B2B",
-    text: "Komunikacja skierowana do firm: zakupów, produkcji, hurtowni i dystrybucji.",
+    title: "Bezpośredni kontakt z firmą",
+    text: "Formularz zapytania pozwala opisać wymagania i dołączyć specyfikację przed rozmową ofertową.",
   },
   {
-    icon: MessageSquareText,
-    title: "Bezpośredni kontakt",
-    text: "Formularz zapytania pozwala opisać potrzeby i dołączyć specyfikację.",
-  },
-  {
-    icon: ShieldCheck,
     title: "Podejście do jakości",
-    text: "Od 2004 roku firma wdraża system zarządzania jakością; aktualnie deklaruje zgodność z ISO 9001:2015.",
+    text: `Firma deklaruje system zarządzania jakością zgodny z ${siteConfig.qualitySystem}.`,
   },
 ];
 
 export function WhyAlopak() {
   return (
-    <section className="section-pad surface-grid">
-      <Container>
-        <SectionHeading
-          eyebrow="Dlaczego ALOPAK"
-          title="Przejrzysta oferta i kontakt z producentem"
-          description="Skupiamy się na faktach i praktycznej współpracy — bez pustych sloganów."
-        />
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {items.map((item, index) => (
-            <Reveal key={item.title} delay={index * 70}>
-              <div className="h-full rounded-lg border border-border/80 bg-white/80 p-6">
-                <item.icon className="size-6 text-primary" aria-hidden />
-                <h3 className="mt-4 text-lg font-semibold text-ink">{item.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted">{item.text}</p>
-              </div>
-            </Reveal>
-          ))}
+    <section className="relative overflow-hidden bg-surface">
+      <div className="grid lg:grid-cols-2">
+        <div className="relative min-h-[360px] lg:min-h-full">
+          <SmartImage
+            src={stockMedia.workshop.src}
+            alt={stockMedia.workshop.alt}
+            fill
+            className="object-cover"
+            sizes="(max-width: 1024px) 100vw, 50vw"
+          />
         </div>
-      </Container>
+        <div className="section-pad">
+          <Container className="lg:pl-10 xl:pl-16">
+            <h2 className="font-display max-w-lg text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
+              Partner dla zakupów opakowań i folii
+            </h2>
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-muted">
+              ALOPAK działa od {siteConfig.foundedYear} roku jako producent
+              opakowań aluminiowych. Komunikacja na stronie ogranicza się do
+              faktów potwierdzonych publicznie — bez pustych sloganów.
+            </p>
+            <div className="mt-10 space-y-8">
+              {points.map((point) => (
+                <div key={point.title} className="border-l border-primary/30 pl-5">
+                  <h3 className="font-display text-xl font-semibold text-ink">
+                    {point.title}
+                  </h3>
+                  <p className="mt-2 max-w-md text-sm leading-relaxed text-muted">
+                    {point.text}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </Container>
+        </div>
+      </div>
     </section>
   );
 }

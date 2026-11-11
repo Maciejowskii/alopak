@@ -1,66 +1,68 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { getPublishedPosts } from "@/lib/blog/repository";
+import { blogCategoryLabels } from "@/lib/blog/categories";
 import { formatDate } from "@/lib/utils";
 import { Container } from "@/components/ui/Container";
-import { Reveal } from "@/components/ui/Reveal";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { blogCategoryLabels } from "@/lib/blog/categories";
 
 export function BlogTeaser() {
   const posts = getPublishedPosts().slice(0, 3);
+  if (!posts.length) return null;
 
-  if (posts.length === 0) {
-    return null;
-  }
+  const [featured, ...rest] = posts;
 
   return (
     <section className="section-pad bg-white">
       <Container>
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <SectionHeading
-            eyebrow="Blog"
-            title="Wiedza dla działów zakupów i zaopatrzenia"
-            description="Artykuły wspierające przygotowanie zapytań ofertowych i ocenę dostawców."
-          />
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-primary"
-          >
+        <div className="flex flex-col gap-4 border-b border-border pb-8 sm:flex-row sm:items-end sm:justify-between">
+          <h2 className="font-display max-w-xl text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
+            Materiały dla zakupów B2B
+          </h2>
+          <Link href="/blog" className="text-sm font-semibold text-primary">
             Wszystkie artykuły
-            <ArrowRight className="size-4" />
           </Link>
         </div>
 
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
-          {posts.map((post, index) => (
-            <Reveal key={post.slug} delay={index * 70}>
-              <article className="flex h-full flex-col border-t border-border pt-5">
+        <div className="mt-10 grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
+          <article className="border-b border-border pb-10 lg:border-b-0 lg:border-r lg:pb-0 lg:pr-10">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-accent-dark">
+              {blogCategoryLabels[featured.category]}
+            </p>
+            <h3 className="mt-4 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+              <Link href={`/blog/${featured.slug}`} className="hover:text-primary">
+                {featured.title}
+              </Link>
+            </h3>
+            <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted">
+              {featured.description}
+            </p>
+            <div className="mt-6 flex items-center gap-4 text-sm text-muted">
+              <time dateTime={featured.publishedAt}>
+                {formatDate(featured.publishedAt)}
+              </time>
+              <span>{featured.readingTimeMinutes} min</span>
+            </div>
+          </article>
+
+          <div className="space-y-0 divide-y divide-border">
+            {rest.map((post) => (
+              <article key={post.slug} className="py-6 first:pt-0">
                 <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent-dark">
                   {blogCategoryLabels[post.category]}
                 </p>
-                <h3 className="mt-3 text-xl font-semibold tracking-tight text-ink">
+                <h3 className="mt-3 font-display text-xl font-semibold text-ink">
                   <Link href={`/blog/${post.slug}`} className="hover:text-primary">
                     {post.title}
                   </Link>
                 </h3>
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-muted">
-                  {post.description}
-                </p>
-                <div className="mt-5 flex items-center justify-between gap-3 text-sm">
-                  <time dateTime={post.publishedAt} className="text-muted">
-                    {formatDate(post.publishedAt)}
-                  </time>
-                  <Link
-                    href={`/blog/${post.slug}`}
-                    className="font-semibold text-primary"
-                  >
-                    Czytaj artykuł
-                  </Link>
-                </div>
+                <time
+                  dateTime={post.publishedAt}
+                  className="mt-3 block text-sm text-muted"
+                >
+                  {formatDate(post.publishedAt)}
+                </time>
               </article>
-            </Reveal>
-          ))}
+            ))}
+          </div>
         </div>
       </Container>
     </section>

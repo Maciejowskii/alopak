@@ -1,61 +1,52 @@
 import { Button } from "@/components/ui/Button";
-import { Container } from "@/components/ui/Container";
 import { SmartImage } from "@/components/ui/SmartImage";
+import { stockMedia } from "@/data/media";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden metal-sheen">
-      <div className="absolute inset-0">
-        <SmartImage
-          src="/images/hero-aluminium.svg"
-          alt=""
-          fill
-          priority
-          className="object-cover opacity-[0.22]"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/40" />
-      </div>
+    <section className="relative isolate min-h-[min(92vh,900px)] overflow-hidden bg-primary text-white">
+      <SmartImage
+        src={stockMedia.hero.src}
+        alt={stockMedia.hero.alt}
+        fill
+        priority
+        className="object-cover"
+        sizes="100vw"
+      />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#0b1a29]/90 via-[#0f2438]/72 to-[#0f2438]/40" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0b1a29]/50 via-transparent to-transparent" />
 
-      <Container className="relative grid min-h-[min(88vh,820px)] items-center gap-10 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:py-24">
-        <div className="animate-fade-up">
-          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-accent-dark">
+      <div className="container-wide relative flex min-h-[min(92vh,900px)] flex-col justify-end pb-16 pt-28 sm:pb-20 lg:justify-center lg:pb-24 lg:pt-28">
+        <div className="max-w-3xl animate-fade-up">
+          <p className="font-display text-sm font-semibold tracking-[0.28em] text-white/70 sm:text-base">
             ALOPAK
           </p>
-          <h1 className="mt-4 max-w-xl text-balance text-4xl font-semibold tracking-tight text-ink sm:text-5xl lg:text-[3.4rem] lg:leading-[1.08]">
+          <h1 className="display-hero mt-5 max-w-[14ch] text-[clamp(2.6rem,7vw,5.4rem)] text-white">
             Opakowania i folie dla profesjonalnych zastosowań
           </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
-            Poznaj ofertę ALOPAK obejmującą puszki aluminiowe, folię spożywczą i
-            folię fryzjerską. Skontaktuj się z nami, aby porozmawiać o
-            rozwiązaniu dopasowanym do potrzeb Twojej firmy.
+          <div className="mt-7 h-px w-24 bg-white/35" />
+          <p className="mt-7 max-w-xl text-base leading-relaxed text-white/80 sm:text-lg">
+            Puszki aluminiowe, folia spożywcza i folia fryzjerska dla firm.
+            Skontaktuj się, aby omówić potrzeby zakupowe Twojej organizacji.
           </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Button href="/kontakt" size="lg">
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <Button href="/kontakt" size="lg" variant="light">
               Zapytaj o ofertę
             </Button>
-            <Button href="/produkty" variant="secondary" size="lg">
-              Zobacz produkty
+            <Button
+              href="/oferta"
+              size="lg"
+              className="border border-white/35 bg-transparent text-white hover:bg-white/10"
+            >
+              Poznaj produkty
             </Button>
           </div>
         </div>
 
-        <div className="relative animate-fade-in">
-          <div className="relative aspect-[5/4] overflow-hidden rounded-lg border border-border/70 bg-[#1A3553] shadow-soft">
-            <SmartImage
-              src="/images/hero-aluminium.svg"
-              alt="Wizualizacja materiałów aluminiowych ALOPAK"
-              fill
-              priority
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 40vw"
-            />
-          </div>
-          <p className="mt-3 text-xs text-muted">
-            Wizualizacja zastępcza — oczekujemy na zdjęcia produktowe od ALOPAK.
-          </p>
-        </div>
-      </Container>
+        <p className="mt-10 text-[11px] tracking-wide text-white/45">
+          Wizualizacja materiałowa (grafika projektowa) — oczekujemy na zdjęcia produktowe ALOPAK.
+        </p>
+      </div>
     </section>
   );
 }

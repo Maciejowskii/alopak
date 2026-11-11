@@ -3,21 +3,25 @@
 import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
-import { mainNav } from "@/data/site";
+import { categories } from "@/data/categories";
+import { industries } from "@/data/industries";
 import { Button } from "@/components/ui/Button";
+import { MegaMenu } from "@/components/navigation/MegaMenu";
 import { cn } from "@/lib/utils";
 
+type MegaKey = "oferta" | "branze" | null;
+
 export function Header() {
-  const [open, setOpen] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mega, setMega] = useState<MegaKey>(null);
   const menuId = useId();
-  const panelRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
-        setOpen(false);
-        setOpenDropdown(null);
+        setMobileOpen(false);
+        setMega(null);
       }
     }
     document.addEventListener("keydown", onKeyDown);
@@ -25,17 +29,16 @@ export function Header() {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
-  }, [open]);
+  }, [mobileOpen]);
 
   useEffect(() => {
     function onPointerDown(event: MouseEvent) {
-      if (!panelRef.current) return;
-      if (!panelRef.current.contains(event.target as Node)) {
-        setOpenDropdown(null);
+      if (!headerRef.current?.contains(event.target as Node)) {
+        setMega(null);
       }
     }
     document.addEventListener("mousedown", onPointerDown);
@@ -43,62 +46,45 @@ export function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/80 bg-white/90 backdrop-blur-md">
-      <div className="container-site flex h-16 items-center justify-between gap-4 lg:h-[4.25rem]">
+    <header
+      ref={headerRef}
+      className="sticky top-0 z-50 border-b border-border/80 bg-white/95 backdrop-blur-md"
+    >
+      <div className="container-wide flex h-[4.25rem] items-center justify-between gap-4 lg:h-[4.75rem]">
         <Link
           href="/"
-          className="font-semibold tracking-[0.08em] text-primary"
+          className="font-display text-xl font-semibold tracking-[0.06em] text-primary sm:text-[1.35rem]"
           aria-label="ALOPAK — strona główna"
+          onClick={() => {
+            setMega(null);
+            setMobileOpen(false);
+          }}
         >
-          <span className="text-lg sm:text-xl">ALOPAK</span>
+          ALOPAK
         </Link>
 
-        <nav
-          ref={panelRef}
-          className="hidden items-center gap-1 lg:flex"
-          aria-label="Główna nawigacja"
-        >
-          {mainNav.map((item) =>
-            item.children ? (
-              <div key={item.href} className="relative">
-                <button
-                  type="button"
-                  className="inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium text-ink/90 transition-colors hover:bg-surface hover:text-primary"
-                  aria-expanded={openDropdown === item.label}
-                  onClick={() =>
-                    setOpenDropdown((current) =>
-                      current === item.label ? null : item.label,
-                    )
-                  }
-                >
-                  {item.label}
-                  <ChevronDown className="size-4 opacity-70" aria-hidden />
-                </button>
-                {openDropdown === item.label ? (
-                  <div className="absolute left-0 top-full z-20 mt-2 min-w-56 rounded-md border border-border bg-white p-2 shadow-soft">
-                    {item.children.map((child) => (
-                      <Link
-                        key={child.href}
-                        href={child.href}
-                        className="block rounded-md px-3 py-2 text-sm text-ink/90 transition-colors hover:bg-surface hover:text-primary"
-                        onClick={() => setOpenDropdown(null)}
-                      >
-                        {child.label}
-                      </Link>
-                    ))}
-                  </div>
-                ) : null}
-              </div>
-            ) : (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="rounded-md px-3 py-2 text-sm font-medium text-ink/90 transition-colors hover:bg-surface hover:text-primary"
-              >
-                {item.label}
-              </Link>
-            ),
-          )}
+        <nav className="hidden items-center gap-1 lg:flex" aria-label="Główna nawigacja">
+          <MegaTrigger
+            label="Oferta"
+            active={mega === "oferta"}
+            onOpen={() => setMega("oferta")}
+            onToggle={() => setMega((v) => (v === "oferta" ? null : "oferta"))}
+          />
+          <MegaTrigger
+            label="Branże"
+            active={mega === "branze"}
+            onOpen={() => setMega("branze")}
+            onToggle={() => setMega((v) => (v === "branze" ? null : "branze"))}
+          />
+          <NavLink href="/o-firmie" onNavigate={() => setMega(null)}>
+            O firmie
+          </NavLink>
+          <NavLink href="/blog" onNavigate={() => setMega(null)}>
+            Blog
+          </NavLink>
+          <NavLink href="/kontakt" onNavigate={() => setMega(null)}>
+            Kontakt
+          </NavLink>
         </nav>
 
         <div className="flex items-center gap-2">
@@ -108,56 +94,157 @@ export function Header() {
           <button
             type="button"
             className="inline-flex size-11 items-center justify-center rounded-md border border-border text-primary lg:hidden"
-            aria-expanded={open}
+            aria-expanded={mobileOpen}
             aria-controls={menuId}
-            aria-label={open ? "Zamknij menu" : "Otwórz menu"}
-            onClick={() => setOpen((value) => !value)}
+            aria-label={mobileOpen ? "Zamknij menu" : "Otwórz menu"}
+            onClick={() => setMobileOpen((value) => !value)}
           >
-            {open ? <X className="size-5" /> : <Menu className="size-5" />}
+            {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>
         </div>
       </div>
 
+      <div className="relative hidden lg:block">
+        <MegaMenu open={mega} onClose={() => setMega(null)} />
+      </div>
+
       <div
         id={menuId}
-        className={cn(
-          "border-t border-border bg-white lg:hidden",
-          open ? "block" : "hidden",
-        )}
+        className={cn("border-t border-border bg-white lg:hidden", mobileOpen ? "block" : "hidden")}
       >
-        <div className="container-site space-y-1 py-4">
-          {mainNav.map((item) => (
-            <div key={item.href} className="border-b border-border/70 py-2">
+        <div className="container-site max-h-[calc(100vh-4.25rem)] space-y-1 overflow-y-auto py-4">
+          <MobileGroup title="Oferta" href="/oferta" onNavigate={() => setMobileOpen(false)}>
+            {categories.map((category) => (
               <Link
-                href={item.href}
-                className="block py-2 text-base font-semibold text-ink"
-                onClick={() => setOpen(false)}
+                key={category.slug}
+                href={`/oferta/${category.slug}`}
+                className="block py-2 text-sm text-muted"
+                onClick={() => setMobileOpen(false)}
               >
-                {item.label}
+                {category.name}
               </Link>
-              {item.children ? (
-                <div className="mb-2 space-y-1 pl-3">
-                  {item.children.map((child) => (
-                    <Link
-                      key={child.href}
-                      href={child.href}
-                      className="block py-2 text-sm text-muted"
-                      onClick={() => setOpen(false)}
-                    >
-                      {child.label}
-                    </Link>
-                  ))}
-                </div>
-              ) : null}
-            </div>
-          ))}
+            ))}
+            <Link
+              href="/produkty"
+              className="block py-2 text-sm text-muted"
+              onClick={() => setMobileOpen(false)}
+            >
+              Katalog produktów
+            </Link>
+          </MobileGroup>
+
+          <MobileGroup title="Branże" href="/branze" onNavigate={() => setMobileOpen(false)}>
+            {industries.map((industry) => (
+              <Link
+                key={industry.slug}
+                href={`/branze/${industry.slug}`}
+                className="block py-2 text-sm text-muted"
+                onClick={() => setMobileOpen(false)}
+              >
+                {industry.name}
+              </Link>
+            ))}
+          </MobileGroup>
+
+          <Link
+            href="/o-firmie"
+            className="block border-b border-border/70 py-3 font-semibold text-ink"
+            onClick={() => setMobileOpen(false)}
+          >
+            O firmie
+          </Link>
+          <Link
+            href="/blog"
+            className="block border-b border-border/70 py-3 font-semibold text-ink"
+            onClick={() => setMobileOpen(false)}
+          >
+            Blog
+          </Link>
+          <Link
+            href="/kontakt"
+            className="block border-b border-border/70 py-3 font-semibold text-ink"
+            onClick={() => setMobileOpen(false)}
+          >
+            Kontakt
+          </Link>
+
           <div className="pt-3">
-            <Button href="/kontakt" className="w-full" onClick={() => setOpen(false)}>
+            <Button href="/kontakt" className="w-full" onClick={() => setMobileOpen(false)}>
               Zapytaj o ofertę
             </Button>
           </div>
         </div>
       </div>
     </header>
+  );
+}
+
+function MegaTrigger({
+  label,
+  active,
+  onOpen,
+  onToggle,
+}: {
+  label: string;
+  active: boolean;
+  onOpen: () => void;
+  onToggle: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      className={cn(
+        "inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors",
+        active ? "bg-surface text-primary" : "text-ink/90 hover:bg-surface hover:text-primary",
+      )}
+      aria-expanded={active}
+      onMouseEnter={onOpen}
+      onFocus={onOpen}
+      onClick={onOpen}
+    >
+      {label}
+      <ChevronDown className={cn("size-4 opacity-70 transition-transform", active && "rotate-180")} />
+    </button>
+  );
+}
+
+function NavLink({
+  href,
+  children,
+  onNavigate,
+}: {
+  href: string;
+  children: React.ReactNode;
+  onNavigate: () => void;
+}) {
+  return (
+    <Link
+      href={href}
+      onClick={onNavigate}
+      className="rounded-md px-3 py-2 text-sm font-medium text-ink/90 transition-colors hover:bg-surface hover:text-primary"
+    >
+      {children}
+    </Link>
+  );
+}
+
+function MobileGroup({
+  title,
+  href,
+  children,
+  onNavigate,
+}: {
+  title: string;
+  href: string;
+  children: React.ReactNode;
+  onNavigate: () => void;
+}) {
+  return (
+    <div className="border-b border-border/70 py-2">
+      <Link href={href} className="block py-2 font-semibold text-ink" onClick={onNavigate}>
+        {title}
+      </Link>
+      <div className="mb-2 space-y-1 pl-3">{children}</div>
+    </div>
   );
 }

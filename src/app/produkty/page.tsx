@@ -47,7 +47,6 @@ async function ProductsPageContent({
             ]}
           />
           <SectionHeading
-            eyebrow="Katalog"
             title="Produkty ALOPAK"
             description="Dane katalogowe oparte na publicznej ofercie firmy. Ceny i warunki handlowe omawiamy indywidualnie."
           />

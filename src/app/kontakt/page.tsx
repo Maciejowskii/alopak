@@ -1,7 +1,9 @@
+import { SmartImage } from "@/components/ui/SmartImage";
 import { QuoteForm } from "@/components/forms/QuoteForm";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Container } from "@/components/ui/Container";
 import { contact } from "@/data/site";
+import { stockMedia } from "@/data/media";
 import { createMetadata } from "@/lib/seo/metadata";
 
 export const metadata = createMetadata({
@@ -9,6 +11,7 @@ export const metadata = createMetadata({
   description:
     "Skontaktuj się z ALOPAK: formularz zapytania ofertowego, telefon i e-mail. Ostrzeszów, ul. Składowa 3.",
   path: "/kontakt",
+  image: stockMedia.metal.src,
 });
 
 export default function ContactPage({
@@ -27,29 +30,42 @@ async function ContactContent({
   const params = searchParams ? await searchParams : {};
 
   return (
-    <section className="section-pad bg-white">
-      <Container>
-        <Breadcrumbs
-          items={[
-            { label: "Strona główna", href: "/" },
-            { label: "Kontakt" },
-          ]}
+    <>
+      <section className="relative isolate overflow-hidden bg-primary text-white">
+        <SmartImage
+          src={stockMedia.metal.src}
+          alt=""
+          fill
+          className="object-cover opacity-30"
+          sizes="100vw"
         />
-        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent-dark">
-              Kontakt
-            </p>
-            <h1 className="mt-3 text-4xl font-semibold tracking-tight text-ink">
-              Zapytaj o ofertę
-            </h1>
-            <p className="mt-5 text-lg leading-relaxed text-muted">
-              Opisz potrzeby swojej firmy. Po wysłaniu formularza skontaktujemy
-              się w sprawie szczegółów. Możesz też napisać lub zadzwonić.
-            </p>
+        <div className="absolute inset-0 bg-primary/75" />
+        <Container className="relative py-20 pt-28">
+          <Breadcrumbs
+            tone="light"
+            items={[
+              { label: "Strona główna", href: "/" },
+              { label: "Kontakt" },
+            ]}
+          />
+          <h1 className="display-hero mt-4 max-w-3xl text-[clamp(2.4rem,5vw,4.2rem)]">
+            Zapytaj o ofertę
+          </h1>
+          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/80">
+            Opisz potrzeby swojej firmy. Po wysłaniu formularza skontaktujemy
+            się w sprawie szczegółów. Możesz też napisać lub zadzwonić.
+          </p>
+        </Container>
+      </section>
 
-            <div className="mt-10 space-y-6 text-sm">
-              <div>
+      <section className="section-pad bg-white">
+        <Container className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr]">
+          <div>
+            <h2 className="font-display text-2xl font-semibold text-ink">
+              Dane kontaktowe
+            </h2>
+            <div className="mt-8 space-y-8 text-sm">
+              <div className="border-t border-border pt-5">
                 <p className="font-semibold text-ink">{contact.legalName}</p>
                 <p className="mt-2 text-muted">
                   {contact.street}
@@ -57,24 +73,28 @@ async function ContactContent({
                   {contact.postalCode} {contact.city}
                 </p>
               </div>
-              <div>
-                <p className="text-muted">E-mail</p>
+              <div className="border-t border-border pt-5">
+                <p className="text-xs uppercase tracking-[0.14em] text-accent-dark">
+                  E-mail
+                </p>
                 <a
                   href={`mailto:${contact.email}`}
-                  className="mt-1 inline-block font-medium text-primary"
+                  className="mt-2 inline-block text-lg font-semibold text-primary"
                   data-analytics="email_click"
                 >
                   {contact.email}
                 </a>
               </div>
-              <div>
-                <p className="text-muted">Telefon / fax</p>
-                <ul className="mt-1 space-y-1">
+              <div className="border-t border-border pt-5">
+                <p className="text-xs uppercase tracking-[0.14em] text-accent-dark">
+                  Telefon / fax
+                </p>
+                <ul className="mt-3 space-y-2">
                   {contact.phones.map((phone) => (
                     <li key={phone}>
                       <a
                         href={`tel:${phone.replace(/\s/g, "")}`}
-                        className="font-medium text-primary"
+                        className="text-lg font-semibold text-primary"
                         data-analytics="phone_click"
                       >
                         {phone}
@@ -83,17 +103,37 @@ async function ContactContent({
                   ))}
                 </ul>
               </div>
+              <div className="border-t border-border pt-5">
+                <p className="text-xs uppercase tracking-[0.14em] text-accent-dark">
+                  Rejestr
+                </p>
+                <p className="mt-2 text-muted">
+                  KRS {contact.krs}
+                  <br />
+                  NIP {contact.nip}
+                  <br />
+                  REGON {contact.regon}
+                </p>
+              </div>
             </div>
           </div>
 
-          <div className="rounded-lg border border-border bg-surface/40 p-6 sm:p-8">
-            <QuoteForm
-              defaultCategory={params.kategoria}
-              defaultProduct={params.produkt}
-            />
+          <div className="border border-border bg-surface/40 p-6 sm:p-8">
+            <h2 className="font-display text-2xl font-semibold text-ink">
+              Formularz zapytania
+            </h2>
+            <p className="mt-3 text-sm text-muted">
+              Pola oznaczone * są wymagane. Załącznik jest opcjonalny.
+            </p>
+            <div className="mt-8">
+              <QuoteForm
+                defaultCategory={params.kategoria}
+                defaultProduct={params.produkt}
+              />
+            </div>
           </div>
-        </div>
-      </Container>
-    </section>
+        </Container>
+      </section>
+    </>
   );
 }

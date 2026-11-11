@@ -1,50 +1,51 @@
 import { Container } from "@/components/ui/Container";
-import { Reveal } from "@/components/ui/Reveal";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 
 const steps = [
   {
-    step: "01",
     title: "Wybierasz kategorię",
-    text: "Puszki aluminiowe, folia spożywcza lub folia fryzjerska — albo katalog produktów.",
+    text: "Puszki aluminiowe, folia spożywcza, folia fryzjerska — albo konkretny produkt z katalogu.",
   },
   {
-    step: "02",
     title: "Przesyłasz zapytanie",
     text: "Opisujesz potrzeby, ilość i wymagania. Możesz dołączyć plik ze specyfikacją.",
   },
   {
-    step: "03",
-    title: "Rozmawiamy o szczegółach",
-    text: "ALOPAK kontaktuje się w sprawie doprecyzowania oferty.",
+    title: "Doprecyzowujemy szczegóły",
+    text: "ALOPAK kontaktuje się w sprawie oferty dopasowanej do zgłoszenia.",
   },
   {
-    step: "04",
     title: "Otrzymujesz informacje ofertowe",
-    text: "Dalsze informacje i warunki współpracy omawiane są indywidualnie.",
+    text: "Warunki współpracy omawiane są indywidualnie — bez deklarowania terminów odpowiedzi, których firma nie potwierdziła.",
   },
 ];
 
 export function ProcessSteps() {
   return (
-    <section className="section-pad surface-grid">
+    <section className="section-pad bg-white">
       <Container>
-        <SectionHeading
-          eyebrow="Współpraca"
-          title="Prosty proces zapytania ofertowego"
-          description="Bez deklarowania terminów odpowiedzi, których firma nie potwierdziła publicznie."
-        />
-        <ol className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-          {steps.map((item, index) => (
-            <Reveal key={item.step} delay={index * 70}>
-              <li className="h-full rounded-lg border border-border bg-white p-6">
-                <p className="text-sm font-semibold tracking-[0.16em] text-accent-dark">
-                  {item.step}
-                </p>
-                <h3 className="mt-4 text-lg font-semibold text-ink">{item.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted">{item.text}</p>
-              </li>
-            </Reveal>
+        <div className="max-w-2xl">
+          <h2 className="font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
+            Jak wygląda współpraca
+          </h2>
+          <p className="mt-5 text-base leading-relaxed text-muted sm:text-lg">
+            Prosty przebieg od wyboru kategorii do rozmowy ofertowej.
+          </p>
+        </div>
+
+        <ol className="mt-14 grid gap-0 border-t border-border md:grid-cols-4">
+          {steps.map((step, index) => (
+            <li
+              key={step.title}
+              className="border-b border-border py-8 md:border-b-0 md:border-r md:px-5 md:py-10 md:first:pl-0 md:last:border-r-0 md:last:pr-0"
+            >
+              <p className="font-display text-sm font-semibold tracking-[0.18em] text-accent-dark">
+                {String(index + 1).padStart(2, "0")}
+              </p>
+              <h3 className="mt-5 font-display text-xl font-semibold text-ink">
+                {step.title}
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted">{step.text}</p>
+            </li>
           ))}
         </ol>
       </Container>

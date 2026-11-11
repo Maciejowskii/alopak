@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Manrope } from "next/font/google";
+import { Archivo, Manrope } from "next/font/google";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { AnalyticsLoader } from "@/components/seo/AnalyticsLoader";
@@ -10,6 +10,12 @@ import "./globals.css";
 
 const manrope = Manrope({
   variable: "--font-manrope",
+  subsets: ["latin", "latin-ext"],
+  display: "swap",
+});
+
+const archivo = Archivo({
+  variable: "--font-archivo",
   subsets: ["latin", "latin-ext"],
   display: "swap",
 });
@@ -30,7 +36,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="pl" className={`${manrope.variable} h-full antialiased`}>
+    <html lang="pl" className={`${manrope.variable} ${archivo.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col font-sans">
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
         <SiteShell>{children}</SiteShell>

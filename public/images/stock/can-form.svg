@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200" role="img" aria-label="Aluminum can form material visualization">
+  <defs>
+    <linearGradient id="canBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#eef2f5"/>
+      <stop offset="100%" stop-color="#d5dde4"/>
+    </linearGradient>
+    <linearGradient id="canBody" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="45%" stop-color="#c2ccd5"/>
+      <stop offset="100%" stop-color="#7b8a97"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1200" fill="url(#canBg)"/>
+  <circle cx="1180" cy="260" r="220" fill="#142b45" opacity="0.05"/>
+  <g transform="translate(470 220)">
+    <ellipse cx="280" cy="70" rx="220" ry="58" fill="#d7dee5" stroke="#778692" stroke-width="3"/>
+    <path d="M60 70 V720 C60 790 150 840 280 840 C410 840 500 790 500 720 V70" fill="url(#canBody)" stroke="#778692" stroke-width="3"/>
+    <ellipse cx="280" cy="70" rx="220" ry="58" fill="#f4f6f8" opacity="0.55"/>
+    <path d="M120 260 H440 M120 420 H440 M120 580 H440" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3"/>
+  </g>
+</svg>

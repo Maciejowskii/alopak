@@ -1,15 +1,29 @@
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export type Crumb = {
   label: string;
   href?: string;
 };
 
-export function Breadcrumbs({ items }: { items: Crumb[] }) {
+export function Breadcrumbs({
+  items,
+  tone = "dark",
+}: {
+  items: Crumb[];
+  tone?: "dark" | "light";
+}) {
+  const light = tone === "light";
+
   return (
-    <nav aria-label="Okruszki nawigacyjne" className="mb-8">
-      <ol className="flex flex-wrap items-center gap-1 text-sm text-muted">
+    <nav aria-label="Okruszki nawigacyjne" className="mb-6">
+      <ol
+        className={cn(
+          "flex flex-wrap items-center gap-1 text-sm",
+          light ? "text-white/65" : "text-muted",
+        )}
+      >
         {items.map((item, index) => {
           const isLast = index === items.length - 1;
           return (
@@ -20,13 +34,16 @@ export function Breadcrumbs({ items }: { items: Crumb[] }) {
               {item.href && !isLast ? (
                 <Link
                   href={item.href}
-                  className="transition-colors hover:text-primary"
+                  className={cn(
+                    "transition-colors",
+                    light ? "hover:text-white" : "hover:text-primary",
+                  )}
                 >
                   {item.label}
                 </Link>
               ) : (
                 <span
-                  className={isLast ? "font-medium text-ink" : undefined}
+                  className={cn(isLast && (light ? "font-medium text-white" : "font-medium text-ink"))}
                   aria-current={isLast ? "page" : undefined}
                 >
                   {item.label}

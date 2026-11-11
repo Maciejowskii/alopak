@@ -37,6 +37,7 @@ export function SmartImage({
             width: "100%",
             height: "100%",
             objectFit: "cover",
+            objectPosition: "center",
           }}
           loading={priority ? "eager" : "lazy"}
           fetchPriority={priority ? "high" : undefined}

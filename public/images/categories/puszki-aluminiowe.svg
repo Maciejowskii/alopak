@@ -1,25 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-label="Placeholder puszek aluminiowych">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-label="Aluminum cans category visualization">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+    <linearGradient id="catBg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#F7F9FB"/>
       <stop offset="100%" stop-color="#E4EAF0"/>
     </linearGradient>
-    <linearGradient id="metal" x1="0" y1="0" x2="0" y2="1">
+    <linearGradient id="catMetal" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#D7DEE5"/>
       <stop offset="50%" stop-color="#F5F7F9"/>
       <stop offset="100%" stop-color="#A9B4BE"/>
     </linearGradient>
   </defs>
-  <rect width="1200" height="800" fill="url(#bg)"/>
+  <rect width="1200" height="800" fill="url(#catBg)"/>
   <circle cx="920" cy="160" r="180" fill="#142B45" opacity="0.05"/>
   <g transform="translate(250 220)">
-    <ellipse cx="160" cy="40" rx="120" ry="34" fill="url(#metal)" stroke="#778692" stroke-width="2"/>
-    <path d="M40 40 V260 C40 290 90 310 160 310 C230 310 280 290 280 260 V40" fill="url(#metal)" stroke="#778692" stroke-width="2"/>
+    <ellipse cx="160" cy="40" rx="120" ry="34" fill="url(#catMetal)" stroke="#778692" stroke-width="2"/>
+    <path d="M40 40 V260 C40 290 90 310 160 310 C230 310 280 290 280 260 V40" fill="url(#catMetal)" stroke="#778692" stroke-width="2"/>
     <ellipse cx="160" cy="40" rx="120" ry="34" fill="#EEF2F5" opacity="0.55"/>
   </g>
   <g transform="translate(620 250)">
-    <ellipse cx="120" cy="34" rx="100" ry="28" fill="url(#metal)" stroke="#778692" stroke-width="2"/>
-    <path d="M20 34 V230 C20 255 60 275 120 275 C180 275 220 255 220 230 V34" fill="url(#metal)" stroke="#778692" stroke-width="2"/>
+    <ellipse cx="120" cy="34" rx="100" ry="28" fill="url(#catMetal)" stroke="#778692" stroke-width="2"/>
+    <path d="M20 34 V230 C20 255 60 275 120 275 C180 275 220 255 220 230 V34" fill="url(#catMetal)" stroke="#778692" stroke-width="2"/>
   </g>
-  <text x="80" y="740" fill="#65717D" font-family="Arial, sans-serif" font-size="28">ALOPAK · wizualizacja zastpcza</text>
+  <text x="80" y="740" fill="#65717D" font-family="Arial, sans-serif" font-size="28">ALOPAK · placeholder visualization</text>
 </svg>

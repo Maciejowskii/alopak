@@ -1,41 +1,69 @@
+import { SmartImage } from "@/components/ui/SmartImage";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { industries } from "@/data/industries";
+import { stockMedia } from "@/data/media";
 import { Container } from "@/components/ui/Container";
-import { Reveal } from "@/components/ui/Reveal";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+
+const images = [
+  stockMedia.packaging.src,
+  stockMedia.foilRoll.src,
+  stockMedia.metal.src,
+];
 
 export function IndustriesTeaser() {
   return (
-    <section className="section-pad bg-white">
-      <Container>
-        <SectionHeading
-          eyebrow="Branże"
-          title="Oferta dopasowana do branży"
-          description="Wybierz obszar zastosowania, aby zobaczyć powiązane kategorie produktów."
-        />
-        <div className="mt-10 grid gap-5 lg:grid-cols-3">
-          {industries.map((industry, index) => (
-            <Reveal key={industry.slug} delay={index * 70}>
-              <Link
-                href={`/branze/${industry.slug}`}
-                className="group block border-t border-border pt-6 transition-colors hover:border-primary"
-              >
-                <h3 className="text-xl font-semibold text-ink group-hover:text-primary">
-                  {industry.name}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted">
-                  {industry.description}
-                </p>
-                <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary">
-                  Zobacz szczegóły
-                  <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
-                </span>
-              </Link>
-            </Reveal>
-          ))}
-        </div>
+    <section className="bg-surface">
+      <Container className="section-pad">
+        <h2 className="font-display max-w-2xl text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
+          Oferta dopasowana do branży
+        </h2>
+        <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
+          Każda strona branżowa łączy się z konkretnymi kategoriami produktów —
+          bez powielania cienkiej treści.
+        </p>
       </Container>
+
+      <div className="space-y-0">
+        {industries.map((industry, index) => {
+          const reverse = index % 2 === 1;
+          return (
+            <div
+              key={industry.slug}
+              className="grid border-t border-border lg:grid-cols-2"
+            >
+              <div
+                className={`relative min-h-[280px] lg:min-h-[420px] ${reverse ? "lg:order-2" : ""}`}
+              >
+                <SmartImage
+                  src={images[index]}
+                  alt=""
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              </div>
+              <div
+                className={`flex items-center bg-white px-6 py-12 sm:px-10 lg:px-16 ${reverse ? "lg:order-1" : ""}`}
+              >
+                <div className="max-w-md">
+                  <h3 className="font-display text-3xl font-semibold text-ink">
+                    {industry.name}
+                  </h3>
+                  <p className="mt-4 text-base leading-relaxed text-muted">
+                    {industry.description}
+                  </p>
+                  <Link
+                    href={`/branze/${industry.slug}`}
+                    className="mt-6 inline-flex text-sm font-semibold text-primary underline-offset-4 hover:underline"
+                  >
+                    Zobacz zastosowania
+                  </Link>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </section>
   );
 }
