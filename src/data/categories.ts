@@ -7,9 +7,9 @@ export const categories: Category[] = [
     shortName: "Puszki",
     tagline: "Opakowania aluminiowe dla przemysłu spożywczego",
     description:
-      "Puszki aluminiowe i pojemniki do zastosowań biznesowych — w różnych kształtach i pojemnościach. Oferta kierowana do działów zakupów, produkcji i zaopatrzenia.",
+      "Puszki aluminiowe spożywcze ALOPAK — różne kształty i pojemności. Zamykane wieczkami aluminiowymi zgrzewanymi do puszki. Oferta dla działów zakupów, produkcji i zaopatrzenia.",
     heroDescription:
-      "Poznaj puszki aluminiowe ALOPAK przeznaczone m.in. do przetworów mięsnych, rybnych, mleczarskich oraz owocowo-warzywnych. Skontaktuj się, aby omówić warianty i wymagania Twojej produkcji.",
+      "Puszki aluminiowe do przetworów mięsnych, rybnych, mleczarskich oraz owocowo-warzywnych. Produkty można pasteryzować i sterylizować. Skontaktuj się, aby omówić warianty katalogowe.",
     applications: [
       "Przetwory mięsne",
       "Przetwory rybne",
@@ -24,7 +24,7 @@ export const categories: Category[] = [
       "Firmy poszukujące opakowań aluminiowych B2B",
     ],
     highlights: [
-      "Różne kształty i pojemności",
+      "Różne kształty i pojemności — katalog od 54 do 337 ml",
       "Zamykanie wieczkami aluminiowymi zgrzewanymi do puszki",
       "Możliwość pasteryzacji i sterylizacji",
       "Zapytanie z opisem wymagań i opcjonalnym załącznikiem",
@@ -52,7 +52,7 @@ export const categories: Category[] = [
       "Puszki aluminiowe ALOPAK dla przemysłu spożywczego. Sprawdź warianty i wyślij zapytanie ofertowe.",
     image: {
       src: "/images/categories/puszki-aluminiowe.jpg",
-      alt: "Puszki aluminiowe spożywcze — widok z góry",
+      alt: "Przykłady produktów pakowanych w puszki aluminiowe ALOPAK",
     },
   },
   {

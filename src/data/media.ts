@@ -9,8 +9,8 @@ export const stockMedia = {
     alt: "Rolka folii aluminiowej",
   },
   cans: {
-    src: "/images/categories/puszki-aluminiowe.jpg",
-    alt: "Puszki aluminiowe spożywcze — widok z góry",
+    src: "/images/catalog/puszki-przyklad.jpg",
+    alt: "Przykłady produktów pakowanych w puszki aluminiowe ALOPAK",
   },
   foodFoil: {
     src: "/images/categories/folia-spozywcza.jpg",

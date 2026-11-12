@@ -18,8 +18,8 @@ export const products: Product[] = [
       "Puszka aluminiowa spożywcza z oferty ALOPAK. Zamykana wieczkiem aluminiowym zgrzewanym do puszki. Szczegóły zastosowania i dostępności omówimy w zapytaniu ofertowym.",
     images: [
       {
-        src: "/images/products/puszka-placeholder.svg",
-        alt: "Puszka aluminiowa 54 ml — rysunek techniczny",
+        src: "/images/products/puszka-54.jpg",
+        alt: "Puszka aluminiowa 54 ml — zdjęcie katalogowe ALOPAK",
       },
     ],
     applications: ["Przetwory spożywcze", "Pakowanie przetworów"],
@@ -55,8 +55,8 @@ export const products: Product[] = [
       "Wariant prostokątny z katalogu ALOPAK. Sprawdź parametry i wyślij zapytanie z wymaganiami produkcyjnymi.",
     images: [
       {
-        src: "/images/products/puszka-placeholder.svg",
-        alt: "Puszka aluminiowa 117 ml — rysunek techniczny",
+        src: "/images/products/puszka-117.jpg",
+        alt: "Puszka aluminiowa 117 ml — zdjęcie katalogowe ALOPAK",
       },
     ],
     applications: ["Przetwory spożywcze"],
@@ -92,8 +92,8 @@ export const products: Product[] = [
       "Popularny wariant pojemności 100 ml z oferty ALOPAK. Parametry katalogowe poniżej — szczegóły współpracy w kontakcie.",
     images: [
       {
-        src: "/images/products/puszka-placeholder.svg",
-        alt: "Puszka aluminiowa 100 ml — rysunek techniczny",
+        src: "/images/products/puszka-100.jpg",
+        alt: "Puszka aluminiowa 100 ml — zdjęcie katalogowe ALOPAK",
       },
     ],
     applications: ["Przetwory mięsne", "Przetwory mleczarskie", "Przetwory owocowo-warzywne"],
@@ -129,8 +129,8 @@ export const products: Product[] = [
       "Wariant 100 S z katalogu ALOPAK. Porównaj parametry z innymi pojemnościami i wyślij zapytanie.",
     images: [
       {
-        src: "/images/products/puszka-placeholder.svg",
-        alt: "Puszka aluminiowa 100 ml, wariant S — rysunek techniczny",
+        src: "/images/products/puszka-100-s.jpg",
+        alt: "Puszka aluminiowa 100 ml, wariant S — zdjęcie katalogowe ALOPAK",
       },
     ],
     applications: ["Przetwory spożywcze"],
@@ -166,8 +166,8 @@ export const products: Product[] = [
       "Puszka 110 ml z oferty ALOPAK. Dane katalogowe dostępne poniżej.",
     images: [
       {
-        src: "/images/products/puszka-placeholder.svg",
-        alt: "Puszka aluminiowa 110 ml — rysunek techniczny",
+        src: "/images/products/puszka-110.jpg",
+        alt: "Puszka aluminiowa 110 ml — zdjęcie katalogowe ALOPAK",
       },
     ],
     applications: ["Przetwory spożywcze"],
@@ -203,8 +203,8 @@ export const products: Product[] = [
       "Puszka 125 ml z katalogu ALOPAK. Wyślij zapytanie, aby omówić zapotrzebowanie.",
     images: [
       {
-        src: "/images/products/puszka-placeholder.svg",
-        alt: "Puszka aluminiowa 125 ml — rysunek techniczny",
+        src: "/images/products/puszka-125.jpg",
+        alt: "Puszka aluminiowa 125 ml — zdjęcie katalogowe ALOPAK",
       },
     ],
     applications: ["Przetwory spożywcze"],
@@ -240,8 +240,8 @@ export const products: Product[] = [
       "Puszka 135 ml z oferty ALOPAK. Parametry katalogowe i zapytanie ofertowe.",
     images: [
       {
-        src: "/images/products/puszka-placeholder.svg",
-        alt: "Puszka aluminiowa 135 ml — rysunek techniczny",
+        src: "/images/products/puszka-135.jpg",
+        alt: "Puszka aluminiowa 135 ml — zdjęcie katalogowe ALOPAK",
       },
     ],
     applications: ["Przetwory spożywcze"],
@@ -277,8 +277,8 @@ export const products: Product[] = [
       "Puszka 140 ml z katalogu ALOPAK. Skontaktuj się w sprawie oferty.",
     images: [
       {
-        src: "/images/products/puszka-placeholder.svg",
-        alt: "Puszka aluminiowa 140 ml — rysunek techniczny",
+        src: "/images/products/puszka-140.jpg",
+        alt: "Puszka aluminiowa 140 ml — zdjęcie katalogowe ALOPAK",
       },
     ],
     applications: ["Przetwory spożywcze"],
@@ -314,8 +314,8 @@ export const products: Product[] = [
       "Większa pojemność 250 ml z oferty ALOPAK. Dane katalogowe poniżej.",
     images: [
       {
-        src: "/images/products/puszka-placeholder.svg",
-        alt: "Puszka aluminiowa 250 ml — rysunek techniczny",
+        src: "/images/products/puszka-250.jpg",
+        alt: "Puszka aluminiowa 250 ml — zdjęcie katalogowe ALOPAK",
       },
     ],
     applications: ["Przetwory spożywcze"],
@@ -351,8 +351,8 @@ export const products: Product[] = [
       "Puszka 337 ml z katalogu ALOPAK. Sprawdź wymiary i wyślij zapytanie ofertowe.",
     images: [
       {
-        src: "/images/products/puszka-placeholder.svg",
-        alt: "Puszka aluminiowa 337 ml — rysunek techniczny",
+        src: "/images/products/puszka-337.jpg",
+        alt: "Puszka aluminiowa 337 ml — zdjęcie katalogowe ALOPAK",
       },
     ],
     applications: ["Przetwory spożywcze"],
@@ -387,8 +387,8 @@ export const products: Product[] = [
       "Wytrzymała profesjonalna folia fryzjerska do koloryzacji włosów. Folia aluminiowa w kolorze srebrnym. Parametry katalogowe: grubość 14 µm, szerokość 12 cm. Warunki współpracy omawiamy indywidualnie.",
     images: [
       {
-        src: "/images/products/folia-placeholder.svg",
-        alt: "Folia fryzjerska aluminiowa — rysunek techniczny",
+        src: "/images/products/folia-fryzjerska.jpg",
+        alt: "Folia fryzjerska aluminiowa — zdjęcie katalogowe ALOPAK",
       },
     ],
     applications: ["Koloryzacja włosów", "Salony fryzjerskie", "Hurtownie fryzjerskie"],
@@ -417,8 +417,8 @@ export const products: Product[] = [
       "ALOPAK oferuje folię spożywczą oraz inne wyroby z folii aluminiowej dla klientów biznesowych. Szczegółowe warianty i parametry potwierdzamy w odpowiedzi na zapytanie ofertowe — nie publikujemy niepotwierdzonych danych technicznych.",
     images: [
       {
-        src: "/images/products/folia-placeholder.svg",
-        alt: "Folia spożywcza — wizualizacja produktu",
+        src: "/images/products/folia-spozywcza.jpg",
+        alt: "Folia spożywcza aluminiowa — przykładowe zdjęcie rolki",
       },
     ],
     applications: ["Gastronomia", "Hurtownie", "Zastosowania profesjonalne"],

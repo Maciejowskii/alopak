@@ -142,7 +142,7 @@ export function Header() {
           </Link>
           <button
             type="button"
-            className="inline-flex size-11 items-center justify-center text-navy transition-colors hover:text-brand"
+            className="inline-flex size-11 items-center justify-center text-navy transition-colors hover:text-brand lg:hidden"
             aria-expanded={mobileOpen}
             aria-controls={menuId}
             aria-label={mobileOpen ? "Zamknij menu" : "Otwórz menu"}
@@ -166,7 +166,7 @@ export function Header() {
       <div
         id={menuId}
         className={cn(
-          "border-t border-border bg-white",
+          "border-t border-border bg-white lg:hidden",
           mobileOpen ? "block" : "hidden",
         )}
       >
