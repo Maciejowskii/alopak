@@ -69,10 +69,7 @@ export function HeroClient({ photoSrc }: { photoSrc: string }) {
             alt=""
             fill
             priority
-            className={cn(
-              "object-cover object-[70%_45%] transition-opacity duration-700",
-              ready ? "opacity-100" : "opacity-0",
-            )}
+            className="object-cover object-[70%_45%]"
             sizes="100vw"
           />
           <div
@@ -198,6 +195,7 @@ export function HeroClient({ photoSrc }: { photoSrc: string }) {
                   src={category.image.src}
                   alt={category.image.alt}
                   fill
+                  priority={index < 2}
                   className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.06] motion-reduce:transition-none"
                   sizes="(max-width: 640px) 84px, 33vw"
                 />
