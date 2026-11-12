@@ -12,10 +12,6 @@ const points = [
     title: "Bezpośredni kontakt z firmą",
     text: "Formularz zapytania pozwala opisać wymagania i dołączyć specyfikację przed rozmową ofertową.",
   },
-  {
-    title: "Podejście do jakości",
-    text: `Firma deklaruje system zarządzania jakością zgodny z ${siteConfig.qualitySystem}.`,
-  },
 ];
 
 export function WhyAlopak() {
@@ -24,8 +20,8 @@ export function WhyAlopak() {
       <div className="grid lg:grid-cols-2">
         <div className="relative min-h-[360px] lg:min-h-full">
           <SmartImage
-            src={stockMedia.workshop.src}
-            alt={stockMedia.workshop.alt}
+            src={stockMedia.partnership.src}
+            alt={stockMedia.partnership.alt}
             fill
             className="object-cover"
             sizes="(max-width: 1024px) 100vw, 50vw"
@@ -37,9 +33,8 @@ export function WhyAlopak() {
               Partner dla zakupów opakowań i folii
             </h2>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-muted">
-              ALOPAK działa od {siteConfig.foundedYear} roku jako producent
-              opakowań aluminiowych. Komunikacja na stronie ogranicza się do
-              faktów potwierdzonych publicznie — bez pustych sloganów.
+              ALOPAK od {siteConfig.foundedYear} roku produkuje opakowania
+              aluminiowe w Ostrzeszowie.
             </p>
             <div className="mt-10 space-y-8">
               {points.map((point) => (

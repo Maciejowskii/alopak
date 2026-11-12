@@ -2,6 +2,7 @@ import { AboutTeaser } from "@/components/sections/AboutTeaser";
 import { BlogTeaser } from "@/components/sections/BlogTeaser";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { FaqSection } from "@/components/sections/FaqSection";
+import { FeaturedProducts } from "@/components/sections/FeaturedProducts";
 import { Hero } from "@/components/sections/Hero";
 import { IndustriesTeaser } from "@/components/sections/IndustriesTeaser";
 import { OfferSplit } from "@/components/sections/OfferSplit";
@@ -15,7 +16,6 @@ export const metadata = createMetadata({
   description:
     "ALOPAK: puszki aluminiowe, folia spożywcza i folia fryzjerska dla odbiorców B2B. Wyślij zapytanie ofertowe.",
   path: "/",
-  image: "/images/stock/hero-metal.svg",
 });
 
 export default function HomePage() {
@@ -23,6 +23,7 @@ export default function HomePage() {
     <>
       <Hero />
       <OfferSplit />
+      <FeaturedProducts />
       <WhyAlopak />
       <AboutTeaser />
       <IndustriesTeaser />

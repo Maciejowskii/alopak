@@ -40,8 +40,10 @@ export function FaqAccordion({ items }: { items: FaqItem[] }) {
               id={panelId}
               role="region"
               aria-labelledby={buttonId}
-              hidden={!open}
-              className={cn("pb-5 text-muted leading-relaxed", !open && "hidden")}
+              className={cn(
+                "text-muted leading-relaxed",
+                open ? "pb-5" : "sr-only",
+              )}
             >
               {item.answer}
             </div>

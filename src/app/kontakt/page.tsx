@@ -1,5 +1,6 @@
 import { SmartImage } from "@/components/ui/SmartImage";
 import { QuoteForm } from "@/components/forms/QuoteForm";
+import { LocationMap } from "@/components/sections/LocationMap";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Container } from "@/components/ui/Container";
 import { contact } from "@/data/site";
@@ -28,6 +29,7 @@ async function ContactContent({
   searchParams?: Promise<{ kategoria?: string; produkt?: string }>;
 }) {
   const params = searchParams ? await searchParams : {};
+  const [primaryPhone, ...additionalPhones] = contact.phones;
 
   return (
     <>
@@ -72,6 +74,12 @@ async function ContactContent({
                   <br />
                   {contact.postalCode} {contact.city}
                 </p>
+                <a
+                  href="#mapa"
+                  className="mt-3 inline-block text-sm font-semibold text-primary underline-offset-4 hover:underline"
+                >
+                  Pokaż na mapie
+                </a>
               </div>
               <div className="border-t border-border pt-5">
                 <p className="text-xs uppercase tracking-[0.14em] text-accent-dark">
@@ -87,21 +95,37 @@ async function ContactContent({
               </div>
               <div className="border-t border-border pt-5">
                 <p className="text-xs uppercase tracking-[0.14em] text-accent-dark">
-                  Telefon / fax
+                  Telefon
                 </p>
-                <ul className="mt-3 space-y-2">
-                  {contact.phones.map((phone) => (
-                    <li key={phone}>
-                      <a
-                        href={`tel:${phone.replace(/\s/g, "")}`}
-                        className="text-lg font-semibold text-primary"
-                        data-analytics="phone_click"
-                      >
-                        {phone}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
+                {primaryPhone ? (
+                  <a
+                    href={`tel:${primaryPhone.replace(/\s/g, "")}`}
+                    className="mt-2 inline-block text-xl font-semibold text-primary"
+                    data-analytics="phone_click"
+                  >
+                    {primaryPhone}
+                  </a>
+                ) : null}
+                {additionalPhones.length ? (
+                  <div className="mt-6">
+                    <p className="text-xs uppercase tracking-[0.14em] text-accent-dark">
+                      Dodatkowe numery
+                    </p>
+                    <ul className="mt-3 space-y-2">
+                      {additionalPhones.map((phone) => (
+                        <li key={phone}>
+                          <a
+                            href={`tel:${phone.replace(/\s/g, "")}`}
+                            className="text-lg font-semibold text-primary"
+                            data-analytics="phone_click"
+                          >
+                            {phone}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
               </div>
               <div className="border-t border-border pt-5">
                 <p className="text-xs uppercase tracking-[0.14em] text-accent-dark">
@@ -134,6 +158,8 @@ async function ContactContent({
           </div>
         </Container>
       </section>
+
+      <LocationMap />
     </>
   );
 }

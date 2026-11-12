@@ -1,23 +1,17 @@
 import { SmartImage } from "@/components/ui/SmartImage";
 import Link from "next/link";
 import { industries } from "@/data/industries";
-import { stockMedia } from "@/data/media";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Container } from "@/components/ui/Container";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { createMetadata } from "@/lib/seo/metadata";
-
-const images = [
-  stockMedia.packaging.src,
-  stockMedia.foilRoll.src,
-  stockMedia.metal.src,
-];
 
 export const metadata = createMetadata({
   title: "Branże i zastosowania",
   description:
     "Zastosowania oferty ALOPAK: przemysł spożywczy, gastronomia, branża fryzjerska.",
   path: "/branze",
+  image: industries[0]?.image.src,
 });
 
 export default function IndustriesPage() {
@@ -35,8 +29,8 @@ export default function IndustriesPage() {
             Branże i zastosowania
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted">
-            Każda strona branżowa łączy się z konkretnymi kategoriami produktów
-            — bez powielania pustych treści.
+            Każda branża ma własną stronę z zastosowaniami i powiązanymi
+            produktami.
           </p>
         </Container>
       </section>
@@ -48,8 +42,8 @@ export default function IndustriesPage() {
             <div key={industry.slug} className="grid border-t border-border lg:grid-cols-2">
               <div className={`relative min-h-[280px] ${reverse ? "lg:order-2" : ""}`}>
                 <SmartImage
-                  src={images[index]}
-                  alt=""
+                  src={industry.image.src}
+                  alt={industry.image.alt}
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"

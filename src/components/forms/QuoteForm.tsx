@@ -1,8 +1,19 @@
 "use client";
 
-import { useActionState, useEffect, useRef, useState } from "react";
+import {
+  useActionState,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  type HTMLAttributes,
+} from "react";
 import { submitQuote, type QuoteActionState } from "@/app/actions/quote";
 import { trackEvent } from "@/lib/analytics/events";
+import {
+  MAX_ATTACHMENT_BYTES,
+  MAX_ATTACHMENT_LABEL,
+} from "@/lib/validation/quote";
 import { quoteCategoryValues } from "@/lib/validation/quote";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
@@ -28,7 +39,17 @@ export function QuoteForm({
 }) {
   const [state, formAction, pending] = useActionState(submitQuote, initialState);
   const [started, setStarted] = useState(false);
+  const [localAttachmentError, setLocalAttachmentError] = useState<string | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
+  const statusId = useId();
+  const hintId = useId();
+  const attachmentHelpId = useId();
+
+  const attachmentErrors = state.fieldErrors?.attachment?.length
+    ? state.fieldErrors.attachment
+    : localAttachmentError
+      ? [localAttachmentError]
+      : [];
 
   useEffect(() => {
     trackEvent("quote_form_view");
@@ -50,6 +71,23 @@ export function QuoteForm({
     }
   }
 
+  function validateAttachmentSize(file: File | null) {
+    if (!file) {
+      setLocalAttachmentError(null);
+      return;
+    }
+    if (file.size > MAX_ATTACHMENT_BYTES) {
+      setLocalAttachmentError(`Załącznik może mieć maksymalnie ${MAX_ATTACHMENT_LABEL}.`);
+      return;
+    }
+    setLocalAttachmentError(null);
+  }
+
+  const showFormAlert =
+    state.message &&
+    !state.ok &&
+    (!state.fieldErrors || Object.keys(state.fieldErrors).length === 0);
+
   if (state.ok) {
     return (
       <div
@@ -67,13 +105,21 @@ export function QuoteForm({
     <form
       ref={formRef}
       action={(formData) => {
+        if (localAttachmentError) {
+          return;
+        }
         trackEvent("quote_form_submit");
         formAction(formData);
       }}
-      className="space-y-5"
+      className="relative space-y-5"
       noValidate
       onFocus={markStart}
+      aria-describedby={`${hintId} ${statusId}`}
     >
+      <div id={statusId} className="sr-only" aria-live="polite">
+        {!state.ok && state.message ? state.message : ""}
+      </div>
+
       <div className="grid gap-5 sm:grid-cols-2">
         <Field
           label="Imię i nazwisko"
@@ -104,6 +150,7 @@ export function QuoteForm({
           label="Telefon"
           name="phone"
           type="tel"
+          inputMode="tel"
           autoComplete="tel"
           errors={state.fieldErrors?.phone}
         />
@@ -112,12 +159,14 @@ export function QuoteForm({
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="category" className="mb-2 block text-sm font-medium text-ink">
-            Kategoria produktu <span className="text-error">*</span>
+            Kategoria produktu
+            <RequiredMark />
           </label>
           <select
             id="category"
             name="category"
             required
+            aria-required="true"
             defaultValue={defaultCategory || ""}
             className={inputClass(Boolean(state.fieldErrors?.category))}
           >
@@ -148,12 +197,14 @@ export function QuoteForm({
 
       <div>
         <label htmlFor="message" className="mb-2 block text-sm font-medium text-ink">
-          Treść zapytania <span className="text-error">*</span>
+          Treść zapytania
+          <RequiredMark />
         </label>
         <textarea
           id="message"
           name="message"
           required
+          aria-required="true"
           rows={6}
           className={inputClass(Boolean(state.fieldErrors?.message))}
           placeholder="Opisz potrzeby, zastosowania, wymagania techniczne lub pytania."
@@ -171,9 +222,17 @@ export function QuoteForm({
           type="file"
           accept=".pdf,.jpg,.jpeg,.png,.doc,.docx,application/pdf,image/jpeg,image/png"
           className="block w-full text-sm text-muted file:mr-4 file:rounded-md file:border-0 file:bg-surface file:px-4 file:py-2 file:text-sm file:font-semibold file:text-primary"
+          aria-describedby={attachmentHelpId}
+          aria-invalid={attachmentErrors.length > 0 || undefined}
+          onChange={(event) => {
+            const file = event.target.files?.[0] ?? null;
+            validateAttachmentSize(file);
+          }}
         />
-        <p className="mt-2 text-xs text-muted">PDF, JPG, PNG, DOC, DOCX — max 5 MB.</p>
-        <FieldError errors={state.fieldErrors?.attachment} />
+        <p id={attachmentHelpId} className="mt-2 text-xs text-muted">
+          PDF, JPG, PNG, DOC, DOCX — max {MAX_ATTACHMENT_LABEL}.
+        </p>
+        <FieldError errors={attachmentErrors} />
       </div>
 
       <label className="flex items-start gap-3 text-sm text-muted">
@@ -181,39 +240,59 @@ export function QuoteForm({
           type="checkbox"
           name="consent"
           required
+          aria-required="true"
           className="mt-1 size-4 rounded border-border"
         />
         <span>
           Potwierdzam zapoznanie się z{" "}
-          <a href="/polityka-prywatnosci" className="font-medium text-primary underline-offset-2 hover:underline">
+          <a
+            href="/polityka-prywatnosci"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-primary underline-offset-2 hover:underline"
+          >
             informacją o przetwarzaniu danych
           </a>
-          . <span className="text-error">*</span>
+          . <RequiredMark />
         </span>
       </label>
       <FieldError errors={state.fieldErrors?.consent} />
 
       {/* Honeypot */}
-      <div className="hidden" aria-hidden="true">
+      <div className="absolute -left-[9999px]" aria-hidden="true">
         <label htmlFor="website">Website</label>
         <input id="website" name="website" tabIndex={-1} autoComplete="off" />
       </div>
 
-      {state.message && !state.ok ? (
-        <p className="rounded-md border border-error/30 bg-error/5 px-4 py-3 text-sm text-error" role="alert">
+      {showFormAlert ? (
+        <p
+          className="rounded-md border border-error/30 bg-error/5 px-4 py-3 text-sm text-error"
+          role="alert"
+        >
           {state.message}
         </p>
       ) : null}
 
-      <p className="text-xs text-muted">
-        Po wysłaniu zapytania skontaktujemy się w sprawie szczegółów. Pola oznaczone *
-        są wymagane.
+      <p id={hintId} className="text-xs text-muted">
+        Po wysłaniu zapytania skontaktujemy się w sprawie szczegółów. Pola oznaczone{" "}
+        <span aria-hidden="true">*</span> są wymagane.
       </p>
 
-      <Button type="submit" size="lg" disabled={pending} className="w-full sm:w-auto">
+      <Button type="submit" size="lg" disabled={pending || Boolean(localAttachmentError)} className="w-full sm:w-auto">
         {pending ? "Wysyłanie..." : "Wyślij zapytanie"}
       </Button>
     </form>
+  );
+}
+
+function RequiredMark() {
+  return (
+    <>
+      {" "}
+      <span className="text-error" aria-hidden="true">
+        *
+      </span>
+    </>
   );
 }
 
@@ -221,6 +300,7 @@ function Field({
   label,
   name,
   type = "text",
+  inputMode,
   required,
   autoComplete,
   defaultValue,
@@ -229,6 +309,7 @@ function Field({
   label: string;
   name: string;
   type?: string;
+  inputMode?: HTMLAttributes<HTMLInputElement>["inputMode"];
   required?: boolean;
   autoComplete?: string;
   defaultValue?: string;
@@ -237,13 +318,16 @@ function Field({
   return (
     <div>
       <label htmlFor={name} className="mb-2 block text-sm font-medium text-ink">
-        {label} {required ? <span className="text-error">*</span> : null}
+        {label}
+        {required ? <RequiredMark /> : null}
       </label>
       <input
         id={name}
         name={name}
         type={type}
+        inputMode={inputMode}
         required={required}
+        aria-required={required || undefined}
         autoComplete={autoComplete}
         defaultValue={defaultValue}
         className={inputClass(Boolean(errors?.length))}

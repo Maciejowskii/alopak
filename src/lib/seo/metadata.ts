@@ -1,22 +1,25 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/data/site";
-import { absoluteUrl } from "@/lib/utils";
+
+/** Prefer raster OG images — social networks do not render SVG. */
+const DEFAULT_OG_IMAGE = "/opengraph-image";
 
 export function createMetadata({
   title,
   description,
   path = "/",
   noIndex = false,
-  image = "/images/hero-aluminium.svg",
+  image,
 }: {
   title: string;
   description: string;
   path?: string;
   noIndex?: boolean;
+  /** Relative path to PNG/JPG, or omit to use app/opengraph-image */
   image?: string;
 }): Metadata {
-  const url = absoluteUrl(path);
   const fullTitle = /ALOPAK/i.test(title) ? title : `${title} | ALOPAK`;
+  const ogImage = image && !image.endsWith(".svg") ? image : undefined;
 
   return {
     title: {
@@ -24,25 +27,27 @@ export function createMetadata({
     },
     description,
     alternates: {
-      canonical: url,
+      canonical: path,
     },
     openGraph: {
       title: fullTitle,
       description,
-      url,
+      url: path,
       siteName: siteConfig.name,
       locale: siteConfig.locale,
       type: "website",
-      images: [{ url: absoluteUrl(image) }],
+      ...(ogImage ? { images: [{ url: ogImage }] } : {}),
     },
     twitter: {
       card: "summary_large_image",
       title: fullTitle,
       description,
-      images: [absoluteUrl(image)],
+      ...(ogImage ? { images: [ogImage] } : {}),
     },
     robots: noIndex
       ? { index: false, follow: false }
       : { index: true, follow: true },
   };
 }
+
+export { DEFAULT_OG_IMAGE };

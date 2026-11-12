@@ -15,7 +15,7 @@ const steps = [
   },
   {
     title: "Otrzymujesz informacje ofertowe",
-    text: "Warunki współpracy omawiane są indywidualnie — bez deklarowania terminów odpowiedzi, których firma nie potwierdziła.",
+    text: "Warunki współpracy ustalamy indywidualnie, po zapoznaniu się z Twoim zapytaniem.",
   },
 ];
 

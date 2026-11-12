@@ -11,7 +11,8 @@ import {
   getRelatedPosts,
 } from "@/lib/blog/repository";
 import { createMetadata } from "@/lib/seo/metadata";
-import { absoluteUrl, formatDate } from "@/lib/utils";
+import { articleSchema, breadcrumbSchema } from "@/lib/seo/schema";
+import { formatDate } from "@/lib/utils";
 import type { SlugPageProps } from "@/types/next";
 
 export function generateStaticParams() {
@@ -45,18 +46,14 @@ export default async function BlogPostPage({
   return (
     <>
       <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "BlogPosting",
-          headline: post.title,
-          description: post.description,
-          datePublished: post.publishedAt,
-          dateModified: post.updatedAt || post.publishedAt,
-          author: post.author
-            ? { "@type": "Person", name: post.author }
-            : { "@type": "Organization", name: "ALOPAK" },
-          mainEntityOfPage: absoluteUrl(`/blog/${post.slug}`),
-        }}
+        data={[
+          breadcrumbSchema([
+            { name: "Strona główna", path: "/" },
+            { name: "Blog", path: "/blog" },
+            { name: post.title, path: `/blog/${post.slug}` },
+          ]),
+          articleSchema(post),
+        ]}
       />
 
       <article className="section-pad bg-white">

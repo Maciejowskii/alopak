@@ -8,17 +8,10 @@ import { Container } from "@/components/ui/Container";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getCategory } from "@/data/categories";
 import { getIndustry, industries } from "@/data/industries";
-import { stockMedia } from "@/data/media";
 import { getProductsByCategory } from "@/lib/products/repository";
 import { createMetadata } from "@/lib/seo/metadata";
 import { breadcrumbSchema } from "@/lib/seo/schema";
 import type { SlugPageProps } from "@/types/next";
-
-const industryHero: Record<string, string> = {
-  "przemysl-spozywczy": stockMedia.packaging.src,
-  gastronomia: stockMedia.foilRoll.src,
-  "branza-fryzjerska": stockMedia.metal.src,
-};
 
 export function generateStaticParams() {
   return industries.map((industry) => ({ slug: industry.slug }));
@@ -32,7 +25,7 @@ export async function generateMetadata({ params }: Omit<SlugPageProps, never>) {
     title: industry.seoTitle,
     description: industry.seoDescription,
     path: `/branze/${industry.slug}`,
-    image: industryHero[industry.slug] || stockMedia.hero.src,
+    image: industry.image.src,
   });
 }
 
@@ -61,8 +54,8 @@ export default async function IndustryPage({ params }: SlugPageProps) {
 
       <section className="relative isolate min-h-[460px] overflow-hidden bg-primary text-white">
         <SmartImage
-          src={industryHero[industry.slug] || stockMedia.hero.src}
-          alt=""
+          src={industry.image.src}
+          alt={industry.image.alt}
           fill
           priority
           className="object-cover opacity-40"

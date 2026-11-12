@@ -5,10 +5,10 @@ export const siteConfig = {
   tagline: "Opakowania i folie dla profesjonalnych zastosowań",
   description:
     "ALOPAK oferuje puszki aluminiowe, folię spożywczą i folię fryzjerską dla odbiorców biznesowych. Skontaktuj się w sprawie oferty dopasowanej do potrzeb Twojej firmy.",
-  url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
   locale: "pl_PL",
   foundedYear: 1997,
-  qualitySystem: "ISO 9001:2015",
+  /** Publish only after client confirms a valid certificate. */
+  qualitySystem: null as string | null,
 } as const;
 
 export const contact: SiteContact = {
@@ -61,6 +61,11 @@ export const footerNav = {
     { label: "Folia spożywcza", href: "/oferta/folia-spozywcza" },
     { label: "Folia fryzjerska", href: "/oferta/folia-fryzjerska" },
     { label: "Katalog produktów", href: "/produkty" },
+  ],
+  branze: [
+    { label: "Przemysł spożywczy", href: "/branze/przemysl-spozywczy" },
+    { label: "Gastronomia", href: "/branze/gastronomia" },
+    { label: "Branża fryzjerska", href: "/branze/branza-fryzjerska" },
   ],
   firma: [
     { label: "O firmie", href: "/o-firmie" },

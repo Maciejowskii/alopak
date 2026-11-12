@@ -1,5 +1,16 @@
 import { describe, expect, it } from "vitest";
-import { quoteSchema } from "@/lib/validation/quote";
+import { detectAttachmentKind } from "@/lib/validation/attachment";
+import { MAX_ATTACHMENT_BYTES, quoteSchema } from "@/lib/validation/quote";
+
+describe("attachment limits", () => {
+  it("allows attachments up to 4 MB", () => {
+    expect(MAX_ATTACHMENT_BYTES).toBe(4 * 1024 * 1024);
+  });
+
+  it("detects PDF magic bytes", () => {
+    expect(detectAttachmentKind(Buffer.from("%PDF-1.4"))).toBe("pdf");
+  });
+});
 
 describe("quoteSchema", () => {
   it("accepts a valid payload", () => {

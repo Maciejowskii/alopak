@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Archivo, Manrope } from "next/font/google";
+import { Manrope, Source_Serif_4 } from "next/font/google";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { AnalyticsLoader } from "@/components/seo/AnalyticsLoader";
 import { siteConfig } from "@/data/site";
+import { SITE_URL } from "@/lib/site";
 import { organizationSchema, websiteSchema } from "@/lib/seo/schema";
-import { absoluteUrl } from "@/lib/utils";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -14,14 +14,14 @@ const manrope = Manrope({
   display: "swap",
 });
 
-const archivo = Archivo({
-  variable: "--font-archivo",
+const sourceSerif = Source_Serif_4({
+  variable: "--font-source-serif",
   subsets: ["latin", "latin-ext"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(absoluteUrl("/")),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: `${siteConfig.name} — ${siteConfig.tagline}`,
     template: `%s | ${siteConfig.name}`,
@@ -36,7 +36,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="pl" className={`${manrope.variable} ${archivo.variable} h-full antialiased`}>
+    <html
+      lang="pl"
+      className={`${manrope.variable} ${sourceSerif.variable} h-full antialiased`}
+    >
       <body className="min-h-full flex flex-col font-sans">
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
         <SiteShell>{children}</SiteShell>

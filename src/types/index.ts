@@ -31,6 +31,8 @@ export type Product = {
   id: string;
   name: string;
   slug: string;
+  catalogNumber?: string;
+  shape?: "round" | "rectangular" | "square";
   category: CategorySlug;
   shortDescription: string;
   description: string;
@@ -70,6 +72,7 @@ export type Industry = {
   relatedCategories: CategorySlug[];
   seoTitle: string;
   seoDescription: string;
+  image: ProductImage;
 };
 
 export type FaqItem = {

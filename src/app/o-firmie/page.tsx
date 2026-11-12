@@ -59,15 +59,14 @@ export default function AboutPage() {
               biznesowych.
             </p>
             <p>
-              Od początku działalności przywiązujemy wagę do jakości. W 2004
-              roku wdrożyliśmy System Zarządzania Jakością zgodny z normą ISO
-              9001:2000. Aktualne certyfikaty potwierdzają zgodność z wymaganiami
-              normy {siteConfig.qualitySystem}.
+              Od początku działalności przywiązujemy wagę do jakości produkcji
+              i współpracy z odbiorcami B2B. W 2004 roku wdrożyliśmy System
+              Zarządzania Jakością zgodny z normą ISO 9001:2000.
             </p>
             <p>
-              Firma deklaruje też gotowość realizacji projektów z wykorzystaniem
-              innych materiałów (tworzywa sztuczne, papier, tektura, inne metale)
-              — po indywidualnym kontakcie.
+              Realizujemy też projekty z wykorzystaniem innych materiałów
+              (tworzywa sztuczne, papier, tektura, inne metale) — po
+              indywidualnym kontakcie.
             </p>
           </div>
           <aside className="border border-border bg-surface p-8">
@@ -114,10 +113,6 @@ export default function AboutPage() {
               </div>
             ))}
           </div>
-          <p className="mt-8 text-sm text-muted">
-            Grafiki na tej stronie to wizualizacje materiałowe systemu
-            projektowego — nie dokumentacja zakładu ani zdjęcia produktów ALOPAK.
-          </p>
         </Container>
       </section>
 

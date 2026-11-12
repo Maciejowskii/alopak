@@ -1,24 +1,17 @@
 import { SmartImage } from "@/components/ui/SmartImage";
 import Link from "next/link";
 import { categories } from "@/data/categories";
-import { stockMedia } from "@/data/media";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Container } from "@/components/ui/Container";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { createMetadata } from "@/lib/seo/metadata";
-
-const images = [
-  stockMedia.industrial.src,
-  stockMedia.foilRoll.src,
-  stockMedia.metal.src,
-];
 
 export const metadata = createMetadata({
   title: "Oferta",
   description:
     "Oferta ALOPAK: puszki aluminiowe, folia spożywcza i folia fryzjerska dla klientów B2B.",
   path: "/oferta",
-  image: stockMedia.industrial.src,
+  image: categories[0]?.image.src,
 });
 
 export default function OfferPage() {
@@ -36,7 +29,7 @@ export default function OfferPage() {
           </p>
 
           <div className="mt-14 divide-y divide-border border-y border-border">
-            {categories.map((category, index) => (
+            {categories.map((category) => (
               <Link
                 key={category.slug}
                 href={`/oferta/${category.slug}`}
@@ -44,8 +37,8 @@ export default function OfferPage() {
               >
                 <div className="relative aspect-[4/3] overflow-hidden bg-surface">
                   <SmartImage
-                    src={images[index]}
-                    alt=""
+                    src={category.image.src}
+                    alt={category.image.alt}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                     sizes="280px"

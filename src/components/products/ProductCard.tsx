@@ -1,17 +1,17 @@
 import Link from "next/link";
 import type { Product } from "@/types";
 import { getCategory } from "@/data/categories";
-import { SmartImage } from "@/components/ui/SmartImage";
+import { ProductImage } from "@/components/products/ProductImage";
 
 export function ProductCard({ product }: { product: Product }) {
   const category = getCategory(product.category);
+  const contactHref = `/kontakt?produkt=${encodeURIComponent(product.slug)}&kategoria=${encodeURIComponent(product.category)}`;
 
   return (
     <article className="group flex h-full flex-col border border-border bg-white transition-colors hover:border-primary/30">
       <Link href={`/produkty/${product.slug}`} className="relative block aspect-[4/3] bg-surface">
-        <SmartImage
-          src={product.images[0]?.src || "/images/products/puszka-placeholder.svg"}
-          alt={product.images[0]?.alt || product.name}
+        <ProductImage
+          product={product}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           sizes="(max-width: 768px) 100vw, 33vw"
@@ -31,13 +31,17 @@ export function ProductCard({ product }: { product: Product }) {
         <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">
           {product.shortDescription}
         </p>
-        <p className="mt-4 text-xs text-muted">Nr kat. {product.id}</p>
-        <Link
-          href={`/produkty/${product.slug}`}
-          className="mt-3 text-sm font-semibold text-primary"
-        >
-          Zobacz szczegóły
-        </Link>
+        {product.catalogNumber ? (
+          <p className="mt-4 text-xs text-muted">Nr kat. {product.catalogNumber}</p>
+        ) : null}
+        <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm font-semibold">
+          <Link href={`/produkty/${product.slug}`} className="text-primary hover:underline">
+            Zobacz
+          </Link>
+          <Link href={contactHref} className="text-accent-dark hover:text-primary hover:underline">
+            Zapytaj
+          </Link>
+        </div>
       </div>
     </article>
   );

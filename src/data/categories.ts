@@ -26,7 +26,7 @@ export const categories: Category[] = [
     highlights: [
       "Różne kształty i pojemności",
       "Zamykanie wieczkami aluminiowymi zgrzewanymi do puszki",
-      "Możliwość pasteryzacji i sterylizacji — zgodnie z informacjami producenta",
+      "Możliwość pasteryzacji i sterylizacji",
       "Zapytanie z opisem wymagań i opcjonalnym załącznikiem",
     ],
     faq: [
@@ -51,8 +51,8 @@ export const categories: Category[] = [
     seoDescription:
       "Puszki aluminiowe ALOPAK dla przemysłu spożywczego. Sprawdź warianty i wyślij zapytanie ofertowe.",
     image: {
-      src: "/images/categories/puszki-aluminiowe.svg",
-      alt: "Schematyczna wizualizacja puszek aluminiowych",
+      src: "/images/categories/puszki-aluminiowe.jpg",
+      alt: "Puszki aluminiowe spożywcze — widok z góry",
     },
   },
   {
@@ -103,8 +103,8 @@ export const categories: Category[] = [
     seoDescription:
       "Folia spożywcza ALOPAK dla gastronomii i odbiorców biznesowych. Wyślij zapytanie o ofertę.",
     image: {
-      src: "/images/categories/folia-spozywcza.svg",
-      alt: "Schematyczna wizualizacja folii spożywczej",
+      src: "/images/categories/folia-spozywcza.jpg",
+      alt: "Rolka folii aluminiowej spożywczej",
     },
   },
   {
@@ -155,8 +155,8 @@ export const categories: Category[] = [
     seoDescription:
       "Profesjonalna folia fryzjerska aluminiowa ALOPAK. Parametry katalogowe i zapytanie ofertowe B2B.",
     image: {
-      src: "/images/categories/folia-fryzjerska.svg",
-      alt: "Schematyczna wizualizacja folii fryzjerskiej",
+      src: "/images/categories/folia-fryzjerska.jpg",
+      alt: "Koloryzacja włosów z użyciem folii fryzjerskiej",
     },
   },
 ];

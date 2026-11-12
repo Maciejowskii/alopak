@@ -55,4 +55,47 @@ export const ALLOWED_ATTACHMENT_TYPES = [
   "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
 ] as const;
 
-export const MAX_ATTACHMENT_BYTES = 5 * 1024 * 1024;
+export const ALLOWED_ATTACHMENT_EXTENSIONS = [
+  ".pdf",
+  ".jpg",
+  ".jpeg",
+  ".png",
+  ".doc",
+  ".docx",
+] as const;
+
+/** Client/server UX limit — stays under Vercel ~4.5 MB body limit. */
+export const MAX_ATTACHMENT_BYTES = 4 * 1024 * 1024;
+export const MAX_ATTACHMENT_LABEL = "4 MB";
+
+export function attachmentExtensionOk(filename: string) {
+  const lower = filename.toLowerCase();
+  return ALLOWED_ATTACHMENT_EXTENSIONS.some((ext) => lower.endsWith(ext));
+}
+
+/** Magic-byte sniff for common attachment types. */
+export function sniffAttachmentMime(buffer: Buffer): string | null {
+  if (buffer.length < 4) return null;
+  if (buffer[0] === 0x25 && buffer[1] === 0x50 && buffer[2] === 0x44 && buffer[3] === 0x46) {
+    return "application/pdf";
+  }
+  if (buffer[0] === 0xff && buffer[1] === 0xd8 && buffer[2] === 0xff) {
+    return "image/jpeg";
+  }
+  if (
+    buffer[0] === 0x89 &&
+    buffer[1] === 0x50 &&
+    buffer[2] === 0x4e &&
+    buffer[3] === 0x47
+  ) {
+    return "image/png";
+  }
+  // ZIP container (DOCX) or OLE (DOC)
+  if (buffer[0] === 0x50 && buffer[1] === 0x4b) {
+    return "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+  }
+  if (buffer[0] === 0xd0 && buffer[1] === 0xcf && buffer[2] === 0x11 && buffer[3] === 0xe0) {
+    return "application/msword";
+  }
+  return null;
+}

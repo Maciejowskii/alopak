@@ -19,6 +19,7 @@ export function getProductsByCategory(category: CategorySlug): Product[] {
 export function getFeaturedProducts(limit = 6): Product[] {
   return getPublishedProducts()
     .filter((product) => product.isFeatured)
+    .sort((a, b) => a.sortOrder - b.sortOrder)
     .slice(0, limit);
 }
 

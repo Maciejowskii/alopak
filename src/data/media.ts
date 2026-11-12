@@ -1,37 +1,55 @@
 /**
- * Material visualizations for atmosphere — NOT ALOPAK product photography.
- * Geometric / gradient compositions designed for the brand system.
- * Replace with company photography when available.
+ * Atmosphere / material photos. Prefer JPG/PNG for OG and social.
+ * Category photos: free Pexels stock (not ALOPAK product photography).
+ * Product photos: set `images` on each product in data/products.ts when ready.
  */
 export const stockMedia = {
   hero: {
-    src: "/images/stock/hero-metal.svg",
-    alt: "Wizualizacja materiału aluminiowego — grafika projektowa",
-    credit: "ALOPAK design system",
+    src: "/images/stock/cans-atmosphere.jpg",
+    alt: "Opakowania aluminiowe — atmosfera materiałowa",
+  },
+  cans: {
+    src: "/images/categories/puszki-aluminiowe.jpg",
+    alt: "Puszki aluminiowe spożywcze — widok z góry",
+  },
+  foodFoil: {
+    src: "/images/categories/folia-spozywcza.jpg",
+    alt: "Rolka folii aluminiowej spożywczej",
+  },
+  hairFoil: {
+    src: "/images/industries/branza-fryzjerska.jpg",
+    alt: "Koloryzacja z użyciem folii fryzjerskiej w salonie",
   },
   metal: {
-    src: "/images/stock/panel-metal.svg",
-    alt: "Panel metaliczny — wizualizacja materiałowa",
-    credit: "ALOPAK design system",
+    src: "/images/stock/metal-brushed.jpg",
+    alt: "Szczotkowane aluminium",
   },
   industrial: {
-    src: "/images/stock/can-form.svg",
-    alt: "Forma opakowania aluminiowego — wizualizacja materiałowa",
-    credit: "ALOPAK design system",
+    src: "/images/industries/przemysl-spozywczy.jpg",
+    alt: "Puszki aluminiowe",
   },
   foilRoll: {
-    src: "/images/stock/foil-strip.svg",
-    alt: "Pas folii aluminiowej — wizualizacja materiałowa",
-    credit: "ALOPAK design system",
+    src: "/images/categories/folia-spozywcza.jpg",
+    alt: "Folia aluminiowa",
   },
   packaging: {
-    src: "/images/stock/panel-metal.svg",
-    alt: "Powierzchnia aluminiowa — wizualizacja materiałowa",
-    credit: "ALOPAK design system",
+    src: "/images/industries/przemysl-spozywczy.jpg",
+    alt: "Opakowania aluminiowe",
   },
   workshop: {
-    src: "/images/stock/hero-metal.svg",
-    alt: "Abstrakcyjna kompozycja metaliczna — wizualizacja materiałowa",
-    credit: "ALOPAK design system",
+    src: "/images/stock/metal-brushed.jpg",
+    alt: "Szczotkowane aluminium",
+  },
+  partnership: {
+    src: "/images/stock/partnership-office.jpg",
+    alt: "Spotkanie biznesowe i partnerstwo B2B",
+  },
+  foilCloseup: {
+    src: "/images/industries/gastronomia.jpg",
+    alt: "Żywność w folii aluminiowej",
+  },
+  metalSheet: {
+    src: "/images/stock/metal-brushed.jpg",
+    alt: "Blacha aluminiowa",
   },
 } as const;

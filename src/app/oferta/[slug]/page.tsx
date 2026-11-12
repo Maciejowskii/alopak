@@ -12,17 +12,36 @@ import { Container } from "@/components/ui/Container";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getAllCategorySlugs, getCategory } from "@/data/categories";
 import { industries } from "@/data/industries";
-import { stockMedia } from "@/data/media";
 import { getProductsByCategory } from "@/lib/products/repository";
 import { createMetadata } from "@/lib/seo/metadata";
 import { breadcrumbSchema } from "@/lib/seo/schema";
+import type { Product } from "@/types";
 import type { SlugPageProps } from "@/types/next";
 
-const categoryHero: Record<string, string> = {
-  "puszki-aluminiowe": stockMedia.industrial.src,
-  "folia-spozywcza": stockMedia.foilRoll.src,
-  "folia-fryzjerska": stockMedia.metal.src,
+
+const categorySampleSpecsIntro: Record<string, string> = {
+  "puszki-aluminiowe":
+    "Przykładowe parametry (puszka 54 ml). Pełne tabele na kartach produktów.",
 };
+
+function getCategoryFaqTitle(slug: string): string {
+  const titles: Record<string, string> = {
+    "folia-spozywcza": "Pytania o folię spożywczą",
+    "folia-fryzjerska": "Pytania o folię fryzjerską",
+    "puszki-aluminiowe": "Pytania o puszki aluminiowe",
+  };
+  return titles[slug] ?? "Najczęstsze pytania";
+}
+
+function formatSpec(product: Product, labels: string[]) {
+  for (const label of labels) {
+    const spec = product.specifications.find((item) => item.label === label);
+    if (spec) {
+      return spec.unit ? `${spec.value} ${spec.unit}` : spec.value;
+    }
+  }
+  return "—";
+}
 
 export function generateStaticParams() {
   return getAllCategorySlugs().map((slug) => ({ slug }));
@@ -36,7 +55,9 @@ export async function generateMetadata({ params }: Omit<SlugPageProps, never>) {
     title: category.seoTitle,
     description: category.seoDescription,
     path: `/oferta/${category.slug}`,
-    image: categoryHero[category.slug] || stockMedia.hero.src,
+    ...(category.image.src.endsWith(".svg")
+      ? {}
+      : { image: category.image.src }),
   });
 }
 
@@ -49,7 +70,7 @@ export default async function CategoryPage({ params }: SlugPageProps) {
   const relatedIndustries = industries.filter((industry) =>
     industry.relatedCategories.includes(category.slug),
   );
-  const heroSrc = categoryHero[category.slug] || stockMedia.hero.src;
+  const heroSrc = category.image.src;
   const sampleSpecs = products[0]?.specifications.slice(0, 6) || [];
 
   return (
@@ -156,8 +177,8 @@ export default async function CategoryPage({ params }: SlugPageProps) {
                 Przykładowe dane katalogowe
               </h2>
               <p className="mt-4 text-sm leading-relaxed text-muted">
-                Fragment parametrów z publicznego katalogu ALOPAK. Pełne tabele
-                znajdują się na kartach produktów. Potwierdź aktualność w zapytaniu.
+                {categorySampleSpecsIntro[category.slug] ??
+                  "Przykładowe parametry katalogowe. Pełne tabele na kartach produktów."}
               </p>
             </div>
             <SpecTable specs={sampleSpecs} />
@@ -175,6 +196,68 @@ export default async function CategoryPage({ params }: SlugPageProps) {
               Filtruj katalog
             </Link>
           </div>
+
+          {category.slug === "puszki-aluminiowe" && products.length ? (
+            <div className="mt-10 overflow-x-auto">
+              <table className="w-full min-w-[640px] border-collapse text-left text-sm">
+                <caption className="sr-only">
+                  Porównanie wybranych puszek aluminiowych z katalogu ALOPAK
+                </caption>
+                <thead>
+                  <tr className="border-b border-border text-xs uppercase tracking-[0.12em] text-accent-dark">
+                    <th scope="col" className="py-3 pr-4 font-semibold">
+                      Nr kat.
+                    </th>
+                    <th scope="col" className="py-3 pr-4 font-semibold">
+                      Pojemność
+                    </th>
+                    <th scope="col" className="py-3 pr-4 font-semibold">
+                      Wymiary zewn.
+                    </th>
+                    <th scope="col" className="py-3 pr-4 font-semibold">
+                      Wysokość
+                    </th>
+                    <th scope="col" className="py-3 font-semibold">
+                      Karton
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {products.map((product) => (
+                    <tr key={product.id} className="border-b border-border">
+                      <td className="py-3 pr-4">
+                        <Link
+                          href={`/produkty/${product.slug}`}
+                          className="font-semibold text-primary hover:underline"
+                        >
+                          {product.catalogNumber ?? product.id}
+                        </Link>
+                      </td>
+                      <td className="py-3 pr-4 text-muted">
+                        {formatSpec(product, ["Pojemność"])}
+                      </td>
+                      <td className="py-3 pr-4 text-muted">
+                        {formatSpec(product, [
+                          "Średnica zewnętrzna",
+                          "Wymiar zewnętrzny",
+                        ])}
+                      </td>
+                      <td className="py-3 pr-4 text-muted">
+                        {formatSpec(product, ["Wysokość"])}
+                      </td>
+                      <td className="py-3 text-muted">
+                        {formatSpec(product, ["Pakowanie — karton"])}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <p className="mt-4 text-xs text-muted">
+                Parametry katalogowe — szczegóły na kartach produktów.
+              </p>
+            </div>
+          ) : null}
+
           {products.length ? (
             <div className="mt-10 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
               {products.map((product) => (
@@ -214,7 +297,10 @@ export default async function CategoryPage({ params }: SlugPageProps) {
         </section>
       ) : null}
 
-      <FaqSection items={category.faq} title={`Pytania o ${category.name.toLowerCase()}`} />
+      <FaqSection
+        items={category.faq}
+        title={getCategoryFaqTitle(category.slug)}
+      />
 
       <section id="zapytanie" className="section-pad bg-white">
         <Container className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr]">
@@ -230,7 +316,7 @@ export default async function CategoryPage({ params }: SlugPageProps) {
               <li>Imię i nazwisko + firma</li>
               <li>Służbowy e-mail</li>
               <li>Opis zapotrzebowania</li>
-              <li>Załącznik PDF / DOC / JPG (max 5 MB)</li>
+              <li>Załącznik PDF / DOC / JPG (max 4 MB)</li>
             </ul>
           </div>
           <div className="border border-border bg-surface/40 p-6 sm:p-8">

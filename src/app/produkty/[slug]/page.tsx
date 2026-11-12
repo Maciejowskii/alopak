@@ -1,23 +1,21 @@
-import { SmartImage } from "@/components/ui/SmartImage";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { QuoteForm } from "@/components/forms/QuoteForm";
 import { ProductCard } from "@/components/products/ProductCard";
+import { ProductImage } from "@/components/products/ProductImage";
 import { SpecTable } from "@/components/products/SpecTable";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getCategory } from "@/data/categories";
-import { stockMedia } from "@/data/media";
 import {
   getAllProductSlugs,
   getProductBySlug,
   getRelatedProducts,
 } from "@/lib/products/repository";
 import { createMetadata } from "@/lib/seo/metadata";
-import { breadcrumbSchema } from "@/lib/seo/schema";
-import { absoluteUrl } from "@/lib/utils";
+import { breadcrumbSchema, productSchema } from "@/lib/seo/schema";
 import type { SlugPageProps } from "@/types/next";
 
 export function generateStaticParams() {
@@ -28,11 +26,12 @@ export async function generateMetadata({ params }: Omit<SlugPageProps, never>) {
   const { slug } = await params;
   const product = getProductBySlug(slug);
   if (!product) return {};
+  const image = product.images[0]?.src;
   return createMetadata({
     title: product.seoTitle,
     description: product.seoDescription,
     path: `/produkty/${product.slug}`,
-    image: product.images[0]?.src,
+    ...(image && !image.endsWith(".svg") ? { image } : {}),
   });
 }
 
@@ -43,12 +42,6 @@ export default async function ProductPage({ params }: SlugPageProps) {
 
   const category = getCategory(product.category);
   const related = getRelatedProducts(product, 3);
-  const atmosphere =
-    product.category === "puszki-aluminiowe"
-      ? stockMedia.industrial.src
-      : product.category === "folia-spozywcza"
-        ? stockMedia.foilRoll.src
-        : stockMedia.metal.src;
 
   return (
     <>
@@ -59,16 +52,7 @@ export default async function ProductPage({ params }: SlugPageProps) {
             { name: "Produkty", path: "/produkty" },
             { name: product.name, path: `/produkty/${product.slug}` },
           ]),
-          {
-            "@context": "https://schema.org",
-            "@type": "Product",
-            name: product.name,
-            description: product.shortDescription,
-            sku: product.id,
-            category: category?.name,
-            image: product.images.map((image) => absoluteUrl(image.src)),
-            brand: { "@type": "Brand", name: "ALOPAK" },
-          },
+          productSchema(product),
         ]}
       />
 
@@ -86,31 +70,13 @@ export default async function ProductPage({ params }: SlugPageProps) {
           />
 
           <div className="mt-6 grid gap-10 lg:grid-cols-[1.05fr_0.95fr]">
-            <div className="space-y-4">
-              <div className="relative aspect-square overflow-hidden border border-border bg-surface">
-                <SmartImage
-                  src={product.images[0]?.src || "/images/products/puszka-placeholder.svg"}
-                  alt={product.images[0]?.alt || product.name}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  priority
-                />
-              </div>
-              <div className="relative hidden aspect-[21/9] overflow-hidden border border-border lg:block">
-                <SmartImage
-                  src={atmosphere}
-                  alt="Wizualizacja materiałowa aluminium — grafika projektowa"
-                  fill
-                  className="object-cover"
-                  sizes="50vw"
-                />
-              </div>
-              <p className="text-xs text-muted">
-                Główna wizualizacja produktu jest zastępcza. Dolna grafika to
-                wizualizacja materiałowa — nie fotografia konkretnego wyrobu
-                ALOPAK.
-              </p>
+            <div className="relative aspect-square overflow-hidden border border-border bg-surface">
+              <ProductImage
+                product={product}
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
             </div>
 
             <div className="lg:sticky lg:top-28 lg:self-start">
@@ -130,12 +96,16 @@ export default async function ProductPage({ params }: SlugPageProps) {
               </p>
 
               <dl className="mt-8 grid gap-4 border-y border-border py-6 sm:grid-cols-2">
-                <div>
-                  <dt className="text-xs uppercase tracking-[0.14em] text-accent-dark">
-                    Nr katalogowy
-                  </dt>
-                  <dd className="mt-1 font-semibold text-ink">{product.id}</dd>
-                </div>
+                {product.catalogNumber ? (
+                  <div>
+                    <dt className="text-xs uppercase tracking-[0.14em] text-accent-dark">
+                      Nr katalogowy
+                    </dt>
+                    <dd className="mt-1 font-semibold text-ink">
+                      {product.catalogNumber}
+                    </dd>
+                  </div>
+                ) : null}
                 <div>
                   <dt className="text-xs uppercase tracking-[0.14em] text-accent-dark">
                     Status
@@ -167,8 +137,8 @@ export default async function ProductPage({ params }: SlugPageProps) {
                 Parametry techniczne
               </h2>
               <p className="mt-4 text-sm leading-relaxed text-muted">
-                Dane na podstawie publicznej oferty katalogowej ALOPAK. Przed
-                decyzją zakupową potwierdź aktualność parametrów.
+                Parametry katalogowe. Aktualność i warianty potwierdzamy w
+                odpowiedzi na zapytanie.
               </p>
             </div>
             <SpecTable specs={product.specifications} />
@@ -178,13 +148,17 @@ export default async function ProductPage({ params }: SlugPageProps) {
         <section className="section-pad bg-surface">
           <Container className="max-w-3xl">
             <h2 className="font-display text-3xl font-semibold text-ink">
-              Parametry do potwierdzenia
+              Parametry dostępne na zapytanie
             </h2>
-            <p className="mt-4 text-muted leading-relaxed">
-              Dla tej pozycji nie publikujemy tabeli parametrów bez
-              potwierdzonych danych. Opisz wymagania w formularzu — doprecyzujemy
-              dostępne informacje.
+            <p className="mt-4 leading-relaxed text-muted">
+              Dla tej pozycji nie publikujemy tabeli parametrów. Opisz wymagania
+              w formularzu — przygotujemy kartę produktu w odpowiedzi.
             </p>
+            <div className="mt-8">
+              <Button href="#zapytanie" size="lg">
+                Poproś o kartę produktu
+              </Button>
+            </div>
           </Container>
         </section>
       )}

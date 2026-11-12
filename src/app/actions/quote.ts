@@ -1,12 +1,16 @@
 "use server";
 
 import { headers } from "next/headers";
+import { contact } from "@/data/site";
 import { sendQuoteEmail } from "@/lib/email/send-quote";
 import { rateLimit } from "@/lib/rate-limit";
 import {
   ALLOWED_ATTACHMENT_TYPES,
   MAX_ATTACHMENT_BYTES,
+  MAX_ATTACHMENT_LABEL,
+  attachmentExtensionOk,
   quoteSchema,
+  sniffAttachmentMime,
 } from "@/lib/validation/quote";
 
 export type QuoteActionState = {
@@ -20,6 +24,10 @@ function sanitizeFilename(name: string) {
     .normalize("NFKD")
     .replace(/[^\w.\-]+/g, "_")
     .slice(0, 120);
+}
+
+function contactFallbackMessage(prefix: string) {
+  return `${prefix} Napisz na ${contact.email} lub zadzwoń pod ${contact.phones[0]}.`;
 }
 
 export async function submitQuote(
@@ -86,14 +94,15 @@ export async function submitQuote(
 
   if (file && file instanceof File && file.size > 0) {
     if (file.size > MAX_ATTACHMENT_BYTES) {
+      const msg = `Załącznik może mieć maksymalnie ${MAX_ATTACHMENT_LABEL}.`;
       return {
         ok: false,
-        message: "Załącznik może mieć maksymalnie 5 MB.",
-        fieldErrors: { attachment: ["Załącznik może mieć maksymalnie 5 MB."] },
+        message: msg,
+        fieldErrors: { attachment: [msg] },
       };
     }
 
-    if (!ALLOWED_ATTACHMENT_TYPES.includes(file.type as (typeof ALLOWED_ATTACHMENT_TYPES)[number])) {
+    if (!attachmentExtensionOk(file.name)) {
       return {
         ok: false,
         message: "Niedozwolony typ załącznika.",
@@ -104,9 +113,53 @@ export async function submitQuote(
     }
 
     const buffer = Buffer.from(await file.arrayBuffer());
+    const sniffed = sniffAttachmentMime(buffer);
+
+    if (!sniffed) {
+      return {
+        ok: false,
+        message: "Nie rozpoznano typu załącznika.",
+        fieldErrors: {
+          attachment: ["Plik wygląda na uszkodzony lub ma niedozwolony format."],
+        },
+      };
+    }
+
+    const declaredOk = ALLOWED_ATTACHMENT_TYPES.includes(
+      file.type as (typeof ALLOWED_ATTACHMENT_TYPES)[number],
+    );
+    // Allow empty browser MIME if magic bytes match; reject MIME/magic mismatch when both present
+    if (file.type && declaredOk && file.type !== sniffed) {
+      // DOC vs DOCX both accepted via sniff; JPEG aliases
+      const compatible =
+        (file.type === "image/jpeg" && sniffed === "image/jpeg") ||
+        (file.type === "image/png" && sniffed === "image/png") ||
+        (file.type === "application/pdf" && sniffed === "application/pdf") ||
+        (file.type.includes("word") && sniffed.includes("word"));
+      if (!compatible) {
+        return {
+          ok: false,
+          message: "Typ załącznika nie zgadza się z zawartością pliku.",
+          fieldErrors: {
+            attachment: ["Dozwolone: PDF, JPG, PNG, DOC, DOCX."],
+          },
+        };
+      }
+    }
+
+    if (file.type && !declaredOk && !sniffed) {
+      return {
+        ok: false,
+        message: "Niedozwolony typ załącznika.",
+        fieldErrors: {
+          attachment: ["Dozwolone: PDF, JPG, PNG, DOC, DOCX."],
+        },
+      };
+    }
+
     attachment = {
       filename: sanitizeFilename(file.name || "zalacznik"),
-      contentType: file.type,
+      contentType: sniffed,
       content: buffer,
     };
   }
@@ -116,7 +169,11 @@ export async function submitQuote(
   if (!result.ok) {
     return {
       ok: false,
-      message: result.message,
+      message: contactFallbackMessage(
+        result.code === "NOT_CONFIGURED"
+          ? "Nie udało się wysłać zapytania przez formularz."
+          : "Wystąpił błąd podczas wysyłki.",
+      ),
     };
   }
 

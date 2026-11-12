@@ -11,6 +11,8 @@
   --color-border: #d5dce3;
   --color-accent: #9aa8b4;
   --color-accent-dark: #6f7e8b;
+  --color-accent-cta: #a67c52;
+  --color-accent-cta-hover: #8f6843;
   --color-success: #287a55;
   --color-error: #b83a3a;
   --shadow-soft: 0 22px 60px rgba(15, 36, 56, 0.1);
@@ -30,10 +32,12 @@
   --color-border: var(--color-border);
   --color-accent: var(--color-accent);
   --color-accent-dark: var(--color-accent-dark);
+  --color-accent-cta: var(--color-accent-cta);
+  --color-accent-cta-hover: var(--color-accent-cta-hover);
   --color-success: var(--color-success);
   --color-error: var(--color-error);
   --font-sans: var(--font-manrope);
-  --font-display: var(--font-archivo);
+  --font-display: var(--font-source-serif);
   --shadow-soft: var(--shadow-soft);
 }
 
@@ -67,25 +71,28 @@
   h2,
   h3,
   .font-display {
-    font-family: var(--font-archivo), var(--font-manrope), ui-sans-serif, sans-serif;
-    letter-spacing: -0.025em;
+    font-family: var(--font-source-serif), var(--font-manrope), ui-serif, Georgia, serif;
+    letter-spacing: -0.01em;
   }
 }
 
 @layer utilities {
   .container-site {
     width: min(100% - 2rem, 74rem);
+  }
+
+  .container-site,
+  .container-wide,
+  .container-narrow {
     margin-inline: auto;
   }
 
   .container-wide {
     width: min(100% - 2rem, 84rem);
-    margin-inline: auto;
   }
 
   .container-narrow {
     width: min(100% - 2rem, 46rem);
-    margin-inline: auto;
   }
 
   .text-balance {
@@ -102,25 +109,25 @@
   }
 
   .display-hero {
-    font-family: var(--font-archivo), sans-serif;
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 0.98;
+    font-family: var(--font-source-serif), ui-serif, Georgia, serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.05;
   }
 
   .animate-fade-up {
-    animation: fade-up 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation: fade-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
   .animate-fade-in {
-    animation: fade-in 0.7s ease both;
+    animation: fade-in 0.45s ease both;
   }
 }
 
 @keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(14px);
   }
   to {
     opacity: 1;

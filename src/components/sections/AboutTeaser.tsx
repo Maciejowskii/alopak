@@ -25,7 +25,6 @@ export function AboutTeaser() {
           </div>
           <dl className="grid gap-6 self-end sm:grid-cols-2 lg:grid-cols-1">
             <Fact label="Działalność od" value={String(siteConfig.foundedYear)} />
-            <Fact label="System jakości" value={siteConfig.qualitySystem} />
             <Fact label="Lokalizacja" value={`${contact.city}, Polska`} />
             <Fact
               label="Kontakt"

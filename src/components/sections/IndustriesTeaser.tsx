@@ -1,14 +1,7 @@
 import { SmartImage } from "@/components/ui/SmartImage";
 import Link from "next/link";
 import { industries } from "@/data/industries";
-import { stockMedia } from "@/data/media";
 import { Container } from "@/components/ui/Container";
-
-const images = [
-  stockMedia.packaging.src,
-  stockMedia.foilRoll.src,
-  stockMedia.metal.src,
-];
 
 export function IndustriesTeaser() {
   return (
@@ -18,8 +11,8 @@ export function IndustriesTeaser() {
           Oferta dopasowana do branży
         </h2>
         <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
-          Każda strona branżowa łączy się z konkretnymi kategoriami produktów —
-          bez powielania cienkiej treści.
+          Każda branża ma własną stronę z zastosowaniami i powiązanymi
+          produktami.
         </p>
       </Container>
 
@@ -35,8 +28,8 @@ export function IndustriesTeaser() {
                 className={`relative min-h-[280px] lg:min-h-[420px] ${reverse ? "lg:order-2" : ""}`}
               >
                 <SmartImage
-                  src={images[index]}
-                  alt=""
+                  src={industry.image.src}
+                  alt={industry.image.alt}
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"

@@ -5,14 +5,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { categories } from "@/data/categories";
 import { industries } from "@/data/industries";
-import { stockMedia } from "@/data/media";
 import { cn } from "@/lib/utils";
-
-const offerImages = [
-  stockMedia.industrial.src,
-  stockMedia.foilRoll.src,
-  stockMedia.metal.src,
-] as const;
 
 type MegaMenuProps = {
   open: "oferta" | "branze" | null;
@@ -31,7 +24,7 @@ export function MegaMenu({ open, onClose }: MegaMenuProps) {
         {open === "oferta" ? (
           <div className="grid gap-8 lg:grid-cols-[1.4fr_0.8fr]">
             <div className="grid gap-4 sm:grid-cols-3">
-              {categories.map((category, index) => (
+              {categories.map((category) => (
                 <Link
                   key={category.slug}
                   href={`/oferta/${category.slug}`}
@@ -40,8 +33,8 @@ export function MegaMenu({ open, onClose }: MegaMenuProps) {
                 >
                   <div className="relative mb-4 aspect-[4/3] overflow-hidden bg-surface">
                     <SmartImage
-                      src={offerImages[index] || stockMedia.metal.src}
-                      alt=""
+                      src={category.image.src}
+                      alt={category.image.alt}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                       sizes="280px"

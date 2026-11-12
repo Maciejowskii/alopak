@@ -3,6 +3,11 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   // Classic static generation for marketing pages; Cache Components
   // requires Suspense boundaries around every searchParams/headers access.
+  experimental: {
+    serverActions: {
+      bodySizeLimit: "4.5mb",
+    },
+  },
   turbopack: {
     rules: {
       "*.css": {

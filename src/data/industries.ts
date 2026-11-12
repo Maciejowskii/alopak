@@ -5,11 +5,15 @@ export const industries: Industry[] = [
     slug: "przemysl-spozywczy",
     name: "Przemysł spożywczy",
     description:
-      "Dla zakładów przetwórczych i producentów żywności poszukujących opakowań aluminiowych. Oferta puszek ALOPAK obejmuje zastosowania do przetworów mięsnych, rybnych, mleczarskich oraz owocowo-warzywnych — zgodnie z informacjami producenta.",
+      "Dla zakładów przetwórczych i producentów żywności poszukujących opakowań aluminiowych. Oferta puszek ALOPAK obejmuje zastosowania do przetworów mięsnych, rybnych, mleczarskich oraz owocowo-warzywnych.",
     relatedCategories: ["puszki-aluminiowe", "folia-spozywcza"],
     seoTitle: "Opakowania dla przemysłu spożywczego | ALOPAK",
     seoDescription:
       "Puszki aluminiowe ALOPAK dla przetwórstwa spożywczego. Sprawdź ofertę i wyślij zapytanie.",
+    image: {
+      src: "/images/industries/przemysl-spozywczy.jpg",
+      alt: "Puszki aluminiowe do przetwórstwa spożywczego",
+    },
   },
   {
     slug: "gastronomia",
@@ -20,6 +24,10 @@ export const industries: Industry[] = [
     seoTitle: "Folia spożywcza dla gastronomii | ALOPAK",
     seoDescription:
       "Folia spożywcza ALOPAK dla gastronomii i zastosowań profesjonalnych. Zapytaj o ofertę.",
+    image: {
+      src: "/images/industries/gastronomia.jpg",
+      alt: "Żywność w folii aluminiowej — zastosowania gastronomiczne",
+    },
   },
   {
     slug: "branza-fryzjerska",
@@ -30,6 +38,10 @@ export const industries: Industry[] = [
     seoTitle: "Folia fryzjerska dla salonów i hurtowni | ALOPAK",
     seoDescription:
       "Folia fryzjerska aluminiowa ALOPAK dla branży beauty. Zapytanie o współpracę B2B.",
+    image: {
+      src: "/images/industries/branza-fryzjerska.jpg",
+      alt: "Koloryzacja włosów z użyciem folii fryzjerskiej",
+    },
   },
 ];
 

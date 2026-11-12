@@ -2,14 +2,7 @@ import { SmartImage } from "@/components/ui/SmartImage";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { categories } from "@/data/categories";
-import { stockMedia } from "@/data/media";
 import { Container } from "@/components/ui/Container";
-
-const images = [
-  stockMedia.industrial.src,
-  stockMedia.foilRoll.src,
-  stockMedia.metal.src,
-];
 
 export function OfferSplit() {
   return (
@@ -34,7 +27,7 @@ export function OfferSplit() {
         </div>
 
         <div className="space-y-0 divide-y divide-border border-y border-border">
-          {categories.map((category, index) => (
+          {categories.map((category) => (
             <Link
               key={category.slug}
               href={`/oferta/${category.slug}`}
@@ -42,8 +35,8 @@ export function OfferSplit() {
             >
               <div className="relative aspect-[4/3] overflow-hidden bg-surface sm:aspect-square">
                 <SmartImage
-                  src={images[index]}
-                  alt=""
+                  src={category.image.src}
+                  alt={category.image.alt}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                   sizes="160px"
