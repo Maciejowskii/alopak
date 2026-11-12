@@ -20,15 +20,15 @@ export function CtaBand({
       >
         <div className="aluminium-sheen absolute inset-0 opacity-30 mix-blend-soft-light" />
       </div>
-      <div className="container-wide relative grid items-center gap-8 py-20 lg:grid-cols-[1fr_auto] lg:py-24">
+      <div className="container-wide relative grid items-center gap-6 py-14 sm:gap-8 sm:py-20 lg:grid-cols-[1fr_auto] lg:py-24">
         <div>
           <Reveal variant="up">
-            <h2 className="max-w-2xl text-3xl font-extrabold uppercase tracking-tight sm:text-4xl lg:text-5xl">
+            <h2 className="max-w-2xl text-[1.75rem] font-extrabold uppercase leading-tight tracking-tight sm:text-4xl lg:text-5xl">
               {title}
             </h2>
           </Reveal>
           <Reveal delay={120}>
-            <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/75">
+            <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-white/75 sm:mt-5 sm:text-base">
               {description}
             </p>
           </Reveal>
@@ -38,7 +38,7 @@ export function CtaBand({
             href={href}
             variant="accent"
             size="lg"
-            className="btn-premium rounded-sm"
+            className="btn-premium w-full rounded-sm sm:w-auto"
           >
             {ctaLabel}
           </Button>

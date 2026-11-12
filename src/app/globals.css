@@ -118,7 +118,7 @@
   }
 
   .section-pad {
-    padding-block: clamp(4rem, 7vw, 7rem);
+    padding-block: clamp(2.75rem, 5.5vw, 7rem);
   }
 
   .hairline {
@@ -316,6 +316,11 @@
   }
 
   .card-lift:hover {
-    transform: translateY(-2px);
+    transform: none;
+    box-shadow: none;
+  }
+
+  .btn-premium:hover {
+    transform: none;
   }
 }

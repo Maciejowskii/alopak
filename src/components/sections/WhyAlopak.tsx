@@ -37,17 +37,17 @@ export function WhyAlopak() {
         <div className="section-pad">
           <Container className="lg:pl-10 xl:pl-16">
             <Reveal>
-              <h2 className="max-w-lg text-4xl font-extrabold tracking-tight text-navy sm:text-5xl">
+              <h2 className="max-w-lg text-3xl font-extrabold tracking-tight text-navy sm:text-5xl">
                 Partner dla zakupów opakowań i folii
               </h2>
             </Reveal>
             <Reveal delay={100}>
-              <p className="mt-5 max-w-xl text-base leading-relaxed text-muted">
+              <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-muted sm:mt-5 sm:text-base">
                 ALOPAK od {siteConfig.foundedYear} roku produkuje opakowania
                 aluminiowe w Ostrzeszowie.
               </p>
             </Reveal>
-            <div className="mt-10 space-y-8">
+            <div className="mt-8 space-y-6 sm:mt-10 sm:space-y-8">
               {points.map((point, index) => (
                 <Reveal key={point.title} delay={180 + index * 140} variant="left">
                   <div className="group relative border-l border-primary/30 pl-5 transition-colors duration-500 hover:border-brand">

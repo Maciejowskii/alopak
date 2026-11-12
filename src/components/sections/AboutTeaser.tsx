@@ -16,19 +16,19 @@ export function AboutTeaser() {
         <div className="grid gap-12 border-t border-border pt-12 lg:grid-cols-[1.2fr_0.8fr]">
           <div>
             <Reveal>
-              <h2 className="text-4xl font-extrabold tracking-tight text-navy sm:text-5xl">
+              <h2 className="text-3xl font-extrabold tracking-tight text-navy sm:text-5xl">
                 Polski producent opakowań aluminiowych
               </h2>
             </Reveal>
             <Reveal delay={100}>
-              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
+              <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-muted sm:mt-6 sm:text-lg">
                 Od {siteConfig.foundedYear} roku ALOPAK oferuje opakowania
                 aluminiowe do zastosowań biznesowych oraz inne wyroby z folii
                 aluminiowej. Siedziba firmy: {contact.city}, {contact.street}.
               </p>
             </Reveal>
             <Reveal delay={180}>
-              <div className="mt-8">
+              <div className="mt-6 sm:mt-8">
                 <Button href="/o-firmie" variant="secondary" className="btn-premium">
                   Poznaj ALOPAK
                 </Button>

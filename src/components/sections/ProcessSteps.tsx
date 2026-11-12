@@ -72,12 +72,12 @@ export function ProcessSteps() {
       <Container>
         <div className="max-w-2xl">
           <Reveal>
-            <h2 className="text-4xl font-extrabold tracking-tight text-navy sm:text-5xl">
+            <h2 className="text-3xl font-extrabold tracking-tight text-navy sm:text-5xl">
               Jak wygląda współpraca
             </h2>
           </Reveal>
           <Reveal delay={100}>
-            <p className="mt-5 text-base leading-relaxed text-muted sm:text-lg">
+            <p className="mt-4 text-[15px] leading-relaxed text-muted sm:mt-5 sm:text-lg">
               Prosty przebieg od wyboru kategorii do rozmowy ofertowej.
             </p>
           </Reveal>

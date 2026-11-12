@@ -25,12 +25,12 @@ export function FeaturedProducts() {
         <div className="flex flex-col gap-6 border-b border-border pb-8 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-2xl">
             <Reveal>
-              <h2 className="text-4xl font-extrabold tracking-tight text-navy sm:text-5xl">
+              <h2 className="text-3xl font-extrabold tracking-tight text-navy sm:text-5xl">
                 Wybrane produkty
               </h2>
             </Reveal>
             <Reveal delay={100}>
-              <p className="mt-5 text-base leading-relaxed text-muted sm:text-lg">
+              <p className="mt-4 text-[15px] leading-relaxed text-muted sm:mt-5 sm:text-lg">
                 Przykładowe pozycje z katalogu — sprawdź parametry i wyślij
                 zapytanie o ofertę.
               </p>
@@ -43,7 +43,7 @@ export function FeaturedProducts() {
           </Reveal>
         </div>
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
           {products.map((product, index) => (
             <Reveal key={product.id} delay={index * 90} variant="scale">
               <ProductCard product={product} />

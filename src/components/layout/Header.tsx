@@ -16,6 +16,9 @@ export function Header() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mega, setMega] = useState<MegaKey>(null);
+  const [mobileSection, setMobileSection] = useState<"oferta" | "branze" | null>(
+    null,
+  );
   const [menuPath, setMenuPath] = useState(pathname);
   const menuId = useId();
   const headerRef = useRef<HTMLElement>(null);
@@ -54,35 +57,45 @@ export function Header() {
     return () => document.removeEventListener("mousedown", onPointerDown);
   }, []);
 
+  function closeMobile() {
+    setMobileOpen(false);
+  }
+
   return (
-    <header ref={headerRef} className="sticky top-0 z-50 border-b border-border/70 bg-white">
-      <div className="container-wide flex h-[4.75rem] items-center justify-between gap-6 lg:h-[5.25rem]">
+    <header
+      ref={headerRef}
+      className="sticky top-0 z-50 border-b border-border/70 bg-white"
+    >
+      <div className="container-wide flex h-16 items-center justify-between gap-4 sm:h-[4.75rem] sm:gap-6 lg:h-[5.25rem]">
         <Link
           href="/"
-          className="group flex shrink-0 items-center gap-3"
+          className="group flex shrink-0 items-center gap-2.5 sm:gap-3"
           aria-label="ALOPAK — strona główna"
           onClick={() => {
             setMega(null);
-            setMobileOpen(false);
+            closeMobile();
           }}
         >
-          <span className="relative inline-flex size-10 items-center justify-center" aria-hidden>
-            <span className="absolute left-0 top-1 size-7 rotate-[-18deg] bg-navy" />
-            <span className="absolute left-2.5 top-0.5 size-7 rotate-[8deg] bg-brand" />
-            <span className="absolute left-5 top-1.5 size-6 rotate-[28deg] bg-brand-strong/90" />
+          <span
+            className="relative inline-flex size-9 items-center justify-center sm:size-10"
+            aria-hidden
+          >
+            <span className="absolute left-0 top-1 size-6 rotate-[-18deg] bg-navy sm:size-7" />
+            <span className="absolute left-2 top-0.5 size-6 rotate-[8deg] bg-brand sm:left-2.5 sm:size-7" />
+            <span className="absolute left-4 top-1.5 size-5 rotate-[28deg] bg-brand-strong/90 sm:left-5 sm:size-6" />
           </span>
           <span className="leading-none">
-            <span className="block text-[1.35rem] font-extrabold tracking-[0.04em] text-navy sm:text-[1.5rem]">
+            <span className="block text-[1.2rem] font-extrabold tracking-[0.04em] text-navy sm:text-[1.5rem]">
               ALOPAK
             </span>
-            <span className="mt-1 block text-[10px] font-semibold uppercase tracking-[0.16em] text-muted">
+            <span className="mt-0.5 block text-[9px] font-semibold uppercase tracking-[0.14em] text-muted sm:mt-1 sm:text-[10px] sm:tracking-[0.16em]">
               Opakowania aluminiowe
             </span>
           </span>
         </Link>
 
         <nav
-          className="hidden flex-1 items-center justify-center gap-1 xl:gap-2 lg:flex"
+          className="hidden flex-1 items-center justify-center gap-1 lg:flex xl:gap-2"
           aria-label="Główna nawigacja"
         >
           <NavLink href="/" active={pathname === "/"} onNavigate={() => setMega(null)}>
@@ -131,10 +144,10 @@ export function Header() {
           </NavLink>
         </nav>
 
-        <div className="flex shrink-0 items-center gap-1 sm:gap-2">
+        <div className="flex shrink-0 items-center gap-0.5 sm:gap-2">
           <Link
             href="/produkty"
-            className="inline-flex size-11 items-center justify-center text-navy transition-colors hover:text-brand"
+            className="inline-flex size-10 items-center justify-center text-navy transition-colors hover:text-brand sm:size-11"
             aria-label="Katalog produktów"
             onClick={() => setMega(null)}
           >
@@ -142,7 +155,7 @@ export function Header() {
           </Link>
           <button
             type="button"
-            className="inline-flex size-11 items-center justify-center text-navy transition-colors hover:text-brand lg:hidden"
+            className="inline-flex size-10 items-center justify-center text-navy transition-colors hover:text-brand sm:size-11 lg:hidden"
             aria-expanded={mobileOpen}
             aria-controls={menuId}
             aria-label={mobileOpen ? "Zamknij menu" : "Otwórz menu"}
@@ -151,7 +164,11 @@ export function Header() {
               setMobileOpen((value) => !value);
             }}
           >
-            {mobileOpen ? <X className="size-6" strokeWidth={1.75} /> : <Menu className="size-6" strokeWidth={1.75} />}
+            {mobileOpen ? (
+              <X className="size-6" strokeWidth={1.75} />
+            ) : (
+              <Menu className="size-6" strokeWidth={1.75} />
+            )}
           </button>
         </div>
       </div>
@@ -163,85 +180,124 @@ export function Header() {
         <MegaMenu open={mega} onClose={() => setMega(null)} />
       </div>
 
+      {/* Mobile drawer: fixed panel, scrollable list, pinned CTA */}
       <div
         id={menuId}
         className={cn(
-          "border-t border-border bg-white lg:hidden",
+          "fixed inset-x-0 bottom-0 top-16 z-40 bg-white sm:top-[4.75rem] lg:hidden",
           mobileOpen ? "block" : "hidden",
         )}
       >
-        <div className="container-wide max-h-[calc(100vh-5.25rem)] space-y-1 overflow-y-auto py-5">
-          <div className="mb-4 grid gap-2 lg:hidden">
+        <div className="absolute inset-x-0 top-0 bottom-[4.75rem] overflow-y-auto overscroll-contain px-4 pt-2 [-webkit-overflow-scrolling:touch] sm:px-6">
+          <nav aria-label="Menu mobilne" className="w-full space-y-0">
             <Link
               href="/"
-              className="block py-2.5 text-base font-semibold text-navy"
-              onClick={() => setMobileOpen(false)}
+              className={cn(
+                "flex min-h-11 items-center border-b border-border/80 text-[15px] font-semibold",
+                pathname === "/" ? "text-brand" : "text-navy",
+              )}
+              onClick={closeMobile}
             >
               Strona główna
             </Link>
-          </div>
 
-          <MobileGroup title="Oferta" href="/oferta" onNavigate={() => setMobileOpen(false)}>
-            {categories.map((category) => (
-              <Link
-                key={category.slug}
-                href={`/oferta/${category.slug}`}
-                className="block py-2 text-sm text-muted"
-                onClick={() => setMobileOpen(false)}
-              >
-                {category.name}
-              </Link>
-            ))}
-            <Link
-              href="/produkty"
-              className="block py-2 text-sm text-muted"
-              onClick={() => setMobileOpen(false)}
+            <MobileAccordion
+              title="Oferta"
+              href="/oferta"
+              open={mobileSection === "oferta"}
+              onToggle={() =>
+                setMobileSection((v) => (v === "oferta" ? null : "oferta"))
+              }
+              onNavigate={closeMobile}
             >
-              Katalog produktów
-            </Link>
-          </MobileGroup>
-
-          <MobileGroup title="Branże" href="/branze" onNavigate={() => setMobileOpen(false)}>
-            {industries.map((industry) => (
+              {categories.map((category) => (
+                <Link
+                  key={category.slug}
+                  href={`/oferta/${category.slug}`}
+                  className="flex min-h-10 items-center text-sm text-muted"
+                  onClick={closeMobile}
+                >
+                  {category.name}
+                </Link>
+              ))}
               <Link
-                key={industry.slug}
-                href={`/branze/${industry.slug}`}
-                className="block py-2 text-sm text-muted"
-                onClick={() => setMobileOpen(false)}
+                href="/produkty"
+                className="flex min-h-10 items-center text-sm font-medium text-navy"
+                onClick={closeMobile}
               >
-                {industry.name}
+                Katalog produktów
               </Link>
-            ))}
-          </MobileGroup>
+            </MobileAccordion>
 
-          <Link
-            href="/o-firmie"
-            className="block border-b border-border/70 py-3 font-semibold text-ink"
-            onClick={() => setMobileOpen(false)}
-          >
-            O firmie
-          </Link>
-          <Link
-            href="/blog"
-            className="block border-b border-border/70 py-3 font-semibold text-ink"
-            onClick={() => setMobileOpen(false)}
-          >
-            Blog
-          </Link>
-          <Link
-            href="/kontakt"
-            className="block border-b border-border/70 py-3 font-semibold text-ink"
-            onClick={() => setMobileOpen(false)}
-          >
-            Kontakt
-          </Link>
+            <MobileAccordion
+              title="Branże"
+              href="/branze"
+              open={mobileSection === "branze"}
+              onToggle={() =>
+                setMobileSection((v) => (v === "branze" ? null : "branze"))
+              }
+              onNavigate={closeMobile}
+            >
+              {industries.map((industry) => (
+                <Link
+                  key={industry.slug}
+                  href={`/branze/${industry.slug}`}
+                  className="flex min-h-10 items-center text-sm text-muted"
+                  onClick={closeMobile}
+                >
+                  {industry.name}
+                </Link>
+              ))}
+            </MobileAccordion>
 
-          <div className="pt-4">
+            <Link
+              href="/o-firmie"
+              className={cn(
+                "flex min-h-11 items-center border-b border-border/80 text-[15px] font-semibold",
+                pathname.startsWith("/o-firmie") ? "text-brand" : "text-navy",
+              )}
+              onClick={closeMobile}
+            >
+              O firmie
+            </Link>
+            <Link
+              href="/blog"
+              className={cn(
+                "flex min-h-11 items-center border-b border-border/80 text-[15px] font-semibold",
+                pathname.startsWith("/blog") ? "text-brand" : "text-navy",
+              )}
+              onClick={closeMobile}
+            >
+              Blog
+            </Link>
+            <Link
+              href="/kontakt"
+              className={cn(
+                "flex min-h-11 items-center border-b border-border/80 text-[15px] font-semibold",
+                pathname.startsWith("/kontakt") ? "text-brand" : "text-navy",
+              )}
+              onClick={closeMobile}
+            >
+              Kontakt
+            </Link>
+          </nav>
+        </div>
+
+        <div className="absolute inset-x-0 bottom-0 border-t border-border bg-white px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:px-6">
+          <div className="flex w-full gap-2">
+            <Button
+              href="/produkty"
+              variant="secondary"
+              className="h-11 flex-1 rounded-none text-sm"
+              onClick={closeMobile}
+            >
+              Katalog
+            </Button>
             <Button
               href="/kontakt"
               variant="accent"
-              className="w-full rounded-none"
-              onClick={() => setMobileOpen(false)}
+              className="h-11 flex-[1.35] rounded-none text-sm"
+              onClick={closeMobile}
             >
               Zapytaj o ofertę
             </Button>
@@ -314,23 +370,64 @@ function NavLink({
   );
 }
 
-function MobileGroup({
+function MobileAccordion({
   title,
   href,
-  children,
+  open,
+  onToggle,
   onNavigate,
+  children,
 }: {
   title: string;
   href: string;
-  children: React.ReactNode;
+  open: boolean;
+  onToggle: () => void;
   onNavigate: () => void;
+  children: React.ReactNode;
 }) {
+  const panelId = `mobile-${title.toLowerCase()}`;
+
   return (
-    <div className="border-b border-border/70 py-2">
-      <Link href={href} className="block py-2 font-semibold text-ink" onClick={onNavigate}>
-        {title}
-      </Link>
-      <div className="mb-2 space-y-1 pl-3">{children}</div>
+    <div className="border-b border-border/80">
+      <div className="flex min-h-12 items-center gap-2">
+        <Link
+          href={href}
+          className="flex-1 text-[15px] font-semibold text-navy"
+          onClick={onNavigate}
+        >
+          {title}
+        </Link>
+        <button
+          type="button"
+          className="inline-flex size-11 shrink-0 items-center justify-center text-navy"
+          aria-expanded={open}
+          aria-controls={panelId}
+          aria-label={open ? `Zwiń ${title}` : `Rozwiń ${title}`}
+          onClick={onToggle}
+        >
+          <ChevronDown
+            className={cn(
+              "size-4 transition-transform duration-300",
+              open && "rotate-180",
+            )}
+            strokeWidth={2}
+          />
+        </button>
+      </div>
+      <div
+        id={panelId}
+        className={cn(
+          "grid transition-[grid-template-rows] duration-300 ease-out",
+          open ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
+        )}
+        inert={!open ? true : undefined}
+      >
+        <div className="overflow-hidden">
+          <div className="space-y-0.5 border-l border-brand/25 pb-3 pl-3">
+            {children}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

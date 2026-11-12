@@ -9,12 +9,12 @@ export function IndustriesTeaser() {
     <section className="bg-surface">
       <Container className="section-pad">
         <Reveal>
-          <h2 className="max-w-2xl text-4xl font-extrabold tracking-tight text-navy sm:text-5xl">
+          <h2 className="max-w-2xl text-3xl font-extrabold tracking-tight text-navy sm:text-5xl">
             Oferta dopasowana do branży
           </h2>
         </Reveal>
         <Reveal delay={100}>
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
+          <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-muted sm:mt-5 sm:text-lg">
             Każda branża ma własną stronę z zastosowaniami i powiązanymi
             produktami.
           </p>
@@ -33,7 +33,7 @@ export function IndustriesTeaser() {
                 variant="fade"
                 delay={40}
                 duration={800}
-                className={`relative min-h-[280px] overflow-hidden lg:min-h-[420px] ${reverse ? "lg:order-2" : ""}`}
+                className={`relative min-h-[200px] overflow-hidden sm:min-h-[280px] lg:min-h-[420px] ${reverse ? "lg:order-2" : ""}`}
               >
                 <div className="group absolute inset-0">
                   <SmartImage
@@ -52,18 +52,18 @@ export function IndustriesTeaser() {
               <Reveal
                 delay={120}
                 variant={reverse ? "left" : "right"}
-                className={`flex items-center bg-white px-6 py-12 sm:px-10 lg:px-16 ${reverse ? "lg:order-1" : ""}`}
+                className={`flex items-center bg-white px-5 py-8 sm:px-10 sm:py-12 lg:px-16 ${reverse ? "lg:order-1" : ""}`}
               >
                 <div className="max-w-md">
-                  <h3 className="text-3xl font-bold text-navy">
+                  <h3 className="text-2xl font-bold text-navy sm:text-3xl">
                     {industry.name}
                   </h3>
-                  <p className="mt-4 text-base leading-relaxed text-muted">
+                  <p className="mt-3 text-[15px] leading-relaxed text-muted sm:mt-4 sm:text-base">
                     {industry.description}
                   </p>
                   <Link
                     href={`/branze/${industry.slug}`}
-                    className="link-underline mt-6 inline-flex text-sm font-semibold text-primary"
+                    className="link-underline mt-4 inline-flex text-sm font-semibold text-primary sm:mt-6"
                   >
                     Zobacz zastosowania
                   </Link>
