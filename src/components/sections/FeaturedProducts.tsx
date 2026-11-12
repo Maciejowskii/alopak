@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ProductCard } from "@/components/products/ProductCard";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { Reveal } from "@/components/ui/Reveal";
 import { getProductBySlug } from "@/lib/products/repository";
 
 /** Brief P1-4: puszka 54, 117, 337 ml + folia fryzjerska */
@@ -23,32 +24,42 @@ export function FeaturedProducts() {
       <Container>
         <div className="flex flex-col gap-6 border-b border-border pb-8 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-2xl">
-            <h2 className="text-4xl font-extrabold tracking-tight text-navy sm:text-5xl">
-              Wybrane produkty
-            </h2>
-            <p className="mt-5 text-base leading-relaxed text-muted sm:text-lg">
-              Przykładowe pozycje z katalogu — sprawdź parametry i wyślij
-              zapytanie o ofertę.
-            </p>
+            <Reveal>
+              <h2 className="text-4xl font-extrabold tracking-tight text-navy sm:text-5xl">
+                Wybrane produkty
+              </h2>
+            </Reveal>
+            <Reveal delay={100}>
+              <p className="mt-5 text-base leading-relaxed text-muted sm:text-lg">
+                Przykładowe pozycje z katalogu — sprawdź parametry i wyślij
+                zapytanie o ofertę.
+              </p>
+            </Reveal>
           </div>
-          <Button href="/produkty" variant="secondary">
-            Pełny katalog
-          </Button>
+          <Reveal delay={140}>
+            <Button href="/produkty" variant="secondary" className="btn-premium">
+              Pełny katalog
+            </Button>
+          </Reveal>
         </div>
 
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
+          {products.map((product, index) => (
+            <Reveal key={product.id} delay={index * 90} variant="scale">
+              <ProductCard product={product} />
+            </Reveal>
           ))}
         </div>
 
-        <p className="mt-8 text-sm text-muted">
-          Szukasz innego wariantu?{" "}
-          <Link href="/oferta" className="font-semibold text-navy hover:underline">
-            Przejdź do oferty
-          </Link>
-          .
-        </p>
+        <Reveal delay={120}>
+          <p className="mt-8 text-sm text-muted">
+            Szukasz innego wariantu?{" "}
+            <Link href="/oferta" className="font-semibold text-navy hover:underline">
+              Przejdź do oferty
+            </Link>
+            .
+          </p>
+        </Reveal>
       </Container>
     </section>
   );

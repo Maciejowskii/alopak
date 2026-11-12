@@ -1,6 +1,7 @@
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { MainContent } from "@/components/layout/MainContent";
+import { ScrollProgress } from "@/components/motion/ScrollProgress";
 import { CookieBanner } from "@/components/seo/CookieBanner";
 
 export function SiteShell({ children }: { children: React.ReactNode }) {
@@ -12,6 +13,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
       >
         Przejdź do treści
       </a>
+      <ScrollProgress />
       <Header />
       <MainContent>{children}</MainContent>
       <Footer />

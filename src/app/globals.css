@@ -150,6 +150,110 @@
   .animate-fade-in {
     animation: fade-in 0.4s ease both;
   }
+
+  .btn-premium {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .btn-premium::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      115deg,
+      transparent 20%,
+      rgba(255, 255, 255, 0.18) 45%,
+      transparent 70%
+    );
+    transform: translateX(-120%);
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .btn-premium:hover::after {
+    transform: translateX(120%);
+  }
+
+  .btn-premium:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 28px rgba(11, 31, 75, 0.16);
+  }
+
+  .btn-premium:active {
+    transform: translateY(0);
+  }
+
+  .card-lift {
+    transition:
+      transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 0.35s ease;
+  }
+
+  .card-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 22px 48px rgba(11, 31, 75, 0.14);
+  }
+
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0 1px;
+    transition:
+      background-size 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+      color 0.3s ease;
+  }
+
+  .link-underline:hover {
+    background-size: 100% 1px;
+  }
+
+  .field-focus:focus {
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-brand) 16%, transparent);
+  }
+
+  .aluminium-sheen {
+    background: linear-gradient(
+      105deg,
+      transparent 0%,
+      transparent 38%,
+      rgba(255, 255, 255, 0.08) 46%,
+      rgba(255, 255, 255, 0.28) 50%,
+      rgba(255, 255, 255, 0.08) 54%,
+      transparent 62%,
+      transparent 100%
+    );
+    background-size: 220% 100%;
+    animation: aluminium-sheen 7.5s ease-in-out infinite;
+  }
+
+  .iso-reveal {
+    position: relative;
+  }
+
+  .iso-reveal::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 2px;
+    background: linear-gradient(
+      180deg,
+      transparent,
+      var(--color-brand),
+      transparent
+    );
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .iso-reveal.is-visible::before {
+    transform: scaleY(1);
+  }
 }
 
 @keyframes fade-up {
@@ -172,13 +276,46 @@
   }
 }
 
+@keyframes aluminium-sheen {
+  0%,
+  28% {
+    background-position: 120% 0;
+  }
+  58%,
+  100% {
+    background-position: -40% 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 
   .animate-fade-up,
-  .animate-fade-in {
+  .animate-fade-in,
+  .aluminium-sheen {
     animation: none;
+  }
+
+  .btn-premium:hover,
+  .card-lift:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .btn-premium::after {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .aluminium-sheen {
+    animation: none;
+    opacity: 0;
+  }
+
+  .card-lift:hover {
+    transform: translateY(-2px);
   }
 }

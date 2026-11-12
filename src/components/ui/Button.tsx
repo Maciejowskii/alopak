@@ -46,17 +46,19 @@ export function Button({
   ...props
 }: ButtonAsButton | ButtonAsLink) {
   const classes = cn(
-    "inline-flex items-center justify-center gap-2 rounded-sm font-semibold tracking-tight transition-colors duration-200 disabled:opacity-60 disabled:pointer-events-none",
+    "btn-premium inline-flex items-center justify-center gap-2 rounded-sm font-semibold tracking-tight transition-[color,background-color,border-color,transform,box-shadow] duration-300 ease-out disabled:opacity-60 disabled:pointer-events-none",
     variants[variant],
     sizes[size],
     className,
   );
 
+  const content = <span className="relative z-[1] inline-flex items-center gap-2">{children}</span>;
+
   if ("href" in props && props.href) {
     const { href, target, rel, onClick } = props;
     return (
       <Link href={href} target={target} rel={rel} onClick={onClick} className={classes}>
-        {children}
+        {content}
       </Link>
     );
   }
@@ -64,7 +66,7 @@ export function Button({
   const buttonProps = props as ButtonAsButton;
   return (
     <button className={classes} {...buttonProps}>
-      {children}
+      {content}
     </button>
   );
 }

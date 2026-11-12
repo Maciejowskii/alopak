@@ -6,7 +6,8 @@ import type { FaqItem } from "@/types";
 import { cn } from "@/lib/utils";
 
 /**
- * Accordion keeps every answer in the DOM (visible or sr-only) for SEO + a11y.
+ * Accordion keeps every answer in the DOM for SEO + a11y.
+ * Closed panels stay in the document (visually collapsed via grid rows).
  */
 export function FaqAccordion({ items }: { items: FaqItem[] }) {
   const baseId = useId();
@@ -27,13 +28,13 @@ export function FaqAccordion({ items }: { items: FaqItem[] }) {
                 type="button"
                 aria-expanded={open}
                 aria-controls={panelId}
-                className="flex min-h-11 w-full items-center justify-between gap-4 py-5 text-left text-base font-semibold text-navy transition-colors hover:text-brand"
+                className="flex min-h-11 w-full items-center justify-between gap-4 py-5 text-left text-base font-semibold text-navy transition-colors duration-300 hover:text-brand"
                 onClick={() => setOpenIndex(open ? null : index)}
               >
                 <span>{item.question}</span>
                 <ChevronDown
                   className={cn(
-                    "size-5 shrink-0 text-accent-dark transition-transform duration-200",
+                    "size-5 shrink-0 text-accent-dark transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none",
                     open && "rotate-180",
                   )}
                   aria-hidden
@@ -44,12 +45,23 @@ export function FaqAccordion({ items }: { items: FaqItem[] }) {
               id={panelId}
               role="region"
               aria-labelledby={buttonId}
+              {...(!open ? { "aria-hidden": true as const } : {})}
               className={cn(
-                "leading-relaxed text-muted",
-                open ? "pb-5" : "sr-only",
+                "grid transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none",
+                open ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
               )}
             >
-              {item.answer}
+              <div className="overflow-hidden">
+                <div
+                  className={cn(
+                    "leading-relaxed text-muted transition-opacity duration-500 motion-reduce:transition-none",
+                    open ? "pb-5 opacity-100" : "opacity-0",
+                    !open && "pointer-events-none select-none",
+                  )}
+                >
+                  {item.answer}
+                </div>
+              </div>
             </div>
           </div>
         );

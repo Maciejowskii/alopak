@@ -348,7 +348,7 @@ function FieldError({ errors }: { errors?: string[] }) {
 
 function inputClass(hasError: boolean) {
   return cn(
-    "w-full rounded-md border bg-white px-3.5 py-2.5 text-sm text-ink outline-none transition-colors placeholder:text-muted/70 focus:border-primary",
+    "field-focus w-full rounded-md border bg-white px-3.5 py-2.5 text-sm text-ink outline-none transition-[border-color,box-shadow,background-color] duration-300 ease-out placeholder:text-muted/70 focus:border-primary focus:bg-aluminium/40",
     hasError ? "border-error" : "border-border",
   );
 }

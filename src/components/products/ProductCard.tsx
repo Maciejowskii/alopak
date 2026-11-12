@@ -8,12 +8,12 @@ export function ProductCard({ product }: { product: Product }) {
   const contactHref = `/kontakt?produkt=${encodeURIComponent(product.slug)}&kategoria=${encodeURIComponent(product.category)}`;
 
   return (
-    <article className="group flex h-full flex-col border border-border bg-white transition-colors hover:border-brand/40">
-      <Link href={`/produkty/${product.slug}`} className="relative block aspect-[4/3] bg-aluminium">
+    <article className="card-lift group flex h-full flex-col border border-border bg-white hover:border-brand/40">
+      <Link href={`/produkty/${product.slug}`} className="relative block aspect-[4/3] overflow-hidden bg-aluminium">
         <ProductImage
           product={product}
           fill
-          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.06] motion-reduce:transition-none"
           sizes="(max-width: 768px) 100vw, 25vw"
         />
       </Link>

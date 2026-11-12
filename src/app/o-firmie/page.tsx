@@ -1,8 +1,10 @@
 import { SmartImage } from "@/components/ui/SmartImage";
 import { CtaBand } from "@/components/sections/CtaBand";
+import { IsoRevealBlock } from "@/components/motion/IsoRevealBlock";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { Reveal } from "@/components/ui/Reveal";
 import { contact, siteConfig } from "@/data/site";
 import { stockMedia } from "@/data/media";
 import { createMetadata } from "@/lib/seo/metadata";
@@ -45,51 +47,59 @@ export default function AboutPage() {
       <section className="section-pad bg-white">
         <Container className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr]">
           <div className="space-y-5 text-base leading-relaxed text-muted sm:text-lg">
-            <p>
-              Jesteśmy polskim producentem opakowań od {siteConfig.foundedYear}{" "}
-              roku. Oferujemy opakowania aluminiowe do pakowania przetworów
-              podlegających sterylizacji lub pasteryzacji, pojemniki aluminiowe
-              do zastosowań spożywczych lub technicznych oraz inne wyroby z
-              folii aluminiowej.
-            </p>
-            <p>
-              Oferta obejmuje m.in. puszki aluminiowe dla przemysłu spożywczego,
-              folię spożywczą oraz folię fryzjerską. Działania firmy koncentrują
-              się na poszerzaniu oferty zgodnie z potrzebami klientów
-              biznesowych.
-            </p>
-            <p>
+            <Reveal>
+              <p>
+                Jesteśmy polskim producentem opakowań od {siteConfig.foundedYear}{" "}
+                roku. Oferujemy opakowania aluminiowe do pakowania przetworów
+                podlegających sterylizacji lub pasteryzacji, pojemniki aluminiowe
+                do zastosowań spożywczych lub technicznych oraz inne wyroby z
+                folii aluminiowej.
+              </p>
+            </Reveal>
+            <Reveal delay={80}>
+              <p>
+                Oferta obejmuje m.in. puszki aluminiowe dla przemysłu spożywczego,
+                folię spożywczą oraz folię fryzjerską. Działania firmy koncentrują
+                się na poszerzaniu oferty zgodnie z potrzebami klientów
+                biznesowych.
+              </p>
+            </Reveal>
+            <IsoRevealBlock>
               Od początku działalności przywiązujemy wagę do jakości produkcji
               i współpracy z odbiorcami B2B. W 2004 roku wdrożyliśmy System
               Zarządzania Jakością zgodny z normą ISO 9001:2000.
-            </p>
-            <p>
-              Realizujemy też projekty z wykorzystaniem innych materiałów
-              (tworzywa sztuczne, papier, tektura, inne metale) — po
-              indywidualnym kontakcie.
-            </p>
+            </IsoRevealBlock>
+            <Reveal delay={120}>
+              <p>
+                Realizujemy też projekty z wykorzystaniem innych materiałów
+                (tworzywa sztuczne, papier, tektura, inne metale) — po
+                indywidualnym kontakcie.
+              </p>
+            </Reveal>
           </div>
-          <aside className="border border-border bg-surface p-8">
-            <h2 className="font-display text-2xl font-semibold text-ink">
-              Dane rejestrowe
-            </h2>
-            <dl className="mt-6 space-y-4 text-sm">
-              <Item label="Nazwa" value={contact.legalName} />
-              <Item
-                label="Adres"
-                value={`${contact.street}, ${contact.postalCode} ${contact.city}`}
-              />
-              <Item label="KRS" value={contact.krs || "—"} />
-              <Item label="NIP" value={contact.nip || "—"} />
-              <Item label="REGON" value={contact.regon || "—"} />
-              <Item label="Kapitał zakładowy" value={contact.shareCapital || "—"} />
-              <Item label="E-mail" value={contact.email} />
-              <Item label="Telefon" value={contact.phones[0]} />
-            </dl>
-            <Button href="/kontakt" className="mt-8 w-full">
-              Napisz do nas
-            </Button>
-          </aside>
+          <Reveal delay={100} variant="scale">
+            <aside className="border border-border bg-surface p-8">
+              <h2 className="font-display text-2xl font-semibold text-ink">
+                Dane rejestrowe
+              </h2>
+              <dl className="mt-6 space-y-4 text-sm">
+                <Item label="Nazwa" value={contact.legalName} />
+                <Item
+                  label="Adres"
+                  value={`${contact.street}, ${contact.postalCode} ${contact.city}`}
+                />
+                <Item label="KRS" value={contact.krs || "—"} />
+                <Item label="NIP" value={contact.nip || "—"} />
+                <Item label="REGON" value={contact.regon || "—"} />
+                <Item label="Kapitał zakładowy" value={contact.shareCapital || "—"} />
+                <Item label="E-mail" value={contact.email} />
+                <Item label="Telefon" value={contact.phones[0]} />
+              </dl>
+              <Button href="/kontakt" className="mt-8 w-full">
+                Napisz do nas
+              </Button>
+            </aside>
+          </Reveal>
         </Container>
       </section>
 
