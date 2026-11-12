@@ -2,8 +2,8 @@ import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 
 export function CtaBand({
-  title = "Porozmawiajmy o potrzebach Twojej firmy",
-  description = "Opisz kategorię produktu i wymagania — przygotujemy informacje ofertowe dopasowane do zapytania.",
+  title = "Napisz, czego potrzebujesz",
+  description = "Wybierz kategorię, opisz wymagania i wyślij zapytanie. Przygotujemy ofertę.",
   ctaLabel = "Wyślij zapytanie",
   href = "/kontakt",
 }: {

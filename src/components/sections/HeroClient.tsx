@@ -101,30 +101,20 @@ export function HeroClient({ photoSrc }: { photoSrc: string }) {
               )}
               style={reduced ? undefined : { transitionDelay: "60ms" }}
             >
-              Producent opakowań aluminiowych · od {siteConfig.foundedYear}
+              Ostrzeszów · producent opakowań aluminiowych · od{" "}
+              {siteConfig.foundedYear}
             </p>
 
             <h1
               className={cn(
-                "mt-3 text-[clamp(2.35rem,9vw,5.5rem)] font-extrabold uppercase leading-[0.95] tracking-[-0.035em] text-white sm:mt-5 motion-safe:transition-all motion-safe:duration-[850ms] motion-safe:ease-[cubic-bezier(0.16,1,0.3,1)]",
+                "mt-3 max-w-[18ch] text-[clamp(2.35rem,9vw,5.5rem)] font-extrabold uppercase leading-[0.95] tracking-[-0.01em] text-white text-balance sm:mt-5 motion-safe:transition-all motion-safe:duration-[850ms] motion-safe:ease-[cubic-bezier(0.16,1,0.3,1)]",
                 ready || reduced
                   ? "translate-y-0 opacity-100"
                   : "translate-y-6 opacity-0",
               )}
               style={reduced ? undefined : { transitionDelay: "160ms" }}
             >
-              <span className="block">Puszki aluminiowe</span>
-              <span
-                className={cn(
-                  "block motion-safe:transition-all motion-safe:duration-[850ms] motion-safe:ease-[cubic-bezier(0.16,1,0.3,1)]",
-                  ready || reduced
-                    ? "translate-y-0 opacity-100"
-                    : "translate-y-6 opacity-0",
-                )}
-                style={reduced ? undefined : { transitionDelay: "280ms" }}
-              >
-                i folie dla firm
-              </span>
+              Puszki i folie aluminiowe od polskiego producenta
             </h1>
 
             <p
@@ -136,9 +126,8 @@ export function HeroClient({ photoSrc }: { photoSrc: string }) {
               )}
               style={reduced ? undefined : { transitionDelay: "420ms" }}
             >
-              Folia spożywcza, folia fryzjerska i opakowania aluminiowe dla
-              przemysłu, gastronomii i salonów. Opisz potrzeby — przygotujemy
-              ofertę.
+              Puszki do przetworów spożywczych, folia spożywcza i folia
+              fryzjerska. Opisz, czego potrzebujesz – przygotujemy ofertę.
             </p>
 
             <div

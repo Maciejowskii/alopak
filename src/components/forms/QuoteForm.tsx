@@ -258,10 +258,18 @@ export function QuoteForm({
       </label>
       <FieldError errors={state.fieldErrors?.consent} />
 
-      {/* Honeypot */}
-      <div className="absolute -left-[9999px]" aria-hidden="true">
+      {/* Honeypot — visually off-screen, hidden from AT */}
+      <div
+        className="pointer-events-none absolute left-[-9999px] top-auto h-px w-px overflow-hidden"
+        aria-hidden="true"
+      >
         <label htmlFor="website">Website</label>
-        <input id="website" name="website" tabIndex={-1} autoComplete="off" />
+        <input
+          id="website"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+        />
       </div>
 
       {showFormAlert ? (

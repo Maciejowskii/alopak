@@ -13,9 +13,9 @@ export const products: Product[] = [
     name: "Puszka aluminiowa 54 ml",
     slug: "puszka-aluminiowa-54",
     category: "puszki-aluminiowe",
-    shortDescription: "Puszka aluminiowa o pojemności 54 ml — wariant katalogowy 020054.",
+    shortDescription: "54 ml · Ø 64 mm · wys. 26 mm · nr kat. 020054",
     description:
-      "Puszka aluminiowa spożywcza z oferty ALOPAK. Zamykana wieczkiem aluminiowym zgrzewanym do puszki. Szczegóły zastosowania i dostępności omówimy w zapytaniu ofertowym.",
+      "Puszka aluminiowa spożywcza zamykana wieczkiem aluminiowym zgrzewanym do puszki. Szczegóły zastosowania i dostępności omówimy w odpowiedzi na zapytanie.",
     images: [
       {
         src: "/images/products/puszka-54.jpg",
@@ -50,9 +50,9 @@ export const products: Product[] = [
     name: "Puszka aluminiowa 117 ml",
     slug: "puszka-aluminiowa-117",
     category: "puszki-aluminiowe",
-    shortDescription: "Puszka aluminiowa 117 ml o przekroju prostokątnym — nr kat. 030117.",
+    shortDescription: "117 ml · przekrój prostokątny · nr kat. 030117",
     description:
-      "Wariant prostokątny z katalogu ALOPAK. Sprawdź parametry i wyślij zapytanie z wymaganiami produkcyjnymi.",
+      "Puszka prostokątna. Sprawdź parametry i wyślij zapytanie z wymaganiami produkcyjnymi.",
     images: [
       {
         src: "/images/products/puszka-117.jpg",
@@ -87,9 +87,9 @@ export const products: Product[] = [
     name: "Puszka aluminiowa 100 ml",
     slug: "puszka-aluminiowa-100",
     category: "puszki-aluminiowe",
-    shortDescription: "Puszka aluminiowa 100 ml — nr kat. 040100.",
+    shortDescription: "100 ml · Ø 84 mm · wys. 27 mm · nr kat. 040100",
     description:
-      "Popularny wariant pojemności 100 ml z oferty ALOPAK. Parametry katalogowe poniżej — szczegóły współpracy w kontakcie.",
+      "Puszka o pojemności 100 ml. Parametry poniżej — szczegóły współpracy ustalamy po zapytaniu.",
     images: [
       {
         src: "/images/products/puszka-100.jpg",
@@ -124,7 +124,7 @@ export const products: Product[] = [
     name: "Puszka aluminiowa 100 ml, wariant S",
     slug: "puszka-aluminiowa-100-s",
     category: "puszki-aluminiowe",
-    shortDescription: "Puszka aluminiowa 100 ml wariant S — nr kat. 050100.",
+    shortDescription: "100 ml, wariant S · nr kat. 050100",
     description:
       "Wariant 100 S z katalogu ALOPAK. Porównaj parametry z innymi pojemnościami i wyślij zapytanie.",
     images: [
@@ -148,7 +148,7 @@ export const products: Product[] = [
     documents: [],
     seoTitle: "Puszka aluminiowa 100 ml, wariant S (nr kat. 050100) – wymiary, pakowanie | ALOPAK",
     seoDescription:
-      "Puszka aluminiowa 100 ml wariant S, nr kat. 050100. Średnica zewn. 84 mm, karton 4000 szt. Porównaj z innymi pojemnościami i wyślij zapytanie ofertowe do ALOPAK.",
+      "Puszka aluminiowa 100 ml, wariant S, nr kat. 050100. Średnica zewn. 84 mm, karton 4000 szt. Wyślij zapytanie – przygotujemy ofertę.",
     isFeatured: false,
     isPublished: true,
     sortOrder: 40,
@@ -161,7 +161,7 @@ export const products: Product[] = [
     name: "Puszka aluminiowa 110 ml",
     slug: "puszka-aluminiowa-110",
     category: "puszki-aluminiowe",
-    shortDescription: "Puszka aluminiowa 110 ml — nr kat. 040110.",
+    shortDescription: "110 ml · nr kat. 040110",
     description:
       "Puszka 110 ml z oferty ALOPAK. Dane katalogowe dostępne poniżej.",
     images: [
@@ -198,7 +198,7 @@ export const products: Product[] = [
     name: "Puszka aluminiowa 125 ml",
     slug: "puszka-aluminiowa-125",
     category: "puszki-aluminiowe",
-    shortDescription: "Puszka aluminiowa 125 ml — nr kat. 040125.",
+    shortDescription: "125 ml · nr kat. 040125",
     description:
       "Puszka 125 ml z katalogu ALOPAK. Wyślij zapytanie, aby omówić zapotrzebowanie.",
     images: [
@@ -235,9 +235,9 @@ export const products: Product[] = [
     name: "Puszka aluminiowa 135 ml",
     slug: "puszka-aluminiowa-135",
     category: "puszki-aluminiowe",
-    shortDescription: "Puszka aluminiowa 135 ml — nr kat. 050135.",
+    shortDescription: "135 ml · nr kat. 050135",
     description:
-      "Puszka 135 ml z oferty ALOPAK. Parametry katalogowe i zapytanie ofertowe.",
+      "Puszka 135 ml. Sprawdź parametry i wyślij zapytanie.",
     images: [
       {
         src: "/images/products/puszka-135.jpg",
@@ -272,7 +272,7 @@ export const products: Product[] = [
     name: "Puszka aluminiowa 140 ml",
     slug: "puszka-aluminiowa-140",
     category: "puszki-aluminiowe",
-    shortDescription: "Puszka aluminiowa 140 ml — nr kat. 050140.",
+    shortDescription: "140 ml · nr kat. 050140",
     description:
       "Puszka 140 ml z katalogu ALOPAK. Skontaktuj się w sprawie oferty.",
     images: [
@@ -309,7 +309,7 @@ export const products: Product[] = [
     name: "Puszka aluminiowa 250 ml",
     slug: "puszka-aluminiowa-250",
     category: "puszki-aluminiowe",
-    shortDescription: "Puszka aluminiowa 250 ml — nr kat. 080250.",
+    shortDescription: "250 ml · nr kat. 080250",
     description:
       "Większa pojemność 250 ml z oferty ALOPAK. Dane katalogowe poniżej.",
     images: [
@@ -346,9 +346,9 @@ export const products: Product[] = [
     name: "Puszka aluminiowa 337 ml",
     slug: "puszka-aluminiowa-337",
     category: "puszki-aluminiowe",
-    shortDescription: "Puszka aluminiowa 337 ml o przekroju kwadratowym — nr kat. 060337.",
+    shortDescription: "337 ml · przekrój kwadratowy · nr kat. 060337",
     description:
-      "Puszka 337 ml z katalogu ALOPAK. Sprawdź wymiary i wyślij zapytanie ofertowe.",
+      "Puszka 337 ml o przekroju kwadratowym. Sprawdź wymiary i wyślij zapytanie.",
     images: [
       {
         src: "/images/products/puszka-337.jpg",
@@ -381,10 +381,9 @@ export const products: Product[] = [
     name: "Folia fryzjerska aluminiowa",
     slug: "folia-fryzjerska-aluminiowa",
     category: "folia-fryzjerska",
-    shortDescription:
-      "Profesjonalna folia fryzjerska aluminiowa do koloryzacji włosów — kolor srebrny.",
+    shortDescription: "14 µm · 12 cm · kolor srebrny",
     description:
-      "Wytrzymała profesjonalna folia fryzjerska do koloryzacji włosów. Folia aluminiowa w kolorze srebrnym. Parametry katalogowe: grubość 14 µm, szerokość 12 cm. Warunki współpracy omawiamy indywidualnie.",
+      "Folia fryzjerska aluminiowa do koloryzacji włosów. Kolor srebrny, grubość 14 µm, szerokość 12 cm. Warunki współpracy ustalamy indywidualnie.",
     images: [
       {
         src: "/images/products/folia-fryzjerska.jpg",
@@ -411,10 +410,9 @@ export const products: Product[] = [
     name: "Folia spożywcza",
     slug: "folia-spozywcza-b2b",
     category: "folia-spozywcza",
-    shortDescription:
-      "Folia spożywcza dla odbiorców biznesowych. Parametry i warunki — po kontakcie.",
+    shortDescription: "Parametry rolki podamy w odpowiedzi na zapytanie.",
     description:
-      "ALOPAK oferuje folię spożywczą oraz inne wyroby z folii aluminiowej dla klientów biznesowych. Szczegółowe warianty i parametry potwierdzamy w odpowiedzi na zapytanie ofertowe — nie publikujemy niepotwierdzonych danych technicznych.",
+      "Folia spożywcza dla hurtowni, gastronomii i innych firm. Parametry i warunki ustalamy po poznaniu Twoich potrzeb.",
     images: [
       {
         src: "/images/products/folia-spozywcza.jpg",
@@ -424,9 +422,9 @@ export const products: Product[] = [
     applications: ["Gastronomia", "Hurtownie", "Zastosowania profesjonalne"],
     specifications: [],
     documents: [],
-    seoTitle: "Folia spożywcza – oferta B2B | ALOPAK",
+    seoTitle: "Folia spożywcza | ALOPAK",
     seoDescription:
-      "Folia spożywcza i wyroby z folii aluminiowej dla klientów biznesowych. Parametry potwierdzamy indywidualnie. Wyślij zapytanie ofertowe do ALOPAK — odpowiemy z dopasowaną ofertą B2B.",
+      "Folia spożywcza dla hurtowni i gastronomii. Parametry podamy w odpowiedzi na zapytanie. Wyślij zapytanie – przygotujemy ofertę.",
     isFeatured: false,
     isPublished: true,
     sortOrder: 10,

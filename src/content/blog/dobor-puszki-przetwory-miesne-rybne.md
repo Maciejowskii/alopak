@@ -40,4 +40,4 @@ Docelowo: [puszki aluminiowe](/oferta/puszki-aluminiowe), [kontakt B2B](/kontakt
 
 ## Do weryfikacji przed publikacją
 
-Potwierdzenie przykładów zastosowań per wariant katalogowy, ewentualne rozszerzenie o konkretne numery katalogowe — wyłącznie na podstawie `products.ts`.
+Potwierdzenie przykładów zastosowań per wariant, ewentualne rozszerzenie o konkretne numery katalogowe — wyłącznie na podstawie `products.ts`.

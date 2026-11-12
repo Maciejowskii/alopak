@@ -19,9 +19,11 @@ import type { Product } from "@/types";
 import type { SlugPageProps } from "@/types/next";
 
 
-const categorySampleSpecsIntro: Record<string, string> = {
-  "puszki-aluminiowe":
-    "Przykładowe parametry (puszka 54 ml). Pełne tabele na kartach produktów.",
+const categorySampleSpecsIntro: Record<string, { title: string; caption: string }> = {
+  "puszki-aluminiowe": {
+    title: "Przykład: puszka 54 ml",
+    caption: "Pełne parametry każdego wariantu znajdziesz na jego karcie.",
+  },
 };
 
 function getCategoryFaqTitle(slug: string): string {
@@ -71,7 +73,12 @@ export default async function CategoryPage({ params }: SlugPageProps) {
     industry.relatedCategories.includes(category.slug),
   );
   const heroSrc = category.image.src;
-  const sampleSpecs = products[0]?.specifications.slice(0, 6) || [];
+  const sampleProduct =
+    category.slug === "puszki-aluminiowe"
+      ? products.find((product) => product.slug === "puszka-aluminiowa-54") ??
+        products[0]
+      : products[0];
+  const sampleSpecs = sampleProduct?.specifications.slice(0, 6) || [];
 
   return (
     <>
@@ -120,7 +127,7 @@ export default async function CategoryPage({ params }: SlugPageProps) {
         <Container className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
             <h2 className="font-display text-3xl font-semibold text-ink sm:text-4xl">
-              Dla kogo jest ta kategoria
+              Dla kogo
             </h2>
             <p className="mt-5 text-base leading-relaxed text-muted">
               {category.description}
@@ -149,22 +156,30 @@ export default async function CategoryPage({ params }: SlugPageProps) {
       </section>
 
       <section className="section-pad bg-surface">
-        <Container>
-          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+        <Container className="grid gap-12 lg:grid-cols-2">
+          <div>
             <h2 className="font-display text-3xl font-semibold text-ink sm:text-4xl">
-              Co warto przygotować przed zapytaniem
+              Najważniejsze cechy
             </h2>
-            <p className="text-muted leading-relaxed">
-              Im precyzyjniejszy brief, tym sprawniejsza rozmowa o ofercie. Poniżej
-              przykładowe punkty, które pomagają doprecyzować potrzeby.
-            </p>
+            <ul className="mt-8 space-y-3">
+              {category.highlights.map((item) => (
+                <li key={item} className="border-l border-primary/25 pl-4 text-muted">
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
-          <div className="mt-10 grid gap-px bg-border md:grid-cols-2">
-            {category.highlights.map((item) => (
-              <div key={item} className="bg-white p-6 text-sm leading-relaxed text-muted md:p-8">
-                {item}
-              </div>
-            ))}
+          <div>
+            <h2 className="font-display text-3xl font-semibold text-ink sm:text-4xl">
+              Co podać w zapytaniu
+            </h2>
+            <ul className="mt-8 space-y-3">
+              {category.inquiryTips.map((item) => (
+                <li key={item} className="border-l border-primary/25 pl-4 text-muted">
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
         </Container>
       </section>
@@ -174,11 +189,12 @@ export default async function CategoryPage({ params }: SlugPageProps) {
           <Container className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
             <div>
               <h2 className="font-display text-3xl font-semibold text-ink">
-                Przykładowe dane katalogowe
+                {categorySampleSpecsIntro[category.slug]?.title ??
+                  "Przykładowe parametry"}
               </h2>
               <p className="mt-4 text-sm leading-relaxed text-muted">
-                {categorySampleSpecsIntro[category.slug] ??
-                  "Przykładowe parametry katalogowe. Pełne tabele na kartach produktów."}
+                {categorySampleSpecsIntro[category.slug]?.caption ??
+                  "Pełne parametry każdego wariantu znajdziesz na jego karcie."}
               </p>
             </div>
             <SpecTable specs={sampleSpecs} />
@@ -253,7 +269,7 @@ export default async function CategoryPage({ params }: SlugPageProps) {
                 </tbody>
               </table>
               <p className="mt-4 text-xs text-muted">
-                Parametry katalogowe — szczegóły na kartach produktów.
+                Pełne parametry znajdziesz na kartach produktów.
               </p>
             </div>
           ) : null}
@@ -309,15 +325,9 @@ export default async function CategoryPage({ params }: SlugPageProps) {
               {category.ctaLabel}
             </h2>
             <p className="mt-5 text-muted leading-relaxed">
-              Formularz jest wstępnie ustawiony na tę kategorię. Dodaj ilość,
-              wymagania i opcjonalny załącznik.
+              Kategoria jest już wybrana. Dodaj ilość, wymagania i ewentualny
+              załącznik.
             </p>
-            <ul className="mt-8 space-y-3 text-sm text-muted">
-              <li>Imię i nazwisko + firma</li>
-              <li>Służbowy e-mail</li>
-              <li>Opis zapotrzebowania</li>
-              <li>Załącznik PDF / DOC / JPG (max 4 MB)</li>
-            </ul>
           </div>
           <div className="border border-border bg-surface/40 p-6 sm:p-8">
             <QuoteForm defaultCategory={category.slug} />

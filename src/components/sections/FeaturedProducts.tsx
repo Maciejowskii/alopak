@@ -31,8 +31,8 @@ export function FeaturedProducts() {
             </Reveal>
             <Reveal delay={100}>
               <p className="mt-4 text-[15px] leading-relaxed text-muted sm:mt-5 sm:text-lg">
-                Przykładowe pozycje z katalogu — sprawdź parametry i wyślij
-                zapytanie o ofertę.
+                Przykładowe pozycje z oferty. Pełne parametry są na kartach
+                produktów.
               </p>
             </Reveal>
           </div>

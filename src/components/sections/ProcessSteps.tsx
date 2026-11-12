@@ -9,20 +9,20 @@ import { cn } from "@/lib/utils";
 
 const steps = [
   {
-    title: "Wybierasz kategorię",
-    text: "Puszki aluminiowe, folia spożywcza, folia fryzjerska — albo konkretny produkt z katalogu.",
+    title: "Wybierz produkt",
+    text: "Kategorię albo konkretny produkt z katalogu.",
   },
   {
-    title: "Przesyłasz zapytanie",
-    text: "Opisujesz potrzeby, ilość i wymagania. Możesz dołączyć plik ze specyfikacją.",
+    title: "Wyślij zapytanie",
+    text: "Opisz potrzeby i ilość. W razie potrzeby dołącz specyfikację.",
   },
   {
-    title: "Doprecyzowujemy szczegóły",
-    text: "ALOPAK kontaktuje się w sprawie oferty dopasowanej do zgłoszenia.",
+    title: "Ustalamy szczegóły",
+    text: "Skontaktujemy się, żeby doprecyzować zamówienie.",
   },
   {
-    title: "Otrzymujesz informacje ofertowe",
-    text: "Warunki współpracy ustalamy indywidualnie, po zapoznaniu się z Twoim zapytaniem.",
+    title: "Dostajesz ofertę",
+    text: "Warunki ustalamy indywidualnie, na podstawie Twojego zapytania.",
   },
 ];
 
@@ -30,13 +30,11 @@ export function ProcessSteps() {
   const trackRef = useRef<HTMLOListElement>(null);
   const reduced = usePrefersReducedMotion();
   const { ref: sectionRef, inView } = useInView<HTMLElement>({ threshold: 0.2 });
-  const [lineProgress, setLineProgress] = useState(0);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const lineProgress = reduced ? 1 : scrollProgress;
 
   useEffect(() => {
-    if (reduced) {
-      setLineProgress(1);
-      return;
-    }
+    if (reduced) return;
 
     const track = trackRef.current;
     if (!track) return;
@@ -48,7 +46,7 @@ export function ProcessSteps() {
       const start = view * 0.75;
       const end = view * 0.25;
       const raw = (start - rect.top) / (start - end + rect.height * 0.35);
-      setLineProgress(Math.min(Math.max(raw, 0), 1));
+      setScrollProgress(Math.min(Math.max(raw, 0), 1));
       ticking = false;
     };
 
@@ -73,12 +71,12 @@ export function ProcessSteps() {
         <div className="max-w-2xl">
           <Reveal>
             <h2 className="text-3xl font-extrabold tracking-tight text-navy sm:text-5xl">
-              Jak wygląda współpraca
+              Jak zamówić
             </h2>
           </Reveal>
           <Reveal delay={100}>
             <p className="mt-4 text-[15px] leading-relaxed text-muted sm:mt-5 sm:text-lg">
-              Prosty przebieg od wyboru kategorii do rozmowy ofertowej.
+              Cztery kroki od wyboru produktu do oferty.
             </p>
           </Reveal>
         </div>

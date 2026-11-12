@@ -31,10 +31,7 @@ export function ProductCard({ product }: { product: Product }) {
         <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">
           {product.shortDescription}
         </p>
-        {product.catalogNumber ? (
-          <p className="mt-4 text-xs text-muted">Nr kat. {product.catalogNumber}</p>
-        ) : null}
-        <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm font-semibold">
+        <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm font-semibold">
           <Link href={`/produkty/${product.slug}`} className="text-navy hover:underline">
             Zobacz
           </Link>

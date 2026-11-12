@@ -2,9 +2,9 @@ import type { FaqItem, NavItem, SiteContact } from "@/types";
 
 export const siteConfig = {
   name: "ALOPAK",
-  tagline: "Opakowania i folie dla profesjonalnych zastosowań",
+  tagline: "Puszki aluminiowe i folie, producent z Ostrzeszowa",
   description:
-    "ALOPAK oferuje puszki aluminiowe, folię spożywczą i folię fryzjerską dla odbiorców biznesowych. Skontaktuj się w sprawie oferty dopasowanej do potrzeb Twojej firmy.",
+    "Producent puszek aluminiowych, folii spożywczej i folii fryzjerskiej z Ostrzeszowa. Działamy od 1997 roku. Opisz potrzeby – przygotujemy ofertę.",
   locale: "pl_PL",
   foundedYear: 1997,
   /** Publish only after client confirms a valid certificate. */
@@ -23,7 +23,7 @@ export const contact: SiteContact = {
   krs: "0000178512",
   nip: "622-19-01-667",
   regon: "250669554",
-  shareCapital: "360.000 PLN",
+  shareCapital: "360 000 zł",
   coordinates: {
     lat: "51.435456",
     lng: "17.939625",
@@ -81,33 +81,32 @@ export const footerNav = {
 
 export const homeFaq: FaqItem[] = [
   {
-    question: "Jakie produkty oferuje ALOPAK?",
+    question: "Jakie produkty oferujecie?",
     answer:
-      "Oferta obejmuje puszki aluminiowe, folię spożywczą oraz folię fryzjerską. Szczegóły wariantów i parametrów znajdziesz na stronach kategorii produktowych.",
+      "Puszki aluminiowe, folię spożywczą i folię fryzjerską. Warianty i parametry znajdziesz na stronach kategorii.",
   },
   {
-    question: "Czy obsługujecie klientów biznesowych?",
+    question: "Czy obsługujecie firmy?",
     answer:
-      "Tak. ALOPAK kieruje ofertę do odbiorców B2B — producentów, hurtowni, dystrybutorów i firm korzystających z opakowań oraz folii w działalności profesjonalnej.",
+      "Tak. Nasza oferta jest przeznaczona dla firm: producentów żywności, hurtowni, dystrybutorów, gastronomii i salonów fryzjerskich.",
   },
   {
-    question: "Jak złożyć zapytanie ofertowe?",
+    question: "Jak wysłać zapytanie?",
     answer:
-      "Wypełnij formularz na stronie Kontaktu lub wyślij wiadomość na adres e-mail. Opisz kategorię produktu, szacowane zapotrzebowanie i wymagania — pomoże to przygotować odpowiedź.",
+      "Wypełnij formularz na stronie Kontakt albo napisz na alopak@alopak.com.pl. Podaj kategorię produktu, szacowaną ilość i wymagania.",
   },
   {
     question: "Czy publikujecie cennik online?",
     answer:
-      "Warunki handlowe ustalane są indywidualnie. Skontaktuj się z nami, aby omówić potrzeby Twojej firmy i otrzymać informacje ofertowe.",
+      "Nie. Warunki ustalamy indywidualnie – wyślij zapytanie, a przygotujemy ofertę.",
   },
   {
     question: "Czy mogę dołączyć specyfikację do zapytania?",
     answer:
-      "Tak. W formularzu zapytania możesz dodać załącznik ze specyfikacją lub opisem wymagań. Możesz też wskazać je w treści wiadomości.",
+      "Tak. W formularzu możesz dodać plik (PDF, JPG, PNG, DOC, DOCX, do 4 MB) albo opisać wymagania w treści wiadomości.",
   },
   {
-    question: "Gdzie znajduje się siedziba firmy?",
-    answer:
-      "ALOPAK Sp. z o.o. ma siedzibę w Ostrzeszowie przy ul. Składowej 3 (63-500).",
+    question: "Gdzie jest siedziba firmy?",
+    answer: "ALOPAK Sp. z o.o., ul. Składowa 3, 63-500 Ostrzeszów.",
   },
 ];

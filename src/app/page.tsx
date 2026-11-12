@@ -7,14 +7,13 @@ import { Hero } from "@/components/sections/Hero";
 import { IndustriesTeaser } from "@/components/sections/IndustriesTeaser";
 import { OfferSplit } from "@/components/sections/OfferSplit";
 import { ProcessSteps } from "@/components/sections/ProcessSteps";
-import { WhyAlopak } from "@/components/sections/WhyAlopak";
 import { homeFaq } from "@/data/site";
 import { createMetadata } from "@/lib/seo/metadata";
 
 export const metadata = createMetadata({
-  title: "ALOPAK — Opakowania i folie dla profesjonalnych zastosowań",
+  title: "ALOPAK – puszki aluminiowe i folie, producent z Ostrzeszowa",
   description:
-    "ALOPAK: puszki aluminiowe, folia spożywcza i folia fryzjerska dla odbiorców B2B. Wyślij zapytanie ofertowe.",
+    "Producent puszek aluminiowych, folii spożywczej i folii fryzjerskiej z Ostrzeszowa. Działamy od 1997 roku. Opisz potrzeby – przygotujemy ofertę.",
   path: "/",
 });
 
@@ -24,7 +23,6 @@ export default function HomePage() {
       <Hero />
       <OfferSplit />
       <FeaturedProducts />
-      <WhyAlopak />
       <AboutTeaser />
       <IndustriesTeaser />
       <ProcessSteps />

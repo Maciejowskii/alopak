@@ -48,7 +48,7 @@ async function ProductsPageContent({
           />
           <SectionHeading
             title="Produkty ALOPAK"
-            description="Dane katalogowe oparte na publicznej ofercie firmy. Ceny i warunki handlowe omawiamy indywidualnie."
+            description="Parametry produktów. Warunki ustalamy indywidualnie po zapytaniu."
           />
 
           <div className="mt-8 flex flex-wrap gap-2">

@@ -6,8 +6,6 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { contact, siteConfig } from "@/data/site";
-import { useInView } from "@/hooks/useInView";
-import { cn } from "@/lib/utils";
 
 export function AboutTeaser() {
   return (
@@ -17,20 +15,26 @@ export function AboutTeaser() {
           <div>
             <Reveal>
               <h2 className="text-3xl font-extrabold tracking-tight text-navy sm:text-5xl">
-                Polski producent opakowań aluminiowych
+                Producent z Ostrzeszowa
               </h2>
             </Reveal>
             <Reveal delay={100}>
               <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-muted sm:mt-6 sm:text-lg">
-                Od {siteConfig.foundedYear} roku ALOPAK oferuje opakowania
-                aluminiowe do zastosowań biznesowych oraz inne wyroby z folii
-                aluminiowej. Siedziba firmy: {contact.city}, {contact.street}.
+                Od {siteConfig.foundedYear} roku produkujemy opakowania
+                aluminiowe i wyroby z folii aluminiowej. Nasza siedziba mieści
+                się w Ostrzeszowie przy ul. Składowej 3.
+              </p>
+            </Reveal>
+            <Reveal delay={140}>
+              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted sm:text-base">
+                Zapytanie z załącznikiem – w formularzu możesz dołączyć
+                specyfikację lub rysunek.
               </p>
             </Reveal>
             <Reveal delay={180}>
               <div className="mt-6 sm:mt-8">
                 <Button href="/o-firmie" variant="secondary" className="btn-premium">
-                  Poznaj ALOPAK
+                  Poznaj firmę
                 </Button>
               </div>
             </Reveal>
@@ -38,7 +42,7 @@ export function AboutTeaser() {
           <dl className="grid gap-6 self-end sm:grid-cols-2 lg:grid-cols-1">
             <Reveal delay={80} variant="scale">
               <Fact
-                label="Działalność od"
+                label="Od"
                 value={
                   <CountUp
                     value={siteConfig.foundedYear}
@@ -48,7 +52,7 @@ export function AboutTeaser() {
               />
             </Reveal>
             <Reveal delay={160} variant="scale">
-              <LocationFact />
+              <Fact label="Ostrzeszów" value={contact.city} />
             </Reveal>
             <Reveal delay={240} variant="scale">
               <Fact
@@ -74,27 +78,6 @@ function Fact({ label, value }: { label: string; value: React.ReactNode }) {
         {label}
       </dt>
       <dd className="mt-2 text-xl font-bold text-navy">{value}</dd>
-    </div>
-  );
-}
-
-function LocationFact() {
-  const { ref, inView, reduced } = useInView<HTMLDivElement>({ threshold: 0.5 });
-
-  return (
-    <div
-      ref={ref}
-      className={cn(
-        "border-t border-border pt-4 motion-safe:transition-[opacity,transform] motion-safe:duration-700 motion-safe:ease-[cubic-bezier(0.16,1,0.3,1)]",
-        inView || reduced ? "translate-x-0 opacity-100" : "translate-x-3 opacity-0",
-      )}
-    >
-      <dt className="text-xs font-semibold uppercase tracking-[0.16em] text-accent-dark">
-        Lokalizacja
-      </dt>
-      <dd className="mt-2 text-xl font-bold text-navy">
-        {contact.city}, Polska
-      </dd>
     </div>
   );
 }

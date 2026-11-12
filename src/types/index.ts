@@ -58,6 +58,8 @@ export type Category = {
   applications: string[];
   audience: string[];
   highlights: string[];
+  /** What to include in a quote request — shown as a separate block from highlights. */
+  inquiryTips: string[];
   faq: FaqItem[];
   ctaLabel: string;
   seoTitle: string;

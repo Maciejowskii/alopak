@@ -10,13 +10,12 @@ export function IndustriesTeaser() {
       <Container className="section-pad">
         <Reveal>
           <h2 className="max-w-2xl text-3xl font-extrabold tracking-tight text-navy sm:text-5xl">
-            Oferta dopasowana do branży
+            Dla kogo produkujemy
           </h2>
         </Reveal>
         <Reveal delay={100}>
           <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-muted sm:mt-5 sm:text-lg">
-            Każda branża ma własną stronę z zastosowaniami i powiązanymi
-            produktami.
+            Każda branża ma osobną stronę z zastosowaniami i produktami.
           </p>
         </Reveal>
       </Container>

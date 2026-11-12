@@ -9,7 +9,7 @@ import { formatDate } from "@/lib/utils";
 export const metadata = createMetadata({
   title: "Blog",
   description:
-    "Artykuły ALOPAK dla firm: opakowania aluminiowe, folie, zakupy B2B i przygotowanie zapytań ofertowych.",
+    "Poradniki o puszkach aluminiowych i foliach. Pomoc przy przygotowaniu zapytania.",
   path: "/blog",
 });
 
@@ -33,11 +33,11 @@ export default async function BlogPage({
           ]}
         />
         <h1 className="mt-4 font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl lg:text-6xl">
-          Wiedza dla zakupów B2B
+          Poradniki
         </h1>
         <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted">
           Materiały pomagające przygotować zapytanie i ocenić ofertę opakowań
-          oraz folii — bez niepotwierdzonych deklaracji eksperckich.
+          oraz folii.
         </p>
 
         <form className="mt-10 flex flex-col gap-3 sm:flex-row" action="/blog" method="get">

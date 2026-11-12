@@ -1,4 +1,3 @@
-import { SmartImage } from "@/components/ui/SmartImage";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { IsoRevealBlock } from "@/components/motion/IsoRevealBlock";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
@@ -6,30 +5,20 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { contact, siteConfig } from "@/data/site";
-import { stockMedia } from "@/data/media";
 import { createMetadata } from "@/lib/seo/metadata";
 
 export const metadata = createMetadata({
   title: "O firmie",
   description:
-    "ALOPAK Sp. z o.o. — polski producent opakowań aluminiowych z Ostrzeszowa. Oferta B2B i kontakt.",
+    "ALOPAK Sp. z o.o. — polski producent opakowań aluminiowych z Ostrzeszowa. Oferta i kontakt.",
   path: "/o-firmie",
-  image: stockMedia.workshop.src,
 });
 
 export default function AboutPage() {
   return (
     <>
       <section className="relative isolate min-h-[480px] overflow-hidden bg-primary text-white">
-        <SmartImage
-          src={stockMedia.workshop.src}
-          alt={stockMedia.workshop.alt}
-          fill
-          priority
-          className="object-cover opacity-40"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0b1a29]/92 to-[#0f2438]/55" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0b1a29] to-[#0f2438]" />
         <Container className="relative flex min-h-[480px] flex-col justify-end pb-14 pt-28">
           <Breadcrumbs
             tone="light"
@@ -59,15 +48,14 @@ export default function AboutPage() {
             <Reveal delay={80}>
               <p>
                 Oferta obejmuje m.in. puszki aluminiowe dla przemysłu spożywczego,
-                folię spożywczą oraz folię fryzjerską. Działania firmy koncentrują
-                się na poszerzaniu oferty zgodnie z potrzebami klientów
-                biznesowych.
+                folię spożywczą oraz folię fryzjerską. Poszerzamy ofertę o
+                produkty, o które pytają nasi klienci.
               </p>
             </Reveal>
             <IsoRevealBlock>
-              Od początku działalności przywiązujemy wagę do jakości produkcji
-              i współpracy z odbiorcami B2B. W 2004 roku wdrożyliśmy System
-              Zarządzania Jakością zgodny z normą ISO 9001:2000.
+              Jakość produkcji jest podstawą współpracy z naszymi klientami. W
+              2004 roku wdrożyliśmy system zarządzania jakością oparty na normie
+              ISO 9001.
             </IsoRevealBlock>
             <Reveal delay={120}>
               <p>
@@ -110,7 +98,7 @@ export default function AboutPage() {
           </h2>
           <div className="mt-10 grid gap-0 border-t border-border md:grid-cols-2">
             {[
-              "Opakowania aluminiowe do przetworów (w tym pasteryzacja / sterylizacja — zgodnie z informacjami firmy)",
+              "Opakowania aluminiowe do przetworów poddawanych pasteryzacji i sterylizacji",
               "Pojemniki aluminiowe do zastosowań spożywczych lub technicznych",
               "Folia spożywcza i inne wyroby z folii aluminiowej",
               "Folia fryzjerska aluminiowa do koloryzacji włosów",
@@ -126,7 +114,12 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <CtaBand />
+      <CtaBand
+        title="Masz pytania o naszą ofertę?"
+        description="Napisz do nas."
+        ctaLabel="Kontakt"
+        href="/kontakt"
+      />
     </>
   );
 }

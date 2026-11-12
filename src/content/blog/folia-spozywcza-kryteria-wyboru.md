@@ -16,7 +16,7 @@ seoDescription: "Na co zwrócić uwagę przy zakupie folii spożywczej B2B: zast
 
 Wybór folii spożywczej w firmie zaczyna się od scenariusza: kuchnia produkcyjna, catering, zakład obróbki, hurtownia zaopatrująca gastronomię albo sieć punktów z ograniczonym magazynem. Ten sam materiał w ofercie rynkowej może oznaczać różne formaty i sposoby pakowania. W B2B najpierw opisujecie proces, potem porównujecie parametry u dostawców.
 
-ALOPAK oferuje folię spożywczą dla odbiorców biznesowych oraz — zgodnie z opisem katalogowym — inne wyroby z folii aluminiowej. Szczegółowe warianty i parametry potwierdzamy w odpowiedzi na zapytanie ofertowe; nie publikujemy niepotwierdzonych danych technicznych w internecie.
+Produkujemy folię spożywczą oraz inne wyroby z folii aluminiowej. Szczegółowe warianty i parametry podamy w odpowiedzi na zapytanie.
 
 ## Mapa zastosowań — tabela startowa
 
@@ -117,8 +117,4 @@ To standardowe pytanie B2B — zadajcie je w kontakcie; dostawca opisze procedur
 
 ## Następny krok
 
-Odwiedź [folię spożywczą w ofercie](/oferta/folia-spozywcza), kartę [folia spożywcza B2B](/produkty/folia-spozywcza-b2b) i wyślij [zapytanie ofertowe](/kontakt?kategoria=folia-spozywcza).
-
-## Uwaga merytoryczna
-
-Nie publikujemy niepotwierdzonych deklaracji materiałowych ani certyfikatów. Szczegóły techniczne potwierdzamy w kontakcie ofertowym.
+Sprawdź [folię spożywczą](/oferta/folia-spozywcza) albo wyślij [zapytanie](/kontakt?kategoria=folia-spozywcza) – przygotujemy ofertę.

@@ -8,7 +8,7 @@ import { faqSchema } from "@/lib/seo/schema";
 export function FaqSection({
   items,
   title = "Najczęstsze pytania",
-  description = "Szczegóły handlowe omawiamy indywidualnie.",
+  description,
 }: {
   items: FaqItem[];
   title?: string;
@@ -24,9 +24,13 @@ export function FaqSection({
               {title}
             </h2>
           </Reveal>
-          <Reveal delay={100}>
-            <p className="mt-5 text-base leading-relaxed text-muted">{description}</p>
-          </Reveal>
+          {description ? (
+            <Reveal delay={100}>
+              <p className="mt-5 text-base leading-relaxed text-muted">
+                {description}
+              </p>
+            </Reveal>
+          ) : null}
         </div>
         <Reveal delay={80} variant="up">
           <FaqAccordion items={items} />

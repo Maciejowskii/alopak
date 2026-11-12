@@ -5,11 +5,11 @@ export const categories: Category[] = [
     slug: "puszki-aluminiowe",
     name: "Puszki aluminiowe",
     shortName: "Puszki",
-    tagline: "Opakowania aluminiowe dla przemysłu spożywczego",
+    tagline: "Do przetworów spożywczych",
     description:
-      "Puszki aluminiowe spożywcze ALOPAK — różne kształty i pojemności. Zamykane wieczkami aluminiowymi zgrzewanymi do puszki. Oferta dla działów zakupów, produkcji i zaopatrzenia.",
+      "Puszki aluminiowe w różnych kształtach i pojemnościach, zamykane wieczkami zgrzewanymi do puszki. Do przetworów mięsnych, rybnych, mleczarskich i owocowo-warzywnych.",
     heroDescription:
-      "Puszki aluminiowe do przetworów mięsnych, rybnych, mleczarskich oraz owocowo-warzywnych. Produkty można pasteryzować i sterylizować. Skontaktuj się, aby omówić warianty katalogowe.",
+      "Puszki w różnych kształtach i pojemnościach dla firm z branży spożywczej. Do przetworów mięsnych, rybnych, mleczarskich oraz owocowo-warzywnych.",
     applications: [
       "Przetwory mięsne",
       "Przetwory rybne",
@@ -21,54 +21,58 @@ export const categories: Category[] = [
       "Producenci żywności",
       "Zakłady przetwórcze",
       "Działy zakupów i opakowań",
-      "Firmy poszukujące opakowań aluminiowych B2B",
     ],
     highlights: [
-      "Różne kształty i pojemności — katalog od 54 do 337 ml",
-      "Zamykanie wieczkami aluminiowymi zgrzewanymi do puszki",
-      "Możliwość pasteryzacji i sterylizacji",
-      "Zapytanie z opisem wymagań i opcjonalnym załącznikiem",
+      "Różne kształty i pojemności",
+      "Wieczka aluminiowe zgrzewane do puszki",
+      "Do przetworów poddawanych pasteryzacji i sterylizacji",
+    ],
+    inquiryTips: [
+      "Pojemność lub numer katalogowy",
+      "Szacowana ilość",
+      "Rodzaj pakowanego produktu",
+      "Specyfikacja lub rysunek (opcjonalnie)",
     ],
     faq: [
       {
         question: "Do jakich produktów przeznaczone są puszki aluminiowe?",
         answer:
-          "Według oferty ALOPAK puszki spożywcze mogą być stosowane do przetworów mięsnych, rybnych, mleczarskich oraz owocowo-warzywnych. Szczegóły dopasowania do konkretnego produktu omówimy w kontakcie.",
+          "Do przetworów mięsnych, rybnych, mleczarskich i owocowo-warzywnych. Czy puszka sprawdzi się w Twoim przypadku, ustalimy na podstawie zapytania.",
       },
       {
         question: "Czy mogę otrzymać parametry techniczne wybranych wariantów?",
         answer:
-          "Tak. Na stronach produktów publikujemy dostępne dane katalogowe. Jeśli potrzebujesz potwierdzenia parametrów lub informacji o innych wariantach — wyślij zapytanie.",
+          "Parametry każdego wariantu (pojemność, wymiary, wysokość, dno) są na jego karcie produktu. Potrzebujesz więcej? Napisz w zapytaniu.",
       },
       {
         question: "Jak przygotować zapytanie o puszki?",
         answer:
-          "Wskaż pojemność lub nr katalogowy, szacowaną ilość, wymagania dotyczące zamknięcia oraz ewentualne dokumenty. Im precyzyjniejszy brief, tym sprawniejsza rozmowa ofertowa.",
+          "Podaj pojemność lub numer katalogowy, szacowaną ilość i rodzaj pakowanego produktu. Możesz dołączyć specyfikację w załączniku.",
+      },
+      {
+        question: "Czym zamykane są puszki?",
+        answer: "Wieczkami aluminiowymi zgrzewanymi do puszki.",
       },
     ],
     ctaLabel: "Zapytaj o puszki aluminiowe",
-    seoTitle: "Puszki aluminiowe B2B | ALOPAK",
+    seoTitle: "Puszki aluminiowe do przetworów spożywczych | ALOPAK",
     seoDescription:
-      "Puszki aluminiowe ALOPAK dla przemysłu spożywczego. Sprawdź warianty i wyślij zapytanie ofertowe.",
+      "Puszki aluminiowe do przetworów spożywczych. Sprawdź warianty i wyślij zapytanie – przygotujemy ofertę.",
     image: {
       src: "/images/categories/puszki-aluminiowe.jpg",
-      alt: "Przykłady produktów pakowanych w puszki aluminiowe ALOPAK",
+      alt: "Przykłady produktów pakowanych w puszki aluminiowe",
     },
   },
   {
     slug: "folia-spozywcza",
     name: "Folia spożywcza",
     shortName: "Folia spożywcza",
-    tagline: "Folia dla zastosowań profesjonalnych i hurtowych",
+    tagline: "Dla hurtowni i gastronomii",
     description:
-      "Folia spożywcza w ofercie ALOPAK dla hurtowni, gastronomii i innych odbiorców biznesowych. Parametry i warunki współpracy ustalamy w kontakcie ofertowym.",
+      "Folia spożywcza dla hurtowni, gastronomii i innych firm. Parametry i warunki ustalamy po poznaniu Twoich potrzeb.",
     heroDescription:
-      "Szukasz folii spożywczej do zastosowań profesjonalnych? Opisz potrzeby swojej firmy — pomożemy dobrać rozwiązanie i przekazać informacje ofertowe.",
-    applications: [
-      "Zastosowania gastronomiczne",
-      "Hurtownie i dystrybucja",
-      "Profesjonalne zastosowania spożywcze",
-    ],
+      "Folia spożywcza dla hurtowni, gastronomii i firm zaopatrujących obiekty profesjonalne. Opisz, czego potrzebujesz – przygotujemy ofertę.",
+    applications: ["Gastronomia", "Hurtownie i dystrybucja", "Obiekty profesjonalne"],
     audience: [
       "Hurtownie spożywcze",
       "Gastronomia",
@@ -76,32 +80,36 @@ export const categories: Category[] = [
       "Firmy zaopatrujące obiekty profesjonalne",
     ],
     highlights: [
-      "Oferta skierowana do odbiorców B2B",
-      "Możliwość zapytania o warunki hurtowe",
-      "Opis wymagań w formularzu kontaktowym",
-      "Bezpośredni kontakt z producentem / dostawcą",
+      "Oferta dla hurtowni i gastronomii",
+      "Parametry ustalane po zapytaniu",
+      "Możliwość dołączenia wymagań w formularzu",
+    ],
+    inquiryTips: [
+      "Do czego folia będzie używana",
+      "Szacowana ilość lub częstotliwość dostaw",
+      "Wymagane wymiary rolki (jeśli są znane)",
     ],
     faq: [
       {
         question: "Czy dostępny jest cennik hurtowy online?",
         answer:
-          "Warunki handlowe omawiamy indywidualnie. Skorzystaj z formularza zapytania, aby otrzymać informacje dopasowane do zapotrzebowania.",
+          "Nie. Warunki ustalamy indywidualnie – wyślij zapytanie, a przygotujemy ofertę.",
       },
       {
         question: "Jakie informacje warto podać w zapytaniu?",
         answer:
-          "Przydatne są: szacowana ilość, preferowane wymiary lub grubość (jeśli znane), sposób wykorzystania oraz termin, w jakim potrzebujesz odpowiedzi ofertowej.",
+          "Do czego używasz folii, jaką ilość potrzebujesz lub jak często zamawiasz oraz jakie wymiary rolki są wymagane, jeśli je znasz.",
       },
       {
         question: "Czy mogę zapytać o inne wyroby z folii aluminiowej?",
         answer:
-          "Tak. ALOPAK oferuje także inne wyroby z folii aluminiowej. Opisz potrzeby w formularzu — wskażemy możliwe kierunki współpracy.",
+          "Tak. Poza folią spożywczą i fryzjerską produkujemy też inne wyroby z folii aluminiowej – opisz, czego szukasz.",
       },
     ],
     ctaLabel: "Zapytaj o folię spożywczą",
-    seoTitle: "Folia spożywcza B2B | ALOPAK",
+    seoTitle: "Folia spożywcza dla hurtowni i gastronomii | ALOPAK",
     seoDescription:
-      "Folia spożywcza ALOPAK dla gastronomii i odbiorców biznesowych. Wyślij zapytanie o ofertę.",
+      "Folia spożywcza dla hurtowni, gastronomii i firm. Opisz potrzeby – przygotujemy ofertę.",
     image: {
       src: "/images/categories/folia-spozywcza.jpg",
       alt: "Rolka folii aluminiowej spożywczej",
@@ -111,11 +119,11 @@ export const categories: Category[] = [
     slug: "folia-fryzjerska",
     name: "Folia fryzjerska",
     shortName: "Folia fryzjerska",
-    tagline: "Profesjonalna folia do koloryzacji włosów",
+    tagline: "Do koloryzacji włosów",
     description:
-      "Folia fryzjerska aluminiowa przeznaczona do profesjonalnej koloryzacji włosów. Oferta dla salonów, hurtowni i dystrybutorów branży fryzjerskiej.",
+      "Aluminiowa folia do koloryzacji włosów dla salonów, hurtowni i dystrybutorów. Grubość 14 µm, szerokość 12 cm, kolor srebrny.",
     heroDescription:
-      "Wytrzymała folia fryzjerska aluminiowa w kolorze srebrnym. Sprawdź dostępne dane katalogowe i skontaktuj się w sprawie warunków współpracy.",
+      "Folia fryzjerska aluminiowa do koloryzacji włosów. Grubość 14 µm, szerokość 12 cm, kolor srebrny.",
     applications: [
       "Koloryzacja włosów w salonach",
       "Zaopatrzenie salonów fryzjerskich",
@@ -129,20 +137,24 @@ export const categories: Category[] = [
     ],
     highlights: [
       "Folia aluminiowa w kolorze srebrnym",
-      "Grubość 14 µm (dane katalogowe)",
-      "Szerokość 12 cm (dane katalogowe)",
-      "Zapytanie o warunki współpracy B2B",
+      "Grubość 14 µm",
+      "Szerokość 12 cm",
+    ],
+    inquiryTips: [
+      "Szacowana ilość",
+      "Częstotliwość zamówień",
+      "Dodatkowe wymagania (opcjonalnie)",
     ],
     faq: [
       {
         question: "Jakie są podstawowe parametry folii fryzjerskiej?",
         answer:
-          "Według katalogu ALOPAK: grubość 14 mikrometrów, szerokość 12 cm, kolor srebrny. Potwierdzenie dostępności i warunków handlowych uzyskasz w kontakcie.",
+          "Grubość 14 µm, szerokość 12 cm, kolor srebrny. Szczegóły współpracy ustalamy w odpowiedzi na zapytanie.",
       },
       {
         question: "Dla kogo jest ta oferta?",
         answer:
-          "Dla hurtowni, dystrybutorów, sklepów branżowych oraz profesjonalnych odbiorców poszukujących folii do koloryzacji włosów.",
+          "Dla salonów, hurtowni i dystrybutorów poszukujących folii do koloryzacji włosów.",
       },
       {
         question: "Jak zapytać o współpracę?",
@@ -153,7 +165,7 @@ export const categories: Category[] = [
     ctaLabel: "Zapytaj o folię fryzjerską",
     seoTitle: "Folia fryzjerska aluminiowa | ALOPAK",
     seoDescription:
-      "Profesjonalna folia fryzjerska aluminiowa ALOPAK. Parametry katalogowe i zapytanie ofertowe B2B.",
+      "Folia fryzjerska aluminiowa: 14 µm, 12 cm, srebrna. Dla salonów, hurtowni i dystrybutorów. Wyślij zapytanie.",
     image: {
       src: "/images/categories/folia-fryzjerska.jpg",
       alt: "Koloryzacja włosów z użyciem folii fryzjerskiej",

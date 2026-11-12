@@ -5,7 +5,7 @@ export const blogCategoryLabels: Record<BlogCategorySlug, string> = {
   "opakowania-spozywcze": "Opakowania i przemysł spożywczy",
   "folia-spozywcza": "Folia spożywcza",
   "folia-fryzjerska": "Folia fryzjerska",
-  "poradniki-b2b": "Poradniki B2B",
+  "poradniki-b2b": "Poradniki",
 };
 
 export const blogCategories = Object.entries(blogCategoryLabels).map(

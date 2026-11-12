@@ -16,7 +16,7 @@ seoDescription: "Praktyczna checklista B2B: parametry, dokumentacja, logistyka i
 
 Puszki aluminiowe wpływają na produkcję, magazyn, transport i prezentację produktu. Decyzja oparta tylko na cenie jednostkowej bywa kosztowna, gdy parametry „rozjeżdżają się” między partiami albo komunikacja merytoryczna jest wolna.
 
-W katalogu ALOPAK puszki opisujemy jako warianty z wymiarami i pakowaniem zbiorczym. Są zamykane wieczkiem aluminiowym zgrzewanym do puszki — to konkretny punkt odniesienia przy porównaniu z innymi źródłami.
+Nasze puszki opisujemy jako warianty z wymiarami i pakowaniem zbiorczym. Są zamykane wieczkiem aluminiowym zgrzewanym do puszki — to konkretny punkt odniesienia przy porównaniu z innymi źródłami.
 
 ## Dossier przed wysłaniem zapytań
 

@@ -12,14 +12,12 @@ export function OfferSplit() {
         <div className="lg:sticky lg:top-28">
           <Reveal>
             <h2 className="text-3xl font-extrabold tracking-tight text-navy sm:text-5xl">
-              Trzy kategorie oferty B2B
+              Nasza oferta
             </h2>
           </Reveal>
           <Reveal delay={100}>
             <p className="mt-4 max-w-md text-[15px] leading-relaxed text-muted sm:mt-5 sm:text-lg">
-              Czytelny podział produktów dla działów zakupów, produkcji i
-              dystrybucji. Każda kategoria prowadzi do szczegółów i formularza
-              zapytania.
+              Wybierz kategorię, sprawdź szczegóły i wyślij zapytanie.
             </p>
           </Reveal>
           <Reveal delay={180}>

@@ -9,11 +9,10 @@ import { stockMedia } from "@/data/media";
 import { createMetadata } from "@/lib/seo/metadata";
 
 export const metadata = createMetadata({
-  title: "Kontakt / Zapytanie ofertowe",
+  title: "Kontakt",
   description:
-    "Skontaktuj się z ALOPAK: formularz zapytania ofertowego, telefon i e-mail. Ostrzeszów, ul. Składowa 3.",
+    "Formularz zapytania, telefon i e-mail ALOPAK. Ostrzeszów, ul. Składowa 3.",
   path: "/kontakt",
-  image: stockMedia.metal.src,
 });
 
 export default function ContactPage({

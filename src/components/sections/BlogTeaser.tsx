@@ -17,7 +17,7 @@ export function BlogTeaser() {
         <div className="flex flex-col gap-4 border-b border-border pb-8 sm:flex-row sm:items-end sm:justify-between">
           <Reveal>
             <h2 className="max-w-xl text-4xl font-extrabold tracking-tight text-navy sm:text-5xl">
-              Materiały dla zakupów B2B
+              Poradniki
             </h2>
           </Reveal>
           <Reveal delay={80}>

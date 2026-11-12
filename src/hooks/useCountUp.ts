@@ -14,18 +14,13 @@ export function useCountUp(
   },
 ) {
   const reduced = usePrefersReducedMotion();
-  const [value, setValue] = useState(target);
+  const [value, setValue] = useState(0);
 
   useEffect(() => {
-    if (!active) return;
-    if (reduced) {
-      setValue(target);
-      return;
-    }
+    if (!active || reduced) return;
 
     let frame = 0;
     const start = performance.now();
-    setValue(0);
 
     const tick = (now: number) => {
       const progress = Math.min((now - start) / duration, 1);
@@ -40,5 +35,7 @@ export function useCountUp(
     return () => cancelAnimationFrame(frame);
   }, [active, duration, reduced, target]);
 
+  if (!active) return 0;
+  if (reduced) return target;
   return value;
 }

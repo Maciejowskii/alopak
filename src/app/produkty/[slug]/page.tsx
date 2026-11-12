@@ -110,7 +110,7 @@ export default async function ProductPage({ params }: SlugPageProps) {
                   <dt className="text-xs uppercase tracking-[0.14em] text-accent-dark">
                     Status
                   </dt>
-                  <dd className="mt-1 font-semibold text-ink">Oferta B2B / zapytanie</dd>
+                  <dd className="mt-1 font-semibold text-ink">Na zapytanie</dd>
                 </div>
               </dl>
 
@@ -137,8 +137,8 @@ export default async function ProductPage({ params }: SlugPageProps) {
                 Parametry techniczne
               </h2>
               <p className="mt-4 text-sm leading-relaxed text-muted">
-                Parametry katalogowe. Aktualność i warianty potwierdzamy w
-                odpowiedzi na zapytanie.
+                Parametry. Aktualność i warianty potwierdzamy w odpowiedzi na
+                zapytanie.
               </p>
             </div>
             <SpecTable specs={product.specifications} />
