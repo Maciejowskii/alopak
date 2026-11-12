@@ -8,23 +8,23 @@ export function ProductCard({ product }: { product: Product }) {
   const contactHref = `/kontakt?produkt=${encodeURIComponent(product.slug)}&kategoria=${encodeURIComponent(product.category)}`;
 
   return (
-    <article className="group flex h-full flex-col border border-border bg-white transition-colors hover:border-primary/30">
-      <Link href={`/produkty/${product.slug}`} className="relative block aspect-[4/3] bg-surface">
+    <article className="group flex h-full flex-col border border-border bg-white transition-colors hover:border-brand/40">
+      <Link href={`/produkty/${product.slug}`} className="relative block aspect-[4/3] bg-aluminium">
         <ProductImage
           product={product}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-          sizes="(max-width: 768px) 100vw, 33vw"
+          sizes="(max-width: 768px) 100vw, 25vw"
         />
       </Link>
       <div className="flex flex-1 flex-col p-5">
         {category ? (
-          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent-dark">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand">
             {category.name}
           </p>
         ) : null}
-        <h3 className="mt-2 font-display text-lg font-semibold text-ink">
-          <Link href={`/produkty/${product.slug}`} className="hover:text-primary">
+        <h3 className="mt-2 text-lg font-bold text-navy">
+          <Link href={`/produkty/${product.slug}`} className="hover:text-brand">
             {product.name}
           </Link>
         </h3>
@@ -35,10 +35,10 @@ export function ProductCard({ product }: { product: Product }) {
           <p className="mt-4 text-xs text-muted">Nr kat. {product.catalogNumber}</p>
         ) : null}
         <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm font-semibold">
-          <Link href={`/produkty/${product.slug}`} className="text-primary hover:underline">
+          <Link href={`/produkty/${product.slug}`} className="text-navy hover:underline">
             Zobacz
           </Link>
-          <Link href={contactHref} className="text-accent-dark hover:text-primary hover:underline">
+          <Link href={contactHref} className="text-brand hover:underline">
             Zapytaj
           </Link>
         </div>

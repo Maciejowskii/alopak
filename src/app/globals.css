@@ -1,27 +1,44 @@
 @import "tailwindcss";
 
 :root {
-  --color-primary: #0f2438;
-  --color-primary-hover: #1a3a55;
+  /* Brand from old-site logo extraction — docs/brand-colors.md */
+  --color-brand: #24186c;
+  --color-brand-strong: #19114c;
+  --color-brand-hover: #1d1458;
+  --color-navy: #0b1f4b;
+  --color-navy-hover: #122a5c;
+  --color-aluminium: #eef1f4;
   --color-ink: #121a22;
-  --color-muted: #5c6975;
+  --color-muted: #4a5563;
   --color-background: #ffffff;
-  --color-surface: #f3f5f7;
-  --color-surface-alt: #e7ecf0;
+  --color-surface: #eef1f4;
+  --color-surface-alt: #e4e8ed;
   --color-border: #d5dce3;
   --color-accent: #9aa8b4;
-  --color-accent-dark: #6f7e8b;
-  --color-accent-cta: #a67c52;
-  --color-accent-cta-hover: #8f6843;
+  --color-accent-dark: #5c6975;
+  /* Legacy aliases used across components */
+  --color-primary: var(--color-navy);
+  --color-primary-hover: var(--color-navy-hover);
+  --color-accent-cta: var(--color-brand-strong);
+  --color-accent-cta-hover: var(--color-brand-hover);
   --color-success: #287a55;
   --color-error: #b83a3a;
-  --shadow-soft: 0 22px 60px rgba(15, 36, 56, 0.1);
-  --shadow-nav: 0 16px 40px rgba(15, 36, 56, 0.12);
-  --radius-sm: 0.25rem;
-  --radius-md: 0.5rem;
+  --shadow-soft: 0 22px 60px rgba(11, 31, 75, 0.1);
+  --shadow-nav: 0 12px 28px rgba(11, 31, 75, 0.08);
+  --radius-sm: 0.125rem;
+  --radius-md: 0.25rem;
+  --header-top: 2.5rem;
+  --header-main: 4.5rem;
+  --header-offset: calc(var(--header-top) + var(--header-main));
 }
 
 @theme inline {
+  --color-brand: var(--color-brand);
+  --color-brand-strong: var(--color-brand-strong);
+  --color-brand-hover: var(--color-brand-hover);
+  --color-navy: var(--color-navy);
+  --color-navy-hover: var(--color-navy-hover);
+  --color-aluminium: var(--color-aluminium);
   --color-primary: var(--color-primary);
   --color-primary-hover: var(--color-primary-hover);
   --color-ink: var(--color-ink);
@@ -36,8 +53,8 @@
   --color-accent-cta-hover: var(--color-accent-cta-hover);
   --color-success: var(--color-success);
   --color-error: var(--color-error);
-  --font-sans: var(--font-manrope);
-  --font-display: var(--font-source-serif);
+  --font-sans: var(--font-barlow);
+  --font-display: var(--font-barlow);
   --shadow-soft: var(--shadow-soft);
 }
 
@@ -53,17 +70,17 @@
   body {
     background: var(--color-background);
     color: var(--color-ink);
-    font-family: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-barlow), ui-sans-serif, system-ui, sans-serif;
     text-rendering: optimizeLegibility;
   }
 
   ::selection {
-    background: color-mix(in srgb, var(--color-primary) 16%, white);
+    background: color-mix(in srgb, var(--color-brand) 18%, white);
     color: var(--color-ink);
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-primary);
+    outline: 2px solid var(--color-brand);
     outline-offset: 3px;
   }
 
@@ -71,8 +88,9 @@
   h2,
   h3,
   .font-display {
-    font-family: var(--font-source-serif), var(--font-manrope), ui-serif, Georgia, serif;
+    font-family: var(--font-barlow), ui-sans-serif, system-ui, sans-serif;
     letter-spacing: -0.01em;
+    font-weight: 700;
   }
 }
 
@@ -109,25 +127,35 @@
   }
 
   .display-hero {
-    font-family: var(--font-source-serif), ui-serif, Georgia, serif;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    line-height: 1.05;
+    font-family: var(--font-barlow), ui-sans-serif, system-ui, sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 0.98;
+    text-transform: uppercase;
+    text-wrap: balance;
+  }
+
+  .eyebrow {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-navy);
   }
 
   .animate-fade-up {
-    animation: fade-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation: fade-up 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
   .animate-fade-in {
-    animation: fade-in 0.45s ease both;
+    animation: fade-in 0.4s ease both;
   }
 }
 
 @keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;

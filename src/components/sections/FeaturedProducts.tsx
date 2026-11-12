@@ -2,30 +2,28 @@ import Link from "next/link";
 import { ProductCard } from "@/components/products/ProductCard";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { getFeaturedProducts } from "@/lib/products/repository";
+import { getProductBySlug } from "@/lib/products/repository";
 
-const FEATURED_ORDER = [
-  "puszka-aluminiowa-100",
-  "puszka-aluminiowa-125",
-  "puszka-aluminiowa-250",
+/** Brief P1-4: puszka 54, 117, 337 ml + folia fryzjerska */
+const FEATURED_SLUGS = [
+  "puszka-aluminiowa-54",
+  "puszka-aluminiowa-117",
+  "puszka-aluminiowa-337",
   "folia-fryzjerska-aluminiowa",
-  "folia-spozywcza-b2b",
 ] as const;
 
 export function FeaturedProducts() {
-  const products = getFeaturedProducts(5).sort((a, b) => {
-    const ai = FEATURED_ORDER.indexOf(a.slug as (typeof FEATURED_ORDER)[number]);
-    const bi = FEATURED_ORDER.indexOf(b.slug as (typeof FEATURED_ORDER)[number]);
-    return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
-  });
+  const products = FEATURED_SLUGS.map((slug) => getProductBySlug(slug)).filter(
+    (product): product is NonNullable<typeof product> => Boolean(product),
+  );
   if (!products.length) return null;
 
   return (
-    <section className="section-pad bg-white">
+    <section className="section-pad bg-aluminium">
       <Container>
         <div className="flex flex-col gap-6 border-b border-border pb-8 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-2xl">
-            <h2 className="font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
+            <h2 className="text-4xl font-extrabold tracking-tight text-navy sm:text-5xl">
               Wybrane produkty
             </h2>
             <p className="mt-5 text-base leading-relaxed text-muted sm:text-lg">
@@ -38,7 +36,7 @@ export function FeaturedProducts() {
           </Button>
         </div>
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
@@ -46,7 +44,7 @@ export function FeaturedProducts() {
 
         <p className="mt-8 text-sm text-muted">
           Szukasz innego wariantu?{" "}
-          <Link href="/oferta" className="font-semibold text-primary hover:underline">
+          <Link href="/oferta" className="font-semibold text-navy hover:underline">
             Przejdź do oferty
           </Link>
           .

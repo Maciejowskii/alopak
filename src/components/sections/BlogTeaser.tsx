@@ -14,21 +14,21 @@ export function BlogTeaser() {
     <section className="section-pad bg-white">
       <Container>
         <div className="flex flex-col gap-4 border-b border-border pb-8 sm:flex-row sm:items-end sm:justify-between">
-          <h2 className="font-display max-w-xl text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
+          <h2 className="max-w-xl text-4xl font-extrabold tracking-tight text-navy sm:text-5xl">
             Materiały dla zakupów B2B
           </h2>
-          <Link href="/blog" className="text-sm font-semibold text-primary">
+          <Link href="/blog" className="text-sm font-semibold text-navy hover:text-brand">
             Wszystkie artykuły
           </Link>
         </div>
 
         <div className="mt-10 grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
           <article className="border-b border-border pb-10 lg:border-b-0 lg:border-r lg:pb-0 lg:pr-10">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-accent-dark">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand">
               {blogCategoryLabels[featured.category]}
             </p>
-            <h3 className="mt-4 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-              <Link href={`/blog/${featured.slug}`} className="hover:text-primary">
+            <h3 className="mt-4 text-3xl font-bold tracking-tight text-navy sm:text-4xl">
+              <Link href={`/blog/${featured.slug}`} className="hover:text-brand">
                 {featured.title}
               </Link>
             </h3>
@@ -46,11 +46,11 @@ export function BlogTeaser() {
           <div className="space-y-0 divide-y divide-border">
             {rest.map((post) => (
               <article key={post.slug} className="py-6 first:pt-0">
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent-dark">
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand">
                   {blogCategoryLabels[post.category]}
                 </p>
-                <h3 className="mt-3 font-display text-xl font-semibold text-ink">
-                  <Link href={`/blog/${post.slug}`} className="hover:text-primary">
+                <h3 className="mt-3 text-xl font-bold text-navy">
+                  <Link href={`/blog/${post.slug}`} className="hover:text-brand">
                     {post.title}
                   </Link>
                 </h3>

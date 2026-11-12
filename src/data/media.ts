@@ -5,8 +5,8 @@
  */
 export const stockMedia = {
   hero: {
-    src: "/images/stock/cans-atmosphere.jpg",
-    alt: "Opakowania aluminiowe — atmosfera materiałowa",
+    src: "/images/categories/folia-spozywcza.jpg",
+    alt: "Rolka folii aluminiowej",
   },
   cans: {
     src: "/images/categories/puszki-aluminiowe.jpg",

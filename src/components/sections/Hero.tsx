@@ -5,83 +5,89 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { SmartImage } from "@/components/ui/SmartImage";
 import { categories } from "@/data/categories";
-import { contact, siteConfig } from "@/data/site";
+import { stockMedia } from "@/data/media";
+import { siteConfig } from "@/data/site";
 
 const HERO_PHOTO = "/images/photos/hero.jpg";
 
-function heroPhotoExists() {
+function heroPhotoSrc() {
   try {
-    return fs.existsSync(path.join(process.cwd(), "public", "images", "photos", "hero.jpg"));
+    if (
+      fs.existsSync(path.join(process.cwd(), "public", "images", "photos", "hero.jpg"))
+    ) {
+      return HERO_PHOTO;
+    }
   } catch {
-    return false;
+    /* fall through */
   }
+  // Foil / aluminium material until client delivers photos/hero.jpg
+  return stockMedia.hero.src;
 }
 
 export function Hero() {
-  const hasPhoto = heroPhotoExists();
+  const photoSrc = heroPhotoSrc();
 
   return (
     <>
-      <section className="relative bg-primary text-white">
-        {/* Tło osobno — overflow tylko tu, żeby nie ucinać kart kategorii */}
-        <div className="absolute inset-0 overflow-hidden" aria-hidden>
-          {hasPhoto ? (
-            <SmartImage
-              src={HERO_PHOTO}
-              alt=""
-              fill
-              priority
-              className="object-cover"
-              sizes="100vw"
-            />
-          ) : (
-            <div
-              className="absolute inset-0"
-              style={{
-                backgroundColor: "#0a1628",
-                backgroundImage: [
-                  "radial-gradient(ellipse 70% 55% at 88% 12%, rgba(154,168,180,0.22), transparent 55%)",
-                  "repeating-linear-gradient(90deg, rgba(255,255,255,0.028) 0 1px, transparent 1px 3px)",
-                  "repeating-linear-gradient(0deg, rgba(255,255,255,0.02) 0 1px, transparent 1px 4px)",
-                  "linear-gradient(135deg, #0a1628 0%, #0f2438 48%, #1a3148 100%)",
-                ].join(", "),
-              }}
-            />
-          )}
+      <section className="relative isolate min-h-[min(88svh,760px)] overflow-hidden bg-navy text-white sm:min-h-[600px] lg:min-h-[640px]">
+        <div className="absolute inset-0" aria-hidden>
+          <SmartImage
+            src={photoSrc}
+            alt=""
+            fill
+            priority
+            className="object-cover object-[70%_45%]"
+            sizes="100vw"
+          />
+          {/* Stronger veil — foil photo is bright; keep white type readable */}
           <div
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(90deg, rgba(10,22,40,.92) 0%, rgba(10,22,40,.72) 45%, rgba(10,22,40,.25) 100%)",
+                "linear-gradient(90deg, rgba(11,31,75,0.92) 0%, rgba(11,31,75,0.78) 36%, rgba(11,31,75,0.45) 58%, rgba(11,31,75,0.22) 100%)",
+            }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(11,31,75,0.35) 0%, transparent 30%, transparent 65%, rgba(11,31,75,0.4) 100%)",
             }}
           />
         </div>
 
-        <div className="container-wide relative flex min-h-[min(100svh,900px)] flex-col justify-center pb-16 pt-28 sm:min-h-[88vh] sm:pb-20 lg:pb-28 lg:pt-32">
-          <div className="max-w-3xl animate-fade-up lg:max-w-[58%]">
-            <p className="text-[12px] font-medium uppercase tracking-[0.22em] text-[#c5ced6] sm:text-[13px]">
-              Producent opakowań aluminiowych · Ostrzeszów · od {siteConfig.foundedYear}
+        <div className="container-wide relative z-10 flex min-h-[min(88svh,760px)] items-center pb-28 pt-20 sm:min-h-[600px] sm:pb-36 sm:pt-24 lg:min-h-[640px] lg:pb-40">
+          <div className="animate-fade-up w-full max-w-[36rem] lg:max-w-[40rem]">
+            <p className="text-[13px] font-bold uppercase tracking-[0.18em] text-white/90">
+              Producent opakowań aluminiowych · od {siteConfig.foundedYear}
             </p>
-            <h1 className="display-hero mt-5 max-w-[16ch] text-[clamp(2.5rem,5vw,4.5rem)] font-semibold text-white">
-              Puszki aluminiowe i folie dla przemysłu, gastronomii i salonów
+
+            <h1 className="mt-5 text-[clamp(2.85rem,6.4vw,5.5rem)] font-extrabold uppercase leading-[0.95] tracking-[-0.035em] text-white">
+              Puszki aluminiowe
+              <br />
+              i folie dla firm
             </h1>
-            <p className="mt-6 max-w-xl text-[18px] leading-relaxed text-white/[0.78] sm:text-[20px]">
-              Puszki aluminiowe, folia spożywcza i folia fryzjerska dla firm. Opisz
-              potrzeby – przygotujemy ofertę.
+
+            <p className="mt-6 max-w-[30rem] text-[17px] leading-relaxed text-white/80 sm:text-[18px]">
+              Folia spożywcza, folia fryzjerska i opakowania aluminiowe dla
+              przemysłu, gastronomii i salonów. Opisz potrzeby — przygotujemy
+              ofertę.
             </p>
-            <div className="mt-9 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+
+            <div className="mt-10 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
               <Button
                 href="/kontakt"
                 size="lg"
                 variant="accent"
-                className="h-[52px] w-full rounded-sm sm:w-auto"
+                className="h-14 w-full rounded-none px-9 text-[15px] font-bold uppercase tracking-[0.04em] sm:w-auto"
               >
                 Zapytaj o ofertę
               </Button>
               <Button
                 href="/oferta"
                 size="lg"
-                className="h-[52px] w-full rounded-sm border border-white/40 bg-transparent text-white hover:bg-white/10 sm:w-auto"
+                variant="primary"
+                className="h-14 w-full rounded-none bg-navy px-9 text-[15px] font-bold uppercase tracking-[0.04em] hover:bg-navy-hover sm:w-auto"
               >
                 Poznaj produkty
               </Button>
@@ -90,48 +96,44 @@ export function Hero() {
         </div>
       </section>
 
-      {/* Karty wychodzą poza hero — ujemny margin zamiast absolute+overflow */}
-      <div className="relative z-10 -mt-10 px-0 sm:-mt-14 lg:-mt-20">
-        <div className="container-wide grid gap-3 sm:grid-cols-3 sm:gap-4">
+      {/* Cards overlap hero — no white slab in the gap */}
+      <div className="relative z-20 -mt-20 bg-transparent pb-8 sm:-mt-28 sm:pb-12 lg:-mt-32">
+        <div className="container-wide grid gap-4 sm:grid-cols-3 sm:gap-5">
           {categories.map((category, index) => (
             <Link
               key={category.slug}
               href={`/oferta/${category.slug}`}
-              className="group flex flex-col rounded-sm border border-border bg-white p-5 text-ink shadow-[0_12px_40px_rgba(10,22,40,0.18)] transition-colors hover:border-accent-cta focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-cta"
+              className="group grid grid-cols-[96px_1fr] gap-4 border border-border border-t-[3px] border-t-brand bg-white shadow-[0_18px_40px_rgba(11,31,75,0.16)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_48px_rgba(11,31,75,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand sm:grid-cols-1 sm:gap-0"
             >
-              <span className="text-[12px] font-semibold tracking-[0.18em] text-accent-cta">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <span className="mt-3 font-display text-xl font-semibold tracking-tight">
-                {category.name}
-              </span>
-              <span className="mt-2 flex-1 text-sm leading-relaxed text-muted">
-                {category.tagline}
-              </span>
-              <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary transition-transform group-hover:translate-x-0.5">
-                Zobacz kategorię
-                <ArrowRight className="size-4" aria-hidden />
-              </span>
+              <div className="relative aspect-square overflow-hidden bg-aluminium sm:aspect-[4/3]">
+                <SmartImage
+                  src={category.image.src}
+                  alt={category.image.alt}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                  sizes="(max-width: 640px) 96px, 33vw"
+                />
+              </div>
+              <div className="flex flex-col justify-center py-3 pr-3 sm:p-5">
+                <span className="text-[12px] font-bold tracking-[0.16em] text-brand">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span className="mt-1.5 text-lg font-bold tracking-tight text-navy sm:text-xl">
+                  {category.name}
+                </span>
+                <span className="mt-1.5 line-clamp-2 text-sm leading-relaxed text-muted">
+                  {category.tagline}
+                </span>
+                <span className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-navy transition-transform group-hover:translate-x-0.5">
+                  Zobacz kategorię
+                  <ArrowRight className="size-4" aria-hidden />
+                </span>
+              </div>
             </Link>
           ))}
         </div>
       </div>
 
-      <section className="border-b border-border bg-surface">
-        <dl className="container-wide grid gap-6 py-10 sm:grid-cols-2 sm:py-12">
-          <Fact label="Działalność od" value={String(siteConfig.foundedYear)} />
-          <Fact label="Siedziba" value={contact.city} />
-        </dl>
-      </section>
     </>
-  );
-}
-
-function Fact({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="border-t border-border pt-4 sm:border-t-0 sm:border-l sm:pl-6 sm:first:border-l-0 sm:first:pl-0">
-      <dt className="text-xs uppercase tracking-[0.16em] text-accent-dark">{label}</dt>
-      <dd className="mt-2 font-display text-2xl font-semibold text-ink">{value}</dd>
-    </div>
   );
 }

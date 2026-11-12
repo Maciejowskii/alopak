@@ -6,10 +6,10 @@ import { Container } from "@/components/ui/Container";
 
 export function OfferSplit() {
   return (
-    <section className="section-pad bg-white">
+    <section className="bg-white pb-[clamp(4rem,7vw,7rem)] pt-6 sm:pt-8">
       <Container className="grid items-start gap-12 lg:grid-cols-[0.9fr_1.1fr]">
         <div className="lg:sticky lg:top-28">
-          <h2 className="font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
+          <h2 className="text-4xl font-extrabold tracking-tight text-navy sm:text-5xl">
             Trzy kategorie oferty B2B
           </h2>
           <p className="mt-5 max-w-md text-base leading-relaxed text-muted sm:text-lg">
@@ -44,7 +44,7 @@ export function OfferSplit() {
               </div>
               <div>
                 <div className="flex items-start justify-between gap-4">
-                  <h3 className="font-display text-2xl font-semibold text-ink group-hover:text-primary">
+                  <h3 className="text-2xl font-bold text-navy group-hover:text-brand">
                     {category.name}
                   </h3>
                   <ArrowUpRight className="mt-1 size-5 shrink-0 text-accent-dark transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary" />

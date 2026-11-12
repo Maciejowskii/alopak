@@ -18,7 +18,7 @@ export function FaqSection({
       <JsonLd data={faqSchema(items)} />
       <Container className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
         <div>
-          <h2 className="font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+          <h2 className="text-3xl font-extrabold tracking-tight text-navy sm:text-4xl">
             {title}
           </h2>
           <p className="mt-5 text-base leading-relaxed text-muted">{description}</p>

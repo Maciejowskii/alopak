@@ -31,7 +31,7 @@ export function MegaMenu({ open, onClose }: MegaMenuProps) {
                   onClick={onClose}
                   className="group block"
                 >
-                  <div className="relative mb-4 aspect-[4/3] overflow-hidden bg-surface">
+                  <div className="relative mb-4 aspect-[4/3] overflow-hidden bg-aluminium">
                     <SmartImage
                       src={category.image.src}
                       alt={category.image.alt}
@@ -40,13 +40,13 @@ export function MegaMenu({ open, onClose }: MegaMenuProps) {
                       sizes="280px"
                     />
                   </div>
-                  <p className="font-display text-lg font-semibold text-ink group-hover:text-primary">
+                  <p className="text-lg font-semibold text-navy group-hover:text-brand">
                     {category.name}
                   </p>
                   <p className="mt-2 text-sm leading-relaxed text-muted">
                     {category.tagline}
                   </p>
-                  <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
+                  <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-brand">
                     Zobacz kategorię
                     <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
                   </span>
@@ -54,7 +54,7 @@ export function MegaMenu({ open, onClose }: MegaMenuProps) {
               ))}
             </div>
             <div className="border-t border-border pt-6 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
-              <p className="font-display text-xl font-semibold text-ink">
+              <p className="text-xl font-semibold text-navy">
                 Katalog produktów
               </p>
               <p className="mt-3 text-sm leading-relaxed text-muted">
@@ -64,7 +64,7 @@ export function MegaMenu({ open, onClose }: MegaMenuProps) {
               <Link
                 href="/produkty"
                 onClick={onClose}
-                className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary"
+                className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand"
               >
                 Otwórz katalog
                 <ArrowRight className="size-3.5" />
@@ -75,7 +75,7 @@ export function MegaMenu({ open, onClose }: MegaMenuProps) {
                     key={`cta-${category.slug}`}
                     href={`/kontakt?kategoria=${category.slug}`}
                     onClick={onClose}
-                    className="block text-sm text-muted transition-colors hover:text-primary"
+                    className="block text-sm text-muted transition-colors hover:text-brand"
                   >
                     Zapytaj o: {category.name}
                   </Link>
@@ -91,16 +91,16 @@ export function MegaMenu({ open, onClose }: MegaMenuProps) {
                 href={`/branze/${industry.slug}`}
                 onClick={onClose}
                 className={cn(
-                  "group border-t border-border pt-5 transition-colors hover:border-primary",
+                  "group border-t border-border pt-5 transition-colors hover:border-brand",
                 )}
               >
-                <p className="font-display text-xl font-semibold text-ink group-hover:text-primary">
+                <p className="text-xl font-semibold text-navy group-hover:text-brand">
                   {industry.name}
                 </p>
                 <p className="mt-3 text-sm leading-relaxed text-muted">
                   {industry.description}
                 </p>
-                <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
+                <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand">
                   Przejdź do branży
                   <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
                 </span>

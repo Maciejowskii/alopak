@@ -24,7 +24,7 @@ export function ProcessSteps() {
     <section className="section-pad bg-white">
       <Container>
         <div className="max-w-2xl">
-          <h2 className="font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
+          <h2 className="text-4xl font-extrabold tracking-tight text-navy sm:text-5xl">
             Jak wygląda współpraca
           </h2>
           <p className="mt-5 text-base leading-relaxed text-muted sm:text-lg">
@@ -38,10 +38,10 @@ export function ProcessSteps() {
               key={step.title}
               className="border-b border-border py-8 md:border-b-0 md:border-r md:px-5 md:py-10 md:first:pl-0 md:last:border-r-0 md:last:pr-0"
             >
-              <p className="font-display text-sm font-semibold tracking-[0.18em] text-accent-dark">
+              <p className="text-sm font-bold tracking-[0.16em] text-brand">
                 {String(index + 1).padStart(2, "0")}
               </p>
-              <h3 className="mt-5 font-display text-xl font-semibold text-ink">
+              <h3 className="mt-5 text-xl font-bold text-navy">
                 {step.title}
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-muted">{step.text}</p>

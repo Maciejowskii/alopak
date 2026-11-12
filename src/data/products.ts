@@ -38,7 +38,7 @@ export const products: Product[] = [
     seoTitle: "Puszka aluminiowa 54 ml (nr kat. 020054) – wymiary, pakowanie | ALOPAK",
     seoDescription:
       "Puszka aluminiowa 54 ml, nr kat. 020054. Średnica zewn. 64 mm, wys. 26 mm, karton 6480 szt. Oferta hurtowa ALOPAK — wyślij zapytanie B2B i dopasuj opakowanie.",
-    isFeatured: false,
+    isFeatured: true,
     isPublished: true,
     sortOrder: 10,
     relatedSlugs: ["puszka-aluminiowa-100", "puszka-aluminiowa-110"],
@@ -75,7 +75,7 @@ export const products: Product[] = [
     seoTitle: "Puszka aluminiowa 117 ml (nr kat. 030117) – wymiary, pakowanie | ALOPAK",
     seoDescription:
       "Puszka prostokątna 117 ml, nr kat. 030117. Wymiar zewn. 88×83 mm, wys. 34 mm, karton 3400 szt. Zapytaj ALOPAK o wymiary, pakowanie i warunki dostawy B2B.",
-    isFeatured: false,
+    isFeatured: true,
     isPublished: true,
     sortOrder: 20,
     relatedSlugs: ["puszka-aluminiowa-54", "puszka-aluminiowa-337"],
@@ -371,7 +371,7 @@ export const products: Product[] = [
     seoTitle: "Puszka aluminiowa 337 ml (nr kat. 060337) – wymiary, pakowanie | ALOPAK",
     seoDescription:
       "Puszka kwadratowa 337 ml, nr kat. 060337. Wymiar zewn. 112×112 mm, wys. 41 mm, karton 1800 szt. Zapytaj ALOPAK o parametry, pakowanie na paletę i ofertę hurtową.",
-    isFeatured: false,
+    isFeatured: true,
     isPublished: true,
     sortOrder: 100,
     relatedSlugs: ["puszka-aluminiowa-250", "puszka-aluminiowa-117"],
@@ -427,7 +427,7 @@ export const products: Product[] = [
     seoTitle: "Folia spożywcza – oferta B2B | ALOPAK",
     seoDescription:
       "Folia spożywcza i wyroby z folii aluminiowej dla klientów biznesowych. Parametry potwierdzamy indywidualnie. Wyślij zapytanie ofertowe do ALOPAK — odpowiemy z dopasowaną ofertą B2B.",
-    isFeatured: true,
+    isFeatured: false,
     isPublished: true,
     sortOrder: 10,
   },

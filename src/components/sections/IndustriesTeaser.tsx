@@ -7,7 +7,7 @@ export function IndustriesTeaser() {
   return (
     <section className="bg-surface">
       <Container className="section-pad">
-        <h2 className="font-display max-w-2xl text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
+        <h2 className="max-w-2xl text-4xl font-extrabold tracking-tight text-navy sm:text-5xl">
           Oferta dopasowana do branży
         </h2>
         <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
@@ -39,7 +39,7 @@ export function IndustriesTeaser() {
                 className={`flex items-center bg-white px-6 py-12 sm:px-10 lg:px-16 ${reverse ? "lg:order-1" : ""}`}
               >
                 <div className="max-w-md">
-                  <h3 className="font-display text-3xl font-semibold text-ink">
+                  <h3 className="text-3xl font-bold text-navy">
                     {industry.name}
                   </h3>
                   <p className="mt-4 text-base leading-relaxed text-muted">

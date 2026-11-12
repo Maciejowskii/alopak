@@ -1,12 +1,12 @@
 /**
  * Single source of truth for the public site origin.
- * Prefer NEXT_PUBLIC_SITE_URL in production (Vercel env).
+ * Production canonical: NEXT_PUBLIC_SITE_URL (also set on Vercel).
  */
 export const SITE_URL = (
   process.env.NEXT_PUBLIC_SITE_URL ??
   (process.env.VERCEL_PROJECT_PRODUCTION_URL
     ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-    : "http://localhost:3000")
+    : "https://alopak-nine.vercel.app")
 ).replace(/\/$/, "");
 
 export function isProductionIndexable() {

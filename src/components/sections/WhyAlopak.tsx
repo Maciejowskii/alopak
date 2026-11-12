@@ -29,7 +29,7 @@ export function WhyAlopak() {
         </div>
         <div className="section-pad">
           <Container className="lg:pl-10 xl:pl-16">
-            <h2 className="font-display max-w-lg text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
+            <h2 className="max-w-lg text-4xl font-extrabold tracking-tight text-navy sm:text-5xl">
               Partner dla zakupów opakowań i folii
             </h2>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-muted">
@@ -39,7 +39,7 @@ export function WhyAlopak() {
             <div className="mt-10 space-y-8">
               {points.map((point) => (
                 <div key={point.title} className="border-l border-primary/30 pl-5">
-                  <h3 className="font-display text-xl font-semibold text-ink">
+                  <h3 className="text-xl font-bold text-navy">
                     {point.title}
                   </h3>
                   <p className="mt-2 max-w-md text-sm leading-relaxed text-muted">

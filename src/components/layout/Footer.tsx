@@ -8,11 +8,11 @@ export function Footer() {
   const primaryPhone = contact.phones[0];
 
   return (
-    <footer className="mt-auto border-t border-border bg-primary text-white">
+    <footer className="mt-auto border-t border-border bg-navy text-white">
       <div className="container-site section-pad">
         <div className="grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-3">
-            <p className="text-xl font-semibold tracking-[0.08em]">ALOPAK</p>
+            <p className="text-xl font-extrabold tracking-[0.12em]">ALOPAK</p>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/75">
               Polski producent opakowań aluminiowych. Oferta dla firm: puszki
               aluminiowe, folia spożywcza i folia fryzjerska.

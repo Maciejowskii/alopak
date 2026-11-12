@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, Search, X } from "lucide-react";
 import { categories } from "@/data/categories";
 import { industries } from "@/data/industries";
 import { Button } from "@/components/ui/Button";
@@ -14,23 +14,17 @@ type MegaKey = "oferta" | "branze" | null;
 
 export function Header() {
   const pathname = usePathname();
-  const isHome = pathname === "/";
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mega, setMega] = useState<MegaKey>(null);
+  const [menuPath, setMenuPath] = useState(pathname);
   const menuId = useId();
   const headerRef = useRef<HTMLElement>(null);
-  const overDark = isHome && !scrolled && !mobileOpen && !mega;
-  const solid = !overDark;
 
-  useEffect(() => {
-    function onScroll() {
-      setScrolled(window.scrollY > 40);
-    }
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  if (pathname !== menuPath) {
+    setMenuPath(pathname);
+    setMobileOpen(false);
+    setMega(null);
+  }
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
@@ -61,96 +55,132 @@ export function Header() {
   }, []);
 
   return (
-    <header
-      ref={headerRef}
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300",
-        solid
-          ? "border-b border-border/80 bg-white/95 shadow-[0_8px_30px_rgba(15,36,56,0.08)] backdrop-blur-md"
-          : "border-b border-transparent bg-transparent",
-      )}
-    >
-      <div className="container-wide flex h-[4.25rem] items-center justify-between gap-4 lg:h-[4.75rem]">
+    <header ref={headerRef} className="sticky top-0 z-50 border-b border-border/70 bg-white">
+      <div className="container-wide flex h-[4.75rem] items-center justify-between gap-6 lg:h-[5.25rem]">
         <Link
           href="/"
-          className={cn(
-            "font-display text-xl font-semibold tracking-[0.06em] sm:text-[1.35rem]",
-            overDark ? "text-white" : "text-primary",
-          )}
+          className="group flex shrink-0 items-center gap-3"
           aria-label="ALOPAK — strona główna"
           onClick={() => {
             setMega(null);
             setMobileOpen(false);
           }}
         >
-          ALOPAK
+          <span className="relative inline-flex size-10 items-center justify-center" aria-hidden>
+            <span className="absolute left-0 top-1 size-7 rotate-[-18deg] bg-navy" />
+            <span className="absolute left-2.5 top-0.5 size-7 rotate-[8deg] bg-brand" />
+            <span className="absolute left-5 top-1.5 size-6 rotate-[28deg] bg-brand-strong/90" />
+          </span>
+          <span className="leading-none">
+            <span className="block text-[1.35rem] font-extrabold tracking-[0.04em] text-navy sm:text-[1.5rem]">
+              ALOPAK
+            </span>
+            <span className="mt-1 block text-[10px] font-semibold uppercase tracking-[0.16em] text-muted">
+              Opakowania aluminiowe
+            </span>
+          </span>
         </Link>
 
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="Główna nawigacja">
+        <nav
+          className="hidden flex-1 items-center justify-center gap-1 xl:gap-2 lg:flex"
+          aria-label="Główna nawigacja"
+        >
+          <NavLink href="/" active={pathname === "/"} onNavigate={() => setMega(null)}>
+            Strona główna
+          </NavLink>
           <MegaTrigger
             label="Oferta"
-            active={mega === "oferta"}
-            overDark={overDark}
+            active={
+              mega === "oferta" ||
+              pathname.startsWith("/oferta") ||
+              pathname.startsWith("/produkty")
+            }
+            expanded={mega === "oferta"}
+            controlsId="mega-oferta"
             onOpen={() => setMega("oferta")}
             onToggle={() => setMega((v) => (v === "oferta" ? null : "oferta"))}
           />
           <MegaTrigger
             label="Branże"
-            active={mega === "branze"}
-            overDark={overDark}
+            active={mega === "branze" || pathname.startsWith("/branze")}
+            expanded={mega === "branze"}
+            controlsId="mega-branze"
             onOpen={() => setMega("branze")}
             onToggle={() => setMega((v) => (v === "branze" ? null : "branze"))}
           />
-          <NavLink href="/o-firmie" overDark={overDark} onNavigate={() => setMega(null)}>
+          <NavLink
+            href="/o-firmie"
+            active={pathname.startsWith("/o-firmie")}
+            onNavigate={() => setMega(null)}
+          >
             O firmie
           </NavLink>
-          <NavLink href="/blog" overDark={overDark} onNavigate={() => setMega(null)}>
+          <NavLink
+            href="/blog"
+            active={pathname.startsWith("/blog")}
+            onNavigate={() => setMega(null)}
+          >
             Blog
           </NavLink>
-          <NavLink href="/kontakt" overDark={overDark} onNavigate={() => setMega(null)}>
+          <NavLink
+            href="/kontakt"
+            active={pathname.startsWith("/kontakt")}
+            onNavigate={() => setMega(null)}
+          >
             Kontakt
           </NavLink>
         </nav>
 
-        <div className="flex items-center gap-2">
-          <Button
-            href="/kontakt"
-            size="sm"
-            variant="accent"
-            className="hidden rounded-sm sm:inline-flex"
+        <div className="flex shrink-0 items-center gap-1 sm:gap-2">
+          <Link
+            href="/produkty"
+            className="inline-flex size-11 items-center justify-center text-navy transition-colors hover:text-brand"
+            aria-label="Katalog produktów"
+            onClick={() => setMega(null)}
           >
-            Zapytaj o ofertę
-          </Button>
+            <Search className="size-5" strokeWidth={1.75} />
+          </Link>
           <button
             type="button"
-            className={cn(
-              "inline-flex size-11 items-center justify-center rounded-sm border lg:hidden",
-              overDark
-                ? "border-white/35 text-white"
-                : "border-border text-primary",
-            )}
+            className="inline-flex size-11 items-center justify-center text-navy transition-colors hover:text-brand"
             aria-expanded={mobileOpen}
             aria-controls={menuId}
             aria-label={mobileOpen ? "Zamknij menu" : "Otwórz menu"}
-            onClick={() => setMobileOpen((value) => !value)}
+            onClick={() => {
+              setMega(null);
+              setMobileOpen((value) => !value);
+            }}
           >
-            {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+            {mobileOpen ? <X className="size-6" strokeWidth={1.75} /> : <Menu className="size-6" strokeWidth={1.75} />}
           </button>
         </div>
       </div>
 
-      <div className="relative hidden lg:block">
+      <div
+        id={mega === "oferta" ? "mega-oferta" : mega === "branze" ? "mega-branze" : undefined}
+        className="relative hidden lg:block"
+      >
         <MegaMenu open={mega} onClose={() => setMega(null)} />
       </div>
 
       <div
         id={menuId}
         className={cn(
-          "border-t border-border bg-white lg:hidden",
+          "border-t border-border bg-white",
           mobileOpen ? "block" : "hidden",
         )}
       >
-        <div className="container-site max-h-[calc(100vh-4.25rem)] space-y-1 overflow-y-auto py-4">
+        <div className="container-wide max-h-[calc(100vh-5.25rem)] space-y-1 overflow-y-auto py-5">
+          <div className="mb-4 grid gap-2 lg:hidden">
+            <Link
+              href="/"
+              className="block py-2.5 text-base font-semibold text-navy"
+              onClick={() => setMobileOpen(false)}
+            >
+              Strona główna
+            </Link>
+          </div>
+
           <MobileGroup title="Oferta" href="/oferta" onNavigate={() => setMobileOpen(false)}>
             {categories.map((category) => (
               <Link
@@ -206,11 +236,11 @@ export function Header() {
             Kontakt
           </Link>
 
-          <div className="pt-3">
+          <div className="pt-4">
             <Button
               href="/kontakt"
               variant="accent"
-              className="w-full rounded-sm"
+              className="w-full rounded-none"
               onClick={() => setMobileOpen(false)}
             >
               Zapytaj o ofertę
@@ -225,13 +255,15 @@ export function Header() {
 function MegaTrigger({
   label,
   active,
-  overDark,
+  expanded,
+  controlsId,
   onOpen,
   onToggle,
 }: {
   label: string;
   active: boolean;
-  overDark: boolean;
+  expanded: boolean;
+  controlsId: string;
   onOpen: () => void;
   onToggle: () => void;
 }) {
@@ -239,22 +271,20 @@ function MegaTrigger({
     <button
       type="button"
       className={cn(
-        "inline-flex min-h-11 items-center gap-1 rounded-sm px-3 py-2 text-sm font-medium transition-colors",
-        overDark
-          ? active
-            ? "bg-white/15 text-white"
-            : "text-white/90 hover:bg-white/10 hover:text-white"
-          : active
-            ? "bg-surface text-primary"
-            : "text-ink/90 hover:bg-surface hover:text-primary",
+        "inline-flex min-h-11 items-center gap-1.5 px-3 text-[15px] font-semibold transition-colors xl:px-4",
+        active ? "text-brand" : "text-navy hover:text-brand",
       )}
-      aria-expanded={active}
+      aria-expanded={expanded}
+      aria-controls={controlsId}
       onMouseEnter={onOpen}
       onFocus={onOpen}
       onClick={onToggle}
     >
       {label}
-      <ChevronDown className={cn("size-4 opacity-70 transition-transform", active && "rotate-180")} />
+      <ChevronDown
+        className={cn("size-3.5 opacity-60 transition-transform", expanded && "rotate-180")}
+        strokeWidth={2.25}
+      />
     </button>
   );
 }
@@ -263,22 +293,20 @@ function NavLink({
   href,
   children,
   onNavigate,
-  overDark,
+  active,
 }: {
   href: string;
   children: React.ReactNode;
   onNavigate: () => void;
-  overDark: boolean;
+  active?: boolean;
 }) {
   return (
     <Link
       href={href}
       onClick={onNavigate}
       className={cn(
-        "inline-flex min-h-11 items-center rounded-sm px-3 py-2 text-sm font-medium transition-colors",
-        overDark
-          ? "text-white/90 hover:bg-white/10 hover:text-white"
-          : "text-ink/90 hover:bg-surface hover:text-primary",
+        "inline-flex min-h-11 items-center px-3 text-[15px] font-semibold transition-colors xl:px-4",
+        active ? "text-brand" : "text-navy hover:text-brand",
       )}
     >
       {children}

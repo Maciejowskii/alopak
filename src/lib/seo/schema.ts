@@ -10,6 +10,8 @@ export function organizationSchema() {
     name: contact.legalName,
     alternateName: siteConfig.name,
     url: absoluteUrl("/"),
+    logo: absoluteUrl("/opengraph-image"),
+    image: absoluteUrl("/opengraph-image"),
     email: contact.email,
     telephone: contact.phones[0],
     foundingDate: String(siteConfig.foundedYear),

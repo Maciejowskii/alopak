@@ -9,7 +9,7 @@ export function AboutTeaser() {
       <Container>
         <div className="grid gap-12 border-t border-border pt-12 lg:grid-cols-[1.2fr_0.8fr]">
           <div>
-            <h2 className="font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
+            <h2 className="text-4xl font-extrabold tracking-tight text-navy sm:text-5xl">
               Polski producent opakowań aluminiowych
             </h2>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
@@ -47,7 +47,7 @@ function Fact({ label, value }: { label: string; value: React.ReactNode }) {
       <dt className="text-xs font-semibold uppercase tracking-[0.16em] text-accent-dark">
         {label}
       </dt>
-      <dd className="mt-2 font-display text-xl font-semibold text-ink">{value}</dd>
+      <dd className="mt-2 text-xl font-bold text-navy">{value}</dd>
     </div>
   );
 }
