@@ -276,6 +276,17 @@
   }
 }
 
+@keyframes mega-panel {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes aluminium-sheen {
   0%,
   28% {
@@ -294,7 +305,8 @@
 
   .animate-fade-up,
   .animate-fade-in,
-  .aluminium-sheen {
+  .aluminium-sheen,
+  [class*="mega-panel"] {
     animation: none;
   }
 

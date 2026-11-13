@@ -214,7 +214,7 @@ export function Header() {
                 <Link
                   key={category.slug}
                   href={`/oferta/${category.slug}`}
-                  className="flex min-h-10 items-center text-sm text-muted"
+                  className="flex min-h-10 items-center rounded-md px-2 text-sm text-muted transition-colors hover:bg-[#eef2f7] hover:text-brand"
                   onClick={closeMobile}
                 >
                   {category.name}
@@ -222,7 +222,7 @@ export function Header() {
               ))}
               <Link
                 href="/produkty"
-                className="flex min-h-10 items-center text-sm font-medium text-navy"
+                className="mt-1 flex min-h-10 items-center rounded-md px-2 text-sm font-semibold text-brand transition-colors hover:bg-[#eef2f7]"
                 onClick={closeMobile}
               >
                 Katalog produktów
@@ -327,8 +327,11 @@ function MegaTrigger({
     <button
       type="button"
       className={cn(
-        "inline-flex min-h-11 items-center gap-1.5 px-3 text-[15px] font-semibold transition-colors xl:px-4",
-        active ? "text-brand" : "text-navy hover:text-brand",
+        "relative inline-flex min-h-11 items-center gap-1.5 px-3 text-[15px] font-semibold transition-colors xl:px-4",
+        "after:absolute after:inset-x-3 after:bottom-1.5 after:h-[2px] after:origin-center after:rounded-full after:bg-brand after:transition-transform after:duration-300 after:ease-out",
+        expanded || active
+          ? "text-brand after:scale-x-100"
+          : "text-navy after:scale-x-0 hover:text-brand",
       )}
       aria-expanded={expanded}
       aria-controls={controlsId}
@@ -338,7 +341,10 @@ function MegaTrigger({
     >
       {label}
       <ChevronDown
-        className={cn("size-3.5 opacity-60 transition-transform", expanded && "rotate-180")}
+        className={cn(
+          "size-3.5 opacity-60 transition-transform duration-300 ease-out",
+          expanded && "rotate-180",
+        )}
         strokeWidth={2.25}
       />
     </button>
