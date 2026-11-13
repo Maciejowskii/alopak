@@ -16,7 +16,7 @@ Dla każdego tematu: intencja, grupa, H1, szkic H2, CTA, meta, dane do weryfikac
 ## 2. Puszki aluminiowe w branży spożywczej — zastosowania i kryteria wyboru
 - Intencja: informacyjna
 - Grupa: przemysł spożywczy
-- CTA: /branze/przemysl-spozywczy
+- CTA: /oferta/puszki-aluminiowe
 - Do weryfikacji: lista zastosowań potwierdzonych dokumentacją
 
 ## 3. Jakie informacje powinien zawierać brief opakowaniowy?
@@ -34,7 +34,7 @@ Dla każdego tematu: intencja, grupa, H1, szkic H2, CTA, meta, dane do weryfikac
 - CTA: /oferta
 
 ## 7. Folia spożywcza w gastronomii — kryteria wyboru
-- CTA: /branze/gastronomia
+- CTA: /oferta/folia-spozywcza
 
 ## 8. Jak przechowywać i organizować materiały opakowaniowe w firmie?
 - CTA: /blog
@@ -43,7 +43,7 @@ Dla każdego tematu: intencja, grupa, H1, szkic H2, CTA, meta, dane do weryfikac
 - CTA: /oferta/folia-spozywcza
 
 ## 10. Folia fryzjerska — jak dobrać produkt do potrzeb salonu?
-- CTA: /branze/branza-fryzjerska
+- CTA: /oferta/folia-fryzjerska
 
 ## 11. Jak planować zakupy materiałów fryzjerskich w salonie?
 - CTA: /oferta/folia-fryzjerska

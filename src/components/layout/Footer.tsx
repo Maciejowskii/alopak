@@ -24,27 +24,13 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4 lg:col-span-6">
+          <div className="grid gap-8 sm:grid-cols-3 lg:col-span-6">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.14em] text-white/55">
                 Oferta
               </p>
               <ul className="mt-4 space-y-2 text-sm text-white/80">
                 {footerNav.oferta.map((item) => (
-                  <li key={item.href}>
-                    <Link href={item.href} className="transition-colors hover:text-white">
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-white/55">
-                Branże
-              </p>
-              <ul className="mt-4 space-y-2 text-sm text-white/80">
-                {footerNav.branze.map((item) => (
                   <li key={item.href}>
                     <Link href={item.href} className="transition-colors hover:text-white">
                       {item.label}

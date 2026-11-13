@@ -42,15 +42,6 @@ export const mainNav: NavItem[] = [
       { label: "Katalog produktów", href: "/produkty" },
     ],
   },
-  {
-    label: "Branże",
-    href: "/branze",
-    children: [
-      { label: "Przemysł spożywczy", href: "/branze/przemysl-spozywczy" },
-      { label: "Gastronomia", href: "/branze/gastronomia" },
-      { label: "Branża fryzjerska", href: "/branze/branza-fryzjerska" },
-    ],
-  },
   { label: "O firmie", href: "/o-firmie" },
   { label: "Blog", href: "/blog" },
   { label: "Kontakt", href: "/kontakt" },
@@ -64,14 +55,8 @@ export const footerNav = {
     { label: "Folia fryzjerska", href: "/oferta/folia-fryzjerska" },
     { label: "Katalog produktów", href: "/produkty" },
   ],
-  branze: [
-    { label: "Przemysł spożywczy", href: "/branze/przemysl-spozywczy" },
-    { label: "Gastronomia", href: "/branze/gastronomia" },
-    { label: "Branża fryzjerska", href: "/branze/branza-fryzjerska" },
-  ],
   firma: [
     { label: "O firmie", href: "/o-firmie" },
-    { label: "Branże", href: "/branze" },
     { label: "Blog", href: "/blog" },
     { label: "Kontakt", href: "/kontakt" },
   ],

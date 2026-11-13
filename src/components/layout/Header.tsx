@@ -5,20 +5,17 @@ import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import { ChevronDown, Menu, Search, X } from "lucide-react";
 import { categories } from "@/data/categories";
-import { industries } from "@/data/industries";
 import { Button } from "@/components/ui/Button";
 import { MegaMenu } from "@/components/navigation/MegaMenu";
 import { cn } from "@/lib/utils";
 
-type MegaKey = "oferta" | "branze" | null;
+type MegaKey = "oferta" | null;
 
 export function Header() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mega, setMega] = useState<MegaKey>(null);
-  const [mobileSection, setMobileSection] = useState<"oferta" | "branze" | null>(
-    null,
-  );
+  const [mobileOfertaOpen, setMobileOfertaOpen] = useState(false);
   const [menuPath, setMenuPath] = useState(pathname);
   const menuId = useId();
   const headerRef = useRef<HTMLElement>(null);
@@ -113,14 +110,6 @@ export function Header() {
             onOpen={() => setMega("oferta")}
             onToggle={() => setMega((v) => (v === "oferta" ? null : "oferta"))}
           />
-          <MegaTrigger
-            label="Branże"
-            active={mega === "branze" || pathname.startsWith("/branze")}
-            expanded={mega === "branze"}
-            controlsId="mega-branze"
-            onOpen={() => setMega("branze")}
-            onToggle={() => setMega((v) => (v === "branze" ? null : "branze"))}
-          />
           <NavLink
             href="/o-firmie"
             active={pathname.startsWith("/o-firmie")}
@@ -174,7 +163,7 @@ export function Header() {
       </div>
 
       <div
-        id={mega === "oferta" ? "mega-oferta" : mega === "branze" ? "mega-branze" : undefined}
+        id={mega === "oferta" ? "mega-oferta" : undefined}
         className="relative hidden lg:block"
       >
         <MegaMenu open={mega} onClose={() => setMega(null)} />
@@ -204,10 +193,8 @@ export function Header() {
             <MobileAccordion
               title="Oferta"
               href="/oferta"
-              open={mobileSection === "oferta"}
-              onToggle={() =>
-                setMobileSection((v) => (v === "oferta" ? null : "oferta"))
-              }
+              open={mobileOfertaOpen}
+              onToggle={() => setMobileOfertaOpen((v) => !v)}
               onNavigate={closeMobile}
             >
               {categories.map((category) => (
@@ -227,27 +214,6 @@ export function Header() {
               >
                 Katalog produktów
               </Link>
-            </MobileAccordion>
-
-            <MobileAccordion
-              title="Branże"
-              href="/branze"
-              open={mobileSection === "branze"}
-              onToggle={() =>
-                setMobileSection((v) => (v === "branze" ? null : "branze"))
-              }
-              onNavigate={closeMobile}
-            >
-              {industries.map((industry) => (
-                <Link
-                  key={industry.slug}
-                  href={`/branze/${industry.slug}`}
-                  className="flex min-h-10 items-center text-sm text-muted"
-                  onClick={closeMobile}
-                >
-                  {industry.name}
-                </Link>
-              ))}
             </MobileAccordion>
 
             <Link

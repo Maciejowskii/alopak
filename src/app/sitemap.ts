@@ -1,6 +1,5 @@
 import type { MetadataRoute } from "next";
 import { categories } from "@/data/categories";
-import { industries } from "@/data/industries";
 import { SITE_URL } from "@/lib/site";
 import { getPublishedPosts } from "@/lib/blog/repository";
 import { getPublishedProducts } from "@/lib/products/repository";
@@ -16,7 +15,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/", priority: 1 },
     { path: "/oferta", priority: 0.9 },
     { path: "/produkty", priority: 0.85 },
-    { path: "/branze", priority: 0.7 },
     { path: "/o-firmie", priority: 0.6 },
     { path: "/blog", priority: 0.7 },
     { path: "/kontakt", priority: 0.9 },
@@ -43,13 +41,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  const industryRoutes = industries.map((industry) => ({
-    url: url(`/branze/${industry.slug}`),
-    lastModified: siteUpdated,
-    changeFrequency: "monthly" as const,
-    priority: 0.6,
-  }));
-
   const blogRoutes = getPublishedPosts().map((post) => ({
     url: url(`/blog/${post.slug}`),
     lastModified: new Date(post.updatedAt || post.publishedAt),
@@ -61,7 +52,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...staticRoutes,
     ...categoryRoutes,
     ...productRoutes,
-    ...industryRoutes,
     ...blogRoutes,
   ];
 }

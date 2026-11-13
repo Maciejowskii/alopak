@@ -11,7 +11,6 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getAllCategorySlugs, getCategory } from "@/data/categories";
-import { industries } from "@/data/industries";
 import { getProductsByCategory } from "@/lib/products/repository";
 import { createMetadata } from "@/lib/seo/metadata";
 import { breadcrumbSchema } from "@/lib/seo/schema";
@@ -67,9 +66,6 @@ export default async function CategoryPage({ params }: SlugPageProps) {
   if (!category) notFound();
 
   const products = getProductsByCategory(category.slug);
-  const relatedIndustries = industries.filter((industry) =>
-    industry.relatedCategories.includes(category.slug),
-  );
   const heroSrc = category.image.src;
   const sampleProduct =
     category.slug === "puszki-aluminiowe"
@@ -341,30 +337,6 @@ export default async function CategoryPage({ params }: SlugPageProps) {
           )}
         </Container>
       </section>
-
-      {relatedIndustries.length ? (
-        <section className="section-pad bg-surface">
-          <Container>
-            <h2 className="font-display text-3xl font-semibold text-ink">
-              Powiązane branże
-            </h2>
-            <div className="mt-8 grid gap-6 md:grid-cols-2">
-              {relatedIndustries.map((industry) => (
-                <Link
-                  key={industry.slug}
-                  href={`/branze/${industry.slug}`}
-                  className="border-t border-border pt-5 transition-colors hover:border-primary"
-                >
-                  <h3 className="font-display text-xl font-semibold text-ink">
-                    {industry.name}
-                  </h3>
-                  <p className="mt-3 text-sm text-muted">{industry.description}</p>
-                </Link>
-              ))}
-            </div>
-          </Container>
-        </section>
-      ) : null}
 
       <FaqSection
         items={category.faq}

@@ -4,7 +4,6 @@ import { CtaBand } from "@/components/sections/CtaBand";
 import { FaqSection } from "@/components/sections/FaqSection";
 import { FeaturedProducts } from "@/components/sections/FeaturedProducts";
 import { Hero } from "@/components/sections/Hero";
-import { IndustriesTeaser } from "@/components/sections/IndustriesTeaser";
 import { OfferSplit } from "@/components/sections/OfferSplit";
 import { ProcessSteps } from "@/components/sections/ProcessSteps";
 import { homeFaq } from "@/data/site";
@@ -27,7 +26,6 @@ export default function HomePage() {
       <OfferSplit />
       <FeaturedProducts />
       <AboutTeaser />
-      <IndustriesTeaser />
       <ProcessSteps />
       <CtaBand />
       <BlogTeaser />

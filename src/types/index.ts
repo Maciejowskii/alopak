@@ -4,11 +4,6 @@ export type CategorySlug =
   | "folia-spozywcza"
   | "folia-fryzjerska";
 
-export type IndustrySlug =
-  | "przemysl-spozywczy"
-  | "gastronomia"
-  | "branza-fryzjerska";
-
 export type SpecValue = {
   label: string;
   value: string;
@@ -63,16 +58,6 @@ export type Category = {
   inquiryTips: string[];
   faq: FaqItem[];
   ctaLabel: string;
-  seoTitle: string;
-  seoDescription: string;
-  image: ProductImage;
-};
-
-export type Industry = {
-  slug: IndustrySlug;
-  name: string;
-  description: string;
-  relatedCategories: CategorySlug[];
   seoTitle: string;
   seoDescription: string;
   image: ProductImage;
