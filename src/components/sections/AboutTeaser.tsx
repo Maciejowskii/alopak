@@ -27,8 +27,8 @@ export function AboutTeaser() {
             </Reveal>
             <Reveal delay={140}>
               <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted sm:text-base">
-                Zapytanie z załącznikiem – w formularzu możesz dołączyć
-                specyfikację lub rysunek.
+                Opisz potrzeby w krótkim formularzu — szczegóły oferty
+                doprecyzujemy w kontakcie.
               </p>
             </Reveal>
             <Reveal delay={180}>

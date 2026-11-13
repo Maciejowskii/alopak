@@ -33,9 +33,8 @@ export const categories: Category[] = [
     ],
     inquiryTips: [
       "Pojemność lub numer katalogowy",
-      "Szacowana ilość",
       "Rodzaj pakowanego produktu",
-      "Specyfikacja lub rysunek (opcjonalnie)",
+      "Dodatkowe wymagania (opcjonalnie)",
     ],
     faq: [
       {
@@ -51,7 +50,7 @@ export const categories: Category[] = [
       {
         question: "Jak przygotować zapytanie o puszki?",
         answer:
-          "Podaj pojemność lub numer katalogowy, szacowaną ilość i rodzaj pakowanego produktu. Możesz dołączyć specyfikację w załączniku.",
+          "W wiadomości podaj pojemność lub numer katalogowy oraz rodzaj pakowanego produktu. Resztę doprecyzujemy przy ofercie.",
       },
       {
         question: "Czym zamykane są puszki?",
@@ -109,9 +108,8 @@ export const categories: Category[] = [
     ],
     inquiryTips: [
       "Numer katalogowy lub nazwa produktu",
-      "Szacowana ilość",
       "Wymiary (jeśli inne niż katalogowe)",
-      "Specyfikacja lub rysunek (opcjonalnie)",
+      "Dodatkowe wymagania (opcjonalnie)",
     ],
     faq: [
       {
@@ -158,8 +156,8 @@ export const categories: Category[] = [
     highlights: [],
     inquiryTips: [
       "Do czego folia będzie używana",
-      "Szacowana ilość lub częstotliwość dostaw",
       "Wymagane wymiary rolki (jeśli są znane)",
+      "Dodatkowe wymagania (opcjonalnie)",
     ],
     faq: [
       {
@@ -170,7 +168,7 @@ export const categories: Category[] = [
       {
         question: "Jakie informacje warto podać w zapytaniu?",
         answer:
-          "Do czego używasz folii, jaką ilość potrzebujesz lub jak często zamawiasz oraz jakie wymiary rolki są wymagane, jeśli je znasz.",
+          "Do czego używasz folii oraz jakie wymiary rolki są wymagane, jeśli je znasz. Resztę doprecyzujemy przy ofercie.",
       },
       {
         question: "Czy mogę zapytać o inne wyroby z folii aluminiowej?",
@@ -213,8 +211,7 @@ export const categories: Category[] = [
       "Szerokość 12 cm",
     ],
     inquiryTips: [
-      "Szacowana ilość",
-      "Częstotliwość zamówień",
+      "Zastosowanie (salon, hurt, dystrybucja)",
       "Dodatkowe wymagania (opcjonalnie)",
     ],
     faq: [
@@ -231,7 +228,7 @@ export const categories: Category[] = [
       {
         question: "Jak zapytać o współpracę?",
         answer:
-          "Wypełnij formularz z kategorią „Folia fryzjerska”, podaj szacowane zapotrzebowanie i dane kontaktowe firmy.",
+          "Wypełnij formularz z kategorią „Folia fryzjerska” i danymi kontaktowymi firmy. Szczegóły doprecyzujemy przy ofercie.",
       },
     ],
     ctaLabel: "Zapytaj o folię fryzjerską",

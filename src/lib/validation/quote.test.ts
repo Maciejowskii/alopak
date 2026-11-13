@@ -20,9 +20,22 @@ describe("quoteSchema", () => {
       email: "jan@firma.pl",
       phone: "+48 500 000 000",
       category: "puszki-aluminiowe",
-      product: "Puszka 100",
-      quantity: "10 000 szt.",
       message: "Proszę o informację ofertową dotyczącą puszek 100 ml.",
+      consent: true,
+      website: "",
+    });
+
+    expect(result.success).toBe(true);
+  });
+
+  it("accepts payload without phone", () => {
+    const result = quoteSchema.safeParse({
+      name: "Jan Kowalski",
+      company: "Przykład Sp. z o.o.",
+      email: "jan@firma.pl",
+      phone: "",
+      category: "inne",
+      message: "Potrzebuję oferty na opakowania aluminiowe do świec.",
       consent: true,
       website: "",
     });

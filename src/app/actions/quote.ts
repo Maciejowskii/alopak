@@ -4,27 +4,13 @@ import { headers } from "next/headers";
 import { contact } from "@/data/site";
 import { sendQuoteEmail } from "@/lib/email/send-quote";
 import { rateLimit } from "@/lib/rate-limit";
-import {
-  ALLOWED_ATTACHMENT_TYPES,
-  MAX_ATTACHMENT_BYTES,
-  MAX_ATTACHMENT_LABEL,
-  attachmentExtensionOk,
-  quoteSchema,
-  sniffAttachmentMime,
-} from "@/lib/validation/quote";
+import { quoteSchema } from "@/lib/validation/quote";
 
 export type QuoteActionState = {
   ok: boolean;
   message: string;
   fieldErrors?: Record<string, string[]>;
 };
-
-function sanitizeFilename(name: string) {
-  return name
-    .normalize("NFKD")
-    .replace(/[^\w.\-]+/g, "_")
-    .slice(0, 120);
-}
 
 function contactFallbackMessage(prefix: string) {
   return `${prefix} Napisz na ${contact.email} lub zadzwoń pod ${contact.phones[0]}.`;
@@ -54,8 +40,6 @@ export async function submitQuote(
     email: String(formData.get("email") || ""),
     phone: String(formData.get("phone") || ""),
     category: String(formData.get("category") || ""),
-    product: String(formData.get("product") || ""),
-    quantity: String(formData.get("quantity") || ""),
     message: String(formData.get("message") || ""),
     consent: formData.get("consent") === "on" || formData.get("consent") === "true",
     website: String(formData.get("website") || ""),
@@ -87,84 +71,7 @@ export async function submitQuote(
     };
   }
 
-  const file = formData.get("attachment");
-  let attachment:
-    | { filename: string; contentType: string; content: Buffer }
-    | undefined;
-
-  if (file && file instanceof File && file.size > 0) {
-    if (file.size > MAX_ATTACHMENT_BYTES) {
-      const msg = `Załącznik może mieć maksymalnie ${MAX_ATTACHMENT_LABEL}.`;
-      return {
-        ok: false,
-        message: msg,
-        fieldErrors: { attachment: [msg] },
-      };
-    }
-
-    if (!attachmentExtensionOk(file.name)) {
-      return {
-        ok: false,
-        message: "Niedozwolony typ załącznika.",
-        fieldErrors: {
-          attachment: ["Dozwolone: PDF, JPG, PNG, DOC, DOCX."],
-        },
-      };
-    }
-
-    const buffer = Buffer.from(await file.arrayBuffer());
-    const sniffed = sniffAttachmentMime(buffer);
-
-    if (!sniffed) {
-      return {
-        ok: false,
-        message: "Nie rozpoznano typu załącznika.",
-        fieldErrors: {
-          attachment: ["Plik wygląda na uszkodzony lub ma niedozwolony format."],
-        },
-      };
-    }
-
-    const declaredOk = ALLOWED_ATTACHMENT_TYPES.includes(
-      file.type as (typeof ALLOWED_ATTACHMENT_TYPES)[number],
-    );
-    // Allow empty browser MIME if magic bytes match; reject MIME/magic mismatch when both present
-    if (file.type && declaredOk && file.type !== sniffed) {
-      // DOC vs DOCX both accepted via sniff; JPEG aliases
-      const compatible =
-        (file.type === "image/jpeg" && sniffed === "image/jpeg") ||
-        (file.type === "image/png" && sniffed === "image/png") ||
-        (file.type === "application/pdf" && sniffed === "application/pdf") ||
-        (file.type.includes("word") && sniffed.includes("word"));
-      if (!compatible) {
-        return {
-          ok: false,
-          message: "Typ załącznika nie zgadza się z zawartością pliku.",
-          fieldErrors: {
-            attachment: ["Dozwolone: PDF, JPG, PNG, DOC, DOCX."],
-          },
-        };
-      }
-    }
-
-    if (file.type && !declaredOk && !sniffed) {
-      return {
-        ok: false,
-        message: "Niedozwolony typ załącznika.",
-        fieldErrors: {
-          attachment: ["Dozwolone: PDF, JPG, PNG, DOC, DOCX."],
-        },
-      };
-    }
-
-    attachment = {
-      filename: sanitizeFilename(file.name || "zalacznik"),
-      contentType: sniffed,
-      content: buffer,
-    };
-  }
-
-  const result = await sendQuoteEmail({ data: parsed.data, attachment });
+  const result = await sendQuoteEmail({ data: parsed.data });
 
   if (!result.ok) {
     return {
@@ -180,6 +87,6 @@ export async function submitQuote(
   return {
     ok: true,
     message:
-      "Dziękujemy. Zapytanie zostało wysłane. Skontaktujemy się w sprawie szczegółów.",
+      "Twoje zapytanie zostało przyjęte. Skontaktujemy się wkrótce i przygotujemy odpowiednią ofertę.",
   };
 }

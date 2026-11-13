@@ -6,12 +6,13 @@ import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { contact } from "@/data/site";
 import { stockMedia } from "@/data/media";
+import { getProductBySlug } from "@/lib/products/repository";
 import { createMetadata } from "@/lib/seo/metadata";
 
 export const metadata = createMetadata({
   title: "Kontakt",
   description:
-    "Formularz zapytania, telefon i e-mail ALOPAK. Ostrzeszów, ul. Składowa 3.",
+    "Zapytaj o ofertę ALOPAK — formularz, telefon i e-mail. Ostrzeszów, ul. Składowa 3.",
   path: "/kontakt",
 });
 
@@ -29,6 +30,9 @@ async function ContactContent({
   searchParams?: Promise<{ kategoria?: string; produkt?: string }>;
 }) {
   const params = searchParams ? await searchParams : {};
+  const productFromQuery = params.produkt
+    ? getProductBySlug(params.produkt)?.name || params.produkt
+    : undefined;
 
   return (
     <>
@@ -134,15 +138,16 @@ async function ContactContent({
           <Reveal delay={120} variant="scale">
             <div className="border border-border bg-surface/40 p-6 sm:p-8">
               <h2 className="font-display text-2xl font-semibold text-ink">
-                Formularz zapytania
+                Zapytaj o ofertę
               </h2>
-              <p className="mt-3 text-sm text-muted">
-                Pola oznaczone * są wymagane. Załącznik jest opcjonalny.
+              <p className="mt-2 text-sm leading-relaxed text-muted">
+                Opowiedz nam, czego potrzebujesz. Skontaktujemy się z Tobą i
+                przygotujemy odpowiednią ofertę.
               </p>
-              <div className="mt-8">
+              <div className="mt-6">
                 <QuoteForm
                   defaultCategory={params.kategoria}
-                  defaultProduct={params.produkt}
+                  defaultProduct={productFromQuery}
                 />
               </div>
             </div>

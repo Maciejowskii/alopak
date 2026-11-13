@@ -1,11 +1,5 @@
 import type { QuoteInput } from "@/lib/validation/quote";
 
-export type EmailAttachment = {
-  filename: string;
-  contentType: string;
-  content: Buffer;
-};
-
 export type SendQuoteResult =
   | { ok: true; provider: "resend" | "smtp" | "log" }
   | { ok: false; code: "NOT_CONFIGURED" | "SEND_FAILED"; message: string };
@@ -25,10 +19,8 @@ function isEmailConfigured() {
 
 export async function sendQuoteEmail({
   data,
-  attachment,
 }: {
   data: QuoteInput;
-  attachment?: EmailAttachment;
 }): Promise<SendQuoteResult> {
   if (!isEmailConfigured()) {
     return {
@@ -47,10 +39,8 @@ export async function sendQuoteEmail({
     `E-mail: ${data.email}`,
     `Telefon: ${data.phone || "—"}`,
     `Kategoria: ${data.category}`,
-    `Produkt: ${data.product || "—"}`,
-    `Ilość / zapotrzebowanie: ${data.quantity || "—"}`,
     "",
-    "Treść:",
+    "Wiadomość:",
     data.message,
   ].join("\n");
 
@@ -68,14 +58,6 @@ export async function sendQuoteEmail({
           reply_to: data.email,
           subject,
           text: body,
-          attachments: attachment
-            ? [
-                {
-                  filename: attachment.filename,
-                  content: attachment.content.toString("base64"),
-                },
-              ]
-            : undefined,
         }),
       });
 

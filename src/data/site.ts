@@ -95,7 +95,7 @@ export const homeFaq: FaqItem[] = [
   {
     question: "Jak wysłać zapytanie?",
     answer:
-      "Wypełnij formularz na stronie Kontakt albo napisz na alopak@alopak.com.pl. Podaj kategorię produktu, szacowaną ilość i wymagania.",
+      "Wypełnij formularz na stronie Kontakt albo napisz na alopak@alopak.com.pl. Opisz, czego potrzebujesz — szczegóły doprecyzujemy przy ofercie.",
   },
   {
     question: "Czy publikujecie cennik online?",

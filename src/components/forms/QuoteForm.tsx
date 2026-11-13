@@ -10,10 +10,6 @@ import {
 } from "react";
 import { submitQuote, type QuoteActionState } from "@/app/actions/quote";
 import { trackEvent } from "@/lib/analytics/events";
-import {
-  MAX_ATTACHMENT_BYTES,
-  MAX_ATTACHMENT_LABEL,
-} from "@/lib/validation/quote";
 import { quoteCategoryValues } from "@/lib/validation/quote";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
@@ -40,17 +36,13 @@ export function QuoteForm({
 }) {
   const [state, formAction, pending] = useActionState(submitQuote, initialState);
   const [started, setStarted] = useState(false);
-  const [localAttachmentError, setLocalAttachmentError] = useState<string | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const statusId = useId();
   const hintId = useId();
-  const attachmentHelpId = useId();
 
-  const attachmentErrors = state.fieldErrors?.attachment?.length
-    ? state.fieldErrors.attachment
-    : localAttachmentError
-      ? [localAttachmentError]
-      : [];
+  const messageDefault = defaultProduct
+    ? `Produkt / wariant: ${defaultProduct}.\n`
+    : undefined;
 
   useEffect(() => {
     trackEvent("quote_form_view");
@@ -72,18 +64,6 @@ export function QuoteForm({
     }
   }
 
-  function validateAttachmentSize(file: File | null) {
-    if (!file) {
-      setLocalAttachmentError(null);
-      return;
-    }
-    if (file.size > MAX_ATTACHMENT_BYTES) {
-      setLocalAttachmentError(`Załącznik może mieć maksymalnie ${MAX_ATTACHMENT_LABEL}.`);
-      return;
-    }
-    setLocalAttachmentError(null);
-  }
-
   const showFormAlert =
     state.message &&
     !state.ok &&
@@ -92,12 +72,16 @@ export function QuoteForm({
   if (state.ok) {
     return (
       <div
-        className="rounded-lg border border-success/30 bg-success/5 p-6"
+        className="rounded-lg border border-success/30 bg-success/5 p-6 sm:p-8"
         role="status"
         aria-live="polite"
       >
-        <p className="text-lg font-semibold text-ink">Zapytanie wysłane</p>
+        <p className="text-lg font-semibold text-ink">Dziękujemy — zapytanie przyjęte</p>
         <p className="mt-2 text-sm leading-relaxed text-muted">{state.message}</p>
+        <p className="mt-4 text-sm text-muted">
+          Odpowiemy na podany adres e-mail. Jeśli sprawa jest pilna, zadzwoń lub napisz
+          bezpośrednio.
+        </p>
       </div>
     );
   }
@@ -106,13 +90,10 @@ export function QuoteForm({
     <form
       ref={formRef}
       action={(formData) => {
-        if (localAttachmentError) {
-          return;
-        }
         trackEvent("quote_form_submit");
         formAction(formData);
       }}
-      className="relative space-y-5"
+      className="relative space-y-3.5"
       noValidate
       onFocus={markStart}
       aria-describedby={`${hintId} ${statusId}`}
@@ -121,7 +102,7 @@ export function QuoteForm({
         {!state.ok && state.message ? state.message : ""}
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="grid gap-3.5 sm:grid-cols-2">
         <Field
           label="Imię i nazwisko"
           name="name"
@@ -138,67 +119,52 @@ export function QuoteForm({
         />
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-2">
-        <Field
-          label="Służbowy e-mail"
-          name="email"
-          type="email"
-          required
-          autoComplete="email"
-          errors={state.fieldErrors?.email}
-        />
-        <Field
-          label="Telefon"
-          name="phone"
-          type="tel"
-          inputMode="tel"
-          autoComplete="tel"
-          errors={state.fieldErrors?.phone}
-        />
-      </div>
-
-      <div className="grid gap-5 sm:grid-cols-2">
-        <div>
-          <label htmlFor="category" className="mb-2 block text-sm font-medium text-ink">
-            Kategoria produktu
-            <RequiredMark />
-          </label>
-          <select
-            id="category"
-            name="category"
-            required
-            aria-required="true"
-            defaultValue={defaultCategory || ""}
-            className={inputClass(Boolean(state.fieldErrors?.category))}
-          >
-            <option value="" disabled>
-              Wybierz kategorię
-            </option>
-            {quoteCategoryValues.map((value) => (
-              <option key={value} value={value}>
-                {categoryLabels[value]}
-              </option>
-            ))}
-          </select>
-          <FieldError errors={state.fieldErrors?.category} />
-        </div>
-        <Field
-          label="Produkt / wariant"
-          name="product"
-          defaultValue={defaultProduct}
-          errors={state.fieldErrors?.product}
-        />
-      </div>
+      <Field
+        label="Adres e-mail"
+        name="email"
+        type="email"
+        required
+        autoComplete="email"
+        errors={state.fieldErrors?.email}
+      />
 
       <Field
-        label="Szacowana ilość / zapotrzebowanie"
-        name="quantity"
-        errors={state.fieldErrors?.quantity}
+        label="Telefon"
+        name="phone"
+        type="tel"
+        inputMode="tel"
+        autoComplete="tel"
+        errors={state.fieldErrors?.phone}
       />
 
       <div>
-        <label htmlFor="message" className="mb-2 block text-sm font-medium text-ink">
-          Treść zapytania
+        <label htmlFor="category" className={labelClass}>
+          Czego dotyczy zapytanie?
+          <RequiredMark />
+        </label>
+        <select
+          id="category"
+          name="category"
+          required
+          aria-required="true"
+          defaultValue={defaultCategory || ""}
+          className={inputClass(Boolean(state.fieldErrors?.category))}
+        >
+          <option value="" disabled>
+            Wybierz kategorię
+          </option>
+          {quoteCategoryValues.map((value) => (
+            <option key={value} value={value}>
+              {categoryLabels[value]}
+            </option>
+          ))}
+        </select>
+        <FieldError errors={state.fieldErrors?.category} />
+      </div>
+
+      <div>
+        <label htmlFor="message" className={labelClass}>
+          Wiadomość
           <RequiredMark />
         </label>
         <textarea
@@ -206,37 +172,17 @@ export function QuoteForm({
           name="message"
           required
           aria-required="true"
-          rows={6}
-          className={inputClass(Boolean(state.fieldErrors?.message))}
-          placeholder="Opisz potrzeby, zastosowania, wymagania techniczne lub pytania."
+          rows={4}
+          defaultValue={messageDefault}
+          className={cn(
+            inputClass(Boolean(state.fieldErrors?.message), { multiline: true }),
+          )}
+          placeholder="Napisz, czego potrzebujesz — produkt lub wariant, ilość oraz dodatkowe wymagania"
         />
         <FieldError errors={state.fieldErrors?.message} />
       </div>
 
-      <div>
-        <label htmlFor="attachment" className="mb-2 block text-sm font-medium text-ink">
-          Załącznik (opcjonalnie)
-        </label>
-        <input
-          id="attachment"
-          name="attachment"
-          type="file"
-          accept=".pdf,.jpg,.jpeg,.png,.doc,.docx,application/pdf,image/jpeg,image/png"
-          className="block w-full text-sm text-muted file:mr-4 file:rounded-md file:border-0 file:bg-surface file:px-4 file:py-2 file:text-sm file:font-semibold file:text-primary"
-          aria-describedby={attachmentHelpId}
-          aria-invalid={attachmentErrors.length > 0 || undefined}
-          onChange={(event) => {
-            const file = event.target.files?.[0] ?? null;
-            validateAttachmentSize(file);
-          }}
-        />
-        <p id={attachmentHelpId} className="mt-2 text-xs text-muted">
-          PDF, JPG, PNG, DOC, DOCX — max {MAX_ATTACHMENT_LABEL}.
-        </p>
-        <FieldError errors={attachmentErrors} />
-      </div>
-
-      <label className="flex items-start gap-3 text-sm text-muted">
+      <label className="flex items-start gap-3 pt-0.5 text-sm text-muted">
         <input
           type="checkbox"
           name="consent"
@@ -284,11 +230,16 @@ export function QuoteForm({
       ) : null}
 
       <p id={hintId} className="text-xs text-muted">
-        Po wysłaniu zapytania skontaktujemy się w sprawie szczegółów. Pola oznaczone{" "}
-        <span aria-hidden="true">*</span> są wymagane.
+        Pola oznaczone <span aria-hidden="true">*</span> są wymagane. Telefon jest opcjonalny.
       </p>
 
-      <Button type="submit" size="lg" disabled={pending || Boolean(localAttachmentError)} className="w-full sm:w-auto">
+      <Button
+        type="submit"
+        size="lg"
+        variant="primary"
+        disabled={pending}
+        className="w-full bg-navy hover:bg-navy-hover sm:w-auto"
+      >
         {pending ? "Wysyłanie..." : "Wyślij zapytanie"}
       </Button>
     </form>
@@ -305,6 +256,8 @@ function RequiredMark() {
     </>
   );
 }
+
+const labelClass = "mb-1.5 block text-sm font-medium text-ink";
 
 function Field({
   label,
@@ -327,7 +280,7 @@ function Field({
 }) {
   return (
     <div>
-      <label htmlFor={name} className="mb-2 block text-sm font-medium text-ink">
+      <label htmlFor={name} className={labelClass}>
         {label}
         {required ? <RequiredMark /> : null}
       </label>
@@ -350,15 +303,16 @@ function Field({
 function FieldError({ errors }: { errors?: string[] }) {
   if (!errors?.length) return null;
   return (
-    <p className="mt-1.5 text-sm text-error" role="alert">
+    <p className="mt-1 text-sm text-error" role="alert">
       {errors[0]}
     </p>
   );
 }
 
-function inputClass(hasError: boolean) {
+function inputClass(hasError: boolean, options?: { multiline?: boolean }) {
   return cn(
-    "field-focus w-full rounded-md border bg-white px-3.5 py-2.5 text-sm text-ink outline-none transition-[border-color,box-shadow,background-color] duration-300 ease-out placeholder:text-muted/70 focus:border-primary focus:bg-aluminium/40",
+    "field-focus w-full rounded-md border bg-white px-3.5 text-sm text-ink outline-none transition-[border-color,box-shadow,background-color] duration-300 ease-out placeholder:text-muted/70 focus:border-primary focus:bg-aluminium/40",
+    options?.multiline ? "min-h-[6.5rem] py-2.5" : "h-11",
     hasError ? "border-error" : "border-border",
   );
 }

@@ -150,8 +150,8 @@ export default async function IndustryPage({ params }: SlugPageProps) {
               Przygotuj zapytanie dla tej branży
             </h2>
             <p className="mt-4 max-w-2xl text-muted leading-relaxed">
-              Wskaż kategorię produktu, szacowane zapotrzebowanie i wymagania.
-              Jeśli masz brief lub specyfikację — dołącz plik.
+              Wskaż kategorię produktu i opisz, czego potrzebujesz. Szczegóły
+              oferty doprecyzujemy w kontakcie.
             </p>
           </div>
           <Button href="/kontakt" size="lg">

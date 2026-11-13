@@ -190,8 +190,8 @@ export default async function ProductPage({ params }: SlugPageProps) {
               Zapytanie o {product.name}
             </h2>
             <p className="mt-5 text-muted leading-relaxed">
-              Formularz jest uzupełniony o kategorię i nazwę produktu. Dodaj
-              szacowaną ilość oraz wymagania techniczne lub handlowe.
+              Kategoria jest wybrana, a produkt wpisany w treść wiadomości.
+              Dopisz wymagania lub inne szczegóły oferty.
             </p>
           </div>
           <div className="border border-border bg-surface/40 p-6 sm:p-8">

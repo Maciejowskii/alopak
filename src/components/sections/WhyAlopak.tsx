@@ -11,7 +11,7 @@ const points = [
   },
   {
     title: "Bezpośredni kontakt z firmą",
-    text: "Formularz zapytania pozwala opisać wymagania i dołączyć specyfikację przed rozmową ofertową.",
+    text: "Krótki formularz zapytania pozwala opisać potrzeby przed rozmową ofertową.",
   },
 ];
 

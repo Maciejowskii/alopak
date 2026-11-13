@@ -378,8 +378,8 @@ export default async function CategoryPage({ params }: SlugPageProps) {
               {category.ctaLabel}
             </h2>
             <p className="mt-5 text-muted leading-relaxed">
-              Kategoria jest już wybrana. Dodaj ilość, wymagania i ewentualny
-              załącznik.
+              Kategoria jest już wybrana. Opisz w wiadomości, czego potrzebujesz
+              — szczegóły doprecyzujemy przy ofercie.
             </p>
           </div>
           <div className="border border-border bg-surface/40 p-6 sm:p-8">

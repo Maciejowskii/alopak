@@ -22,7 +22,7 @@ export const quoteSchema = z.object({
   email: z
     .string()
     .trim()
-    .email("Podaj prawidłowy służbowy adres e-mail.")
+    .email("Podaj prawidłowy adres e-mail.")
     .max(160),
   phone: z
     .string()
@@ -31,15 +31,13 @@ export const quoteSchema = z.object({
     .optional()
     .or(z.literal("")),
   category: z.enum(quoteCategoryValues, {
-    message: "Wybierz kategorię produktu.",
+    message: "Wybierz, czego dotyczy zapytanie.",
   }),
-  product: z.string().trim().max(160).optional().or(z.literal("")),
-  quantity: z.string().trim().max(120).optional().or(z.literal("")),
   message: z
     .string()
     .trim()
-    .min(20, "Opisz zapytanie dokładniej (min. 20 znaków).")
-    .max(4000, "Treść zapytania jest zbyt długa."),
+    .min(20, "Napisz wiadomość dokładniej (min. 20 znaków).")
+    .max(4000, "Wiadomość jest zbyt długa."),
   consent: z.literal(true, {
     message: "Wymagane jest potwierdzenie informacji o przetwarzaniu danych.",
   }),
