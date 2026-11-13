@@ -59,8 +59,8 @@ export const categories: Category[] = [
     seoDescription:
       "Puszki aluminiowe do przetworów spożywczych. Sprawdź warianty i wyślij zapytanie – przygotujemy ofertę.",
     image: {
-      src: "/images/categories/puszki-aluminiowe.jpg",
-      alt: "Przykłady produktów pakowanych w puszki aluminiowe",
+      src: "/images/categories/puszki-aluminiowe-v2.jpg",
+      alt: "Puszki i pojemniki aluminiowe",
     },
   },
   {
@@ -111,8 +111,8 @@ export const categories: Category[] = [
     seoDescription:
       "Folia spożywcza dla hurtowni, gastronomii i firm. Opisz potrzeby – przygotujemy ofertę.",
     image: {
-      src: "/images/categories/folia-spozywcza.jpg",
-      alt: "Rolka folii aluminiowej spożywczej",
+      src: "/images/categories/folia-spozywcza-v2.jpg",
+      alt: "Rolka folii spożywczej aluminiowej",
     },
   },
   {
@@ -167,8 +167,8 @@ export const categories: Category[] = [
     seoDescription:
       "Folia fryzjerska aluminiowa: 14 µm, 12 cm, srebrna. Dla salonów, hurtowni i dystrybutorów. Wyślij zapytanie.",
     image: {
-      src: "/images/categories/folia-fryzjerska.jpg",
-      alt: "Koloryzacja włosów z użyciem folii fryzjerskiej",
+      src: "/images/categories/folia-fryzjerska-v2.jpg",
+      alt: "Rolka folii fryzjerskiej aluminiowej",
     },
   },
 ];

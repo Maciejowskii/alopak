@@ -387,7 +387,7 @@ export const products: Product[] = [
     images: [
       {
         src: "/images/products/folia-fryzjerska.jpg",
-        alt: "Folia fryzjerska aluminiowa — zdjęcie katalogowe ALOPAK",
+        alt: "Rolka folii fryzjerskiej aluminiowej",
       },
     ],
     applications: ["Koloryzacja włosów", "Salony fryzjerskie", "Hurtownie fryzjerskie"],
@@ -416,7 +416,7 @@ export const products: Product[] = [
     images: [
       {
         src: "/images/products/folia-spozywcza.jpg",
-        alt: "Folia spożywcza aluminiowa — przykładowe zdjęcie rolki",
+        alt: "Rolka folii spożywczej aluminiowej",
       },
     ],
     applications: ["Gastronomia", "Hurtownie", "Zastosowania profesjonalne"],

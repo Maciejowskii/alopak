@@ -5,20 +5,20 @@
  */
 export const stockMedia = {
   hero: {
-    src: "/images/categories/folia-spozywcza.jpg",
+    src: "/images/categories/folia-spozywcza-v2.jpg",
     alt: "Rolka folii aluminiowej",
   },
   cans: {
-    src: "/images/catalog/puszki-przyklad.jpg",
-    alt: "Przykłady produktów pakowanych w puszki aluminiowe ALOPAK",
+    src: "/images/categories/puszki-aluminiowe-v2.jpg",
+    alt: "Puszki i pojemniki aluminiowe",
   },
   foodFoil: {
-    src: "/images/categories/folia-spozywcza.jpg",
+    src: "/images/categories/folia-spozywcza-v2.jpg",
     alt: "Rolka folii aluminiowej spożywczej",
   },
   hairFoil: {
-    src: "/images/industries/branza-fryzjerska.jpg",
-    alt: "Koloryzacja z użyciem folii fryzjerskiej w salonie",
+    src: "/images/categories/folia-fryzjerska-v2.jpg",
+    alt: "Rolka folii fryzjerskiej aluminiowej",
   },
   metal: {
     src: "/images/stock/metal-brushed.jpg",
@@ -29,7 +29,7 @@ export const stockMedia = {
     alt: "Puszki aluminiowe",
   },
   foilRoll: {
-    src: "/images/categories/folia-spozywcza.jpg",
+    src: "/images/categories/folia-spozywcza-v2.jpg",
     alt: "Folia aluminiowa",
   },
   packaging: {
