@@ -82,9 +82,9 @@ export function ProcessSteps() {
         </div>
 
         <div className="mt-14">
-          {/* Static track — absolute dots at 0/25/50/75% so they stay perfectly level */}
+          {/* Track spans first→last column centers so it matches the 4-col grid */}
           <div aria-hidden className="relative mb-8 hidden h-3 md:block">
-            <div className="absolute top-1/2 right-[calc(25%-5px)] left-[5px] h-px -translate-y-1/2 bg-border">
+            <div className="absolute top-1/2 right-[12.5%] left-[12.5%] h-px -translate-y-1/2 bg-border">
               <div
                 className="h-full origin-left bg-gradient-to-r from-brand via-navy to-brand/40 transition-transform duration-150 ease-out"
                 style={{
@@ -95,11 +95,12 @@ export function ProcessSteps() {
             {steps.map((step, index) => {
               const threshold = index / (steps.length - 1 || 1);
               const active = reduced || lineProgress >= threshold - 0.02;
+              const center = ((index + 0.5) / steps.length) * 100;
               return (
                 <span
                   key={step.title}
-                  className="absolute top-1/2 z-[1] flex size-3 -translate-y-1/2 items-center justify-center"
-                  style={{ left: `${(index / steps.length) * 100}%` }}
+                  className="absolute top-1/2 z-[1] flex size-3 -translate-x-1/2 -translate-y-1/2 items-center justify-center"
+                  style={{ left: `${center}%` }}
                 >
                   <span className="absolute inset-0 rounded-full bg-white" />
                   <span
@@ -127,7 +128,7 @@ export function ProcessSteps() {
                   as="li"
                   delay={index * 110}
                   variant="up"
-                  className="border-b border-border py-8 md:border-b-0 md:pr-5 md:pt-0 md:pb-0 md:last:pr-0"
+                  className="border-b border-border py-8 text-center md:border-b-0 md:px-3 md:pt-0 md:pb-0"
                 >
                   <p
                     className={cn(

@@ -7,8 +7,8 @@ export const siteConfig = {
     "Producent puszek aluminiowych, folii spożywczej i folii fryzjerskiej z Ostrzeszowa. Działamy od 1997 roku. Opisz potrzeby – przygotujemy ofertę.",
   locale: "pl_PL",
   foundedYear: 1997,
-  /** Publish only after client confirms a valid certificate. */
-  qualitySystem: null as string | null,
+  /** Official site confirms ISO 9001:2015 certificates. */
+  qualitySystem: "ISO 9001:2015",
 } as const;
 
 export const contact: SiteContact = {
@@ -36,6 +36,7 @@ export const mainNav: NavItem[] = [
     href: "/oferta",
     children: [
       { label: "Puszki aluminiowe", href: "/oferta/puszki-aluminiowe" },
+      { label: "Opakowania świecowe", href: "/oferta/opakowania-swiecowe" },
       { label: "Folia spożywcza", href: "/oferta/folia-spozywcza" },
       { label: "Folia fryzjerska", href: "/oferta/folia-fryzjerska" },
       { label: "Katalog produktów", href: "/produkty" },
@@ -58,6 +59,7 @@ export const mainNav: NavItem[] = [
 export const footerNav = {
   oferta: [
     { label: "Puszki aluminiowe", href: "/oferta/puszki-aluminiowe" },
+    { label: "Opakowania świecowe", href: "/oferta/opakowania-swiecowe" },
     { label: "Folia spożywcza", href: "/oferta/folia-spozywcza" },
     { label: "Folia fryzjerska", href: "/oferta/folia-fryzjerska" },
     { label: "Katalog produktów", href: "/produkty" },
@@ -83,7 +85,7 @@ export const homeFaq: FaqItem[] = [
   {
     question: "Jakie produkty oferujecie?",
     answer:
-      "Puszki aluminiowe, folię spożywczą i folię fryzjerską. Warianty i parametry znajdziesz na stronach kategorii.",
+      "Puszki aluminiowe, opakowania świecowe, folię spożywczą i folię fryzjerską. Warianty i parametry znajdziesz na stronach kategorii.",
   },
   {
     question: "Czy obsługujecie firmy?",

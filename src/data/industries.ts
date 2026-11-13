@@ -6,7 +6,7 @@ export const industries: Industry[] = [
     name: "Przemysł spożywczy",
     description:
       "Puszki aluminiowe dla zakładów przetwórczych: do przetworów mięsnych, rybnych, mleczarskich i owocowo-warzywnych.",
-    relatedCategories: ["puszki-aluminiowe", "folia-spozywcza"],
+    relatedCategories: ["puszki-aluminiowe"],
     seoTitle: "Opakowania dla przemysłu spożywczego | ALOPAK",
     seoDescription:
       "Puszki aluminiowe dla przetwórstwa spożywczego. Sprawdź ofertę i wyślij zapytanie.",

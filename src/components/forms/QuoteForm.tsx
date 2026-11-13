@@ -25,6 +25,7 @@ const initialState: QuoteActionState = {
 
 const categoryLabels: Record<(typeof quoteCategoryValues)[number], string> = {
   "puszki-aluminiowe": "Puszki aluminiowe",
+  "opakowania-swiecowe": "Opakowania świecowe",
   "folia-spozywcza": "Folia spożywcza",
   "folia-fryzjerska": "Folia fryzjerska",
   inne: "Inne / nie wiem",
@@ -258,17 +259,18 @@ export function QuoteForm({
       </label>
       <FieldError errors={state.fieldErrors?.consent} />
 
-      {/* Honeypot — visually off-screen, hidden from AT */}
+      {/* Honeypot — off-screen, hidden from AT (no visible label) */}
       <div
-        className="pointer-events-none absolute left-[-9999px] top-auto h-px w-px overflow-hidden"
+        className="pointer-events-none absolute left-[-9999px] top-auto h-px w-px overflow-hidden opacity-0"
         aria-hidden="true"
       >
-        <label htmlFor="website">Website</label>
         <input
           id="website"
           name="website"
+          type="text"
           tabIndex={-1}
           autoComplete="off"
+          aria-hidden="true"
         />
       </div>
 

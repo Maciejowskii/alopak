@@ -1,8 +1,6 @@
 import { ImageResponse } from "next/og";
 import { getAllPosts, getPostBySlug } from "@/lib/blog/repository";
-import { siteConfig } from "@/data/site";
 
-export const alt = `${siteConfig.name} — artykuł`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -10,6 +8,23 @@ export function generateStaticParams() {
   return getAllPosts()
     .filter((post) => !post.draft)
     .map((post) => ({ slug: post.slug }));
+}
+
+export async function generateImageMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
+  return [
+    {
+      id: "default",
+      size,
+      contentType,
+      alt: post?.title ?? "Artykuł ALOPAK",
+    },
+  ];
 }
 
 export default async function BlogOpenGraphImage({

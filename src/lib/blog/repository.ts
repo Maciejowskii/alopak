@@ -3,6 +3,7 @@ import path from "node:path";
 import matter from "gray-matter";
 import readingTime from "reading-time";
 import { remark } from "remark";
+import remarkGfm from "remark-gfm";
 import remarkRehype from "remark-rehype";
 import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
@@ -59,6 +60,7 @@ function readPostFile(filename: string): BlogPost | null {
   const headings: BlogPost["headings"] = [];
 
   const processed = remark()
+    .use(remarkGfm)
     .use(remarkRehype)
     .use(rehypeSlug)
     .use(() => (tree: Root) => {
@@ -73,6 +75,25 @@ function readPostFile(filename: string): BlogPost | null {
             level: node.tagName === "h2" ? 2 : 3,
           });
         }
+      });
+    })
+    .use(() => (tree: Root) => {
+      visit(tree, "element", (node, index, parent) => {
+        if (
+          node.tagName !== "table" ||
+          !parent ||
+          typeof index !== "number" ||
+          parent.type !== "element"
+        ) {
+          return;
+        }
+        if (parent.tagName === "div") return;
+        parent.children[index] = {
+          type: "element",
+          tagName: "div",
+          properties: { className: ["table-wrap", "overflow-x-auto"] },
+          children: [node],
+        };
       });
     })
     .use(rehypeStringify)

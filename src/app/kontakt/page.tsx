@@ -29,7 +29,6 @@ async function ContactContent({
   searchParams?: Promise<{ kategoria?: string; produkt?: string }>;
 }) {
   const params = searchParams ? await searchParams : {};
-  const [primaryPhone, ...additionalPhones] = contact.phones;
 
   return (
     <>
@@ -100,37 +99,21 @@ async function ContactContent({
                 </div>
                 <div className="border-t border-border pt-5">
                   <p className="text-xs uppercase tracking-[0.14em] text-accent-dark">
-                    Telefon
+                    Tel./fax
                   </p>
-                  {primaryPhone ? (
-                    <a
-                      href={`tel:${primaryPhone.replace(/\s/g, "")}`}
-                      className="mt-2 inline-block text-xl font-semibold text-primary"
-                      data-analytics="phone_click"
-                    >
-                      {primaryPhone}
-                    </a>
-                  ) : null}
-                  {additionalPhones.length ? (
-                    <div className="mt-6">
-                      <p className="text-xs uppercase tracking-[0.14em] text-accent-dark">
-                        Dodatkowe numery
-                      </p>
-                      <ul className="mt-3 space-y-2">
-                        {additionalPhones.map((phone) => (
-                          <li key={phone}>
-                            <a
-                              href={`tel:${phone.replace(/\s/g, "")}`}
-                              className="text-lg font-semibold text-primary"
-                              data-analytics="phone_click"
-                            >
-                              {phone}
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ) : null}
+                  <ul className="mt-3 space-y-2">
+                    {contact.phones.map((phone) => (
+                      <li key={phone}>
+                        <a
+                          href={`tel:${phone.replace(/\s/g, "")}`}
+                          className="text-lg font-semibold text-primary"
+                          data-analytics="phone_click"
+                        >
+                          {phone}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
                 <div className="border-t border-border pt-5">
                   <p className="text-xs uppercase tracking-[0.14em] text-accent-dark">

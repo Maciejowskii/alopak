@@ -1,5 +1,5 @@
+import Image from "next/image";
 import { CtaBand } from "@/components/sections/CtaBand";
-import { IsoRevealBlock } from "@/components/motion/IsoRevealBlock";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
@@ -48,20 +48,47 @@ export default function AboutPage() {
             <Reveal delay={80}>
               <p>
                 Oferta obejmuje m.in. puszki aluminiowe dla przemysłu spożywczego,
-                folię spożywczą oraz folię fryzjerską. Poszerzamy ofertę o
-                produkty, o które pytają nasi klienci.
+                folię fryzjerską oraz inne wyroby z folii aluminiowej.
+                Poszerzamy ofertę o produkty, o które pytają nasi klienci.
               </p>
             </Reveal>
-            <IsoRevealBlock>
-              Jakość produkcji jest podstawą współpracy z naszymi klientami. W
-              2004 roku wdrożyliśmy system zarządzania jakością oparty na normie
-              ISO 9001.
-            </IsoRevealBlock>
+            <Reveal delay={100}>
+              <p>
+                Od początku działalności przywiązujemy wagę do jakości
+                produkcji. W 2004 roku wdrożyliśmy System Zarządzania Jakością
+                zgodny z normą ISO 9001:2000. Aktualne certyfikaty potwierdzają
+                zgodność systemu z wymaganiami nowej normy ISO 9001:2015.
+              </p>
+            </Reveal>
             <Reveal delay={120}>
+              <a
+                href="/images/about/iso-9001-2015.jpg"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative mt-2 block aspect-[3/4] max-w-xs overflow-hidden border border-border bg-surface"
+              >
+                <Image
+                  src="/images/about/iso-9001-2015.jpg"
+                  alt="Certyfikat ISO 9001:2015 ALOPAK"
+                  fill
+                  className="object-contain p-2"
+                  sizes="320px"
+                />
+                <span className="sr-only">Otwórz powiększenie certyfikatu</span>
+              </a>
+            </Reveal>
+            <Reveal delay={140}>
               <p>
                 Realizujemy też projekty z wykorzystaniem innych materiałów
                 (tworzywa sztuczne, papier, tektura, inne metale) — po
                 indywidualnym kontakcie.
+              </p>
+            </Reveal>
+            <Reveal delay={160}>
+              <p>
+                Opakowania są trwałe i lekkie; zużyte można zgnieść, więc zajmują
+                mało miejsca. Produkty można pasteryzować, sterylizować, a nawet
+                podgrzewać w opakowaniu w mikrofalówce.
               </p>
             </Reveal>
           </div>
@@ -81,7 +108,7 @@ export default function AboutPage() {
                 <Item label="REGON" value={contact.regon || "—"} />
                 <Item label="Kapitał zakładowy" value={contact.shareCapital || "—"} />
                 <Item label="E-mail" value={contact.email} />
-                <Item label="Telefon" value={contact.phones[0]} />
+                <Item label="Tel./fax" value={contact.phones.join(", ")} />
               </dl>
               <Button href="/kontakt" className="mt-8 w-full">
                 Napisz do nas
@@ -100,6 +127,7 @@ export default function AboutPage() {
             {[
               "Opakowania aluminiowe do przetworów poddawanych pasteryzacji i sterylizacji",
               "Pojemniki aluminiowe do zastosowań spożywczych lub technicznych",
+              "Opakowania świecowe: kubki do podgrzewaczy, podstawki i pojemniki na świece ogrodowe",
               "Folia spożywcza i inne wyroby z folii aluminiowej",
               "Folia fryzjerska aluminiowa do koloryzacji włosów",
             ].map((item) => (

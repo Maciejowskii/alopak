@@ -13,4 +13,13 @@ describe("blog repository", () => {
     expect(post?.title).toMatch(/Puszki aluminiowe/i);
     expect(post?.headings.length).toBeGreaterThan(0);
   });
+
+  it("renders GFM tables as HTML for foil article", () => {
+    const post = getPostBySlug("folia-fryzjerska-dla-hurtowni");
+    expect(post?.html).toContain("<table");
+    expect(post?.html).toContain("<thead");
+    expect(post?.html).toContain("<tbody");
+    expect(post?.html).not.toMatch(/\|\s*Parametr\s*\|/);
+  });
 });
+

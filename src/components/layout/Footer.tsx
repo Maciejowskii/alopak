@@ -14,8 +14,8 @@ export function Footer() {
           <div className="lg:col-span-3">
             <p className="text-xl font-extrabold tracking-[0.12em]">ALOPAK</p>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/75">
-              Polski producent opakowań aluminiowych. Oferta dla firm: puszki
-              aluminiowe, folia spożywcza i folia fryzjerska.
+              Polski producent opakowań aluminiowych. Oferta dla firm: puszki,
+              opakowania świecowe, folia spożywcza i folia fryzjerska.
             </p>
             <div className="mt-6">
               <Button href="/kontakt" variant="light" size="sm">

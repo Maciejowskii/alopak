@@ -78,7 +78,7 @@ export default async function BlogPostPage({
               {post.author ? <span>{post.author}</span> : null}
             </div>
             <div
-              className="prose-alopak mt-10 space-y-4 text-base leading-relaxed text-muted [&_a]:font-medium [&_a]:text-primary [&_h2]:mt-10 [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:text-ink [&_h3]:mt-6 [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-ink [&_li]:ml-5 [&_li]:list-disc [&_ul]:space-y-2"
+              className="prose-alopak mt-10 space-y-4 text-base leading-relaxed text-muted [&_a]:font-medium [&_a]:text-primary [&_h2]:mt-10 [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:text-ink [&_h3]:mt-6 [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-ink [&_li]:ml-5 [&_li]:list-disc [&_ul]:space-y-2 [&_table]:w-full [&_table]:border-collapse [&_th]:border [&_th]:border-border [&_th]:bg-surface [&_th]:px-3 [&_th]:py-2 [&_th]:text-left [&_th]:text-sm [&_th]:font-semibold [&_th]:text-ink [&_td]:border [&_td]:border-border [&_td]:px-3 [&_td]:py-2 [&_td]:text-sm [&_td]:align-top [&_.table-wrap]:overflow-x-auto"
               dangerouslySetInnerHTML={{ __html: post.html }}
             />
           </div>

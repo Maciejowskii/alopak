@@ -9,7 +9,7 @@ import { createMetadata } from "@/lib/seo/metadata";
 export const metadata = createMetadata({
   title: "Oferta",
   description:
-    "Oferta ALOPAK: puszki aluminiowe, folia spożywcza i folia fryzjerska dla klientów B2B.",
+    "Oferta ALOPAK: puszki aluminiowe, opakowania świecowe, folia spożywcza i folia fryzjerska.",
   path: "/oferta",
   image: categories[0]?.image.src,
 });
@@ -24,8 +24,7 @@ export default function OfferPage() {
             Oferta produktowa ALOPAK
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted">
-            Trzy główne obszary oferty dla odbiorców biznesowych. Wybierz
-            kategorię, aby zobaczyć szczegóły, warianty i formularz zapytania.
+            Wybierz kategorię, sprawdź szczegóły i wyślij zapytanie.
           </p>
 
           <div className="mt-14 divide-y divide-border border-y border-border">

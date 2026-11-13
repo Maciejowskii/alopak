@@ -1,5 +1,6 @@
 export type CategorySlug =
   | "puszki-aluminiowe"
+  | "opakowania-swiecowe"
   | "folia-spozywcza"
   | "folia-fryzjerska";
 

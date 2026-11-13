@@ -2,6 +2,7 @@ import { z } from "zod";
 
 export const quoteCategoryValues = [
   "puszki-aluminiowe",
+  "opakowania-swiecowe",
   "folia-spozywcza",
   "folia-fryzjerska",
   "inne",

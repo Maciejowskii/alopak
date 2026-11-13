@@ -15,9 +15,8 @@ import { industries } from "@/data/industries";
 import { getProductsByCategory } from "@/lib/products/repository";
 import { createMetadata } from "@/lib/seo/metadata";
 import { breadcrumbSchema } from "@/lib/seo/schema";
-import type { Product } from "@/types";
+import { formatOuterDimension, getSpecValue } from "@/lib/products/format";
 import type { SlugPageProps } from "@/types/next";
-
 
 const categorySampleSpecsIntro: Record<string, { title: string; caption: string }> = {
   "puszki-aluminiowe": {
@@ -31,18 +30,17 @@ function getCategoryFaqTitle(slug: string): string {
     "folia-spozywcza": "Pytania o folię spożywczą",
     "folia-fryzjerska": "Pytania o folię fryzjerską",
     "puszki-aluminiowe": "Pytania o puszki aluminiowe",
+    "opakowania-swiecowe": "Pytania o opakowania świecowe",
   };
   return titles[slug] ?? "Najczęstsze pytania";
 }
 
-function formatSpec(product: Product, labels: string[]) {
-  for (const label of labels) {
-    const spec = product.specifications.find((item) => item.label === label);
-    if (spec) {
-      return spec.unit ? `${spec.value} ${spec.unit}` : spec.value;
-    }
+function catalogHeading(slug: string) {
+  if (slug === "puszki-aluminiowe" || slug === "opakowania-swiecowe") {
+    return "Warianty";
   }
-  return "—";
+  if (slug === "folia-spozywcza") return "Produkt";
+  return "Warianty";
 }
 
 export function generateStaticParams() {
@@ -124,7 +122,13 @@ export default async function CategoryPage({ params }: SlugPageProps) {
       </section>
 
       <section className="section-pad bg-white">
-        <Container className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+        <Container
+          className={
+            category.applications.length
+              ? "grid gap-12 lg:grid-cols-[1.1fr_0.9fr]"
+              : undefined
+          }
+        >
           <div>
             <h2 className="font-display text-3xl font-semibold text-ink sm:text-4xl">
               Dla kogo
@@ -140,35 +144,48 @@ export default async function CategoryPage({ params }: SlugPageProps) {
               ))}
             </ul>
           </div>
-          <div className="bg-surface p-8">
-            <h3 className="font-display text-2xl font-semibold text-ink">
-              Zastosowania
-            </h3>
-            <ul className="mt-6 space-y-4">
-              {category.applications.map((item) => (
-                <li key={item} className="border-b border-border pb-4 text-sm text-muted last:border-b-0 last:pb-0">
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
+          {category.applications.length ? (
+            <div className="bg-surface p-8">
+              <h3 className="font-display text-2xl font-semibold text-ink">
+                Zastosowania
+              </h3>
+              <ul className="mt-6 space-y-4">
+                {category.applications.map((item) => (
+                  <li
+                    key={item}
+                    className="border-b border-border pb-4 text-sm text-muted last:border-b-0 last:pb-0"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
         </Container>
       </section>
 
       <section className="section-pad bg-surface">
-        <Container className="grid gap-12 lg:grid-cols-2">
-          <div>
-            <h2 className="font-display text-3xl font-semibold text-ink sm:text-4xl">
-              Najważniejsze cechy
-            </h2>
-            <ul className="mt-8 space-y-3">
-              {category.highlights.map((item) => (
-                <li key={item} className="border-l border-primary/25 pl-4 text-muted">
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
+        <Container
+          className={
+            category.highlights.length
+              ? "grid gap-12 lg:grid-cols-2"
+              : undefined
+          }
+        >
+          {category.highlights.length ? (
+            <div>
+              <h2 className="font-display text-3xl font-semibold text-ink sm:text-4xl">
+                Najważniejsze cechy
+              </h2>
+              <ul className="mt-8 space-y-3">
+                {category.highlights.map((item) => (
+                  <li key={item} className="border-l border-primary/25 pl-4 text-muted">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
           <div>
             <h2 className="font-display text-3xl font-semibold text-ink sm:text-4xl">
               Co podać w zapytaniu
@@ -206,7 +223,7 @@ export default async function CategoryPage({ params }: SlugPageProps) {
         <Container>
           <div className="flex flex-col gap-4 border-b border-border pb-8 sm:flex-row sm:items-end sm:justify-between">
             <h2 className="font-display text-3xl font-semibold text-ink sm:text-4xl">
-              Warianty w katalogu
+              {catalogHeading(category.slug)}
             </h2>
             <Link href={`/produkty?kategoria=${category.slug}`} className="text-sm font-semibold text-primary">
               Filtruj katalog
@@ -215,54 +232,90 @@ export default async function CategoryPage({ params }: SlugPageProps) {
 
           {category.slug === "puszki-aluminiowe" && products.length ? (
             <div className="mt-10 overflow-x-auto">
-              <table className="w-full min-w-[640px] border-collapse text-left text-sm">
+              <table className="w-full min-w-[960px] border-collapse text-left text-sm">
                 <caption className="sr-only">
-                  Porównanie wybranych puszek aluminiowych z katalogu ALOPAK
+                  Porównanie puszek aluminiowych — wymiary i pakowanie
                 </caption>
                 <thead>
                   <tr className="border-b border-border text-xs uppercase tracking-[0.12em] text-accent-dark">
-                    <th scope="col" className="py-3 pr-4 font-semibold">
+                    <th scope="col" className="py-3 pr-3 font-semibold">
                       Nr kat.
                     </th>
-                    <th scope="col" className="py-3 pr-4 font-semibold">
+                    <th scope="col" className="py-3 pr-3 font-semibold">
                       Pojemność
                     </th>
-                    <th scope="col" className="py-3 pr-4 font-semibold">
-                      Wymiary zewn.
+                    <th scope="col" className="py-3 pr-3 font-semibold">
+                      Wymiar zewn. (Ø lub dł.×szer.)
                     </th>
-                    <th scope="col" className="py-3 pr-4 font-semibold">
-                      Wysokość
+                    <th scope="col" className="py-3 pr-3 font-semibold">
+                      Wymiar wewn.
+                    </th>
+                    <th scope="col" className="py-3 pr-3 font-semibold">
+                      Wys.
+                    </th>
+                    <th scope="col" className="py-3 pr-3 font-semibold">
+                      Dno
+                    </th>
+                    <th scope="col" className="py-3 pr-3 font-semibold">
+                      Wieczko
+                    </th>
+                    <th scope="col" className="py-3 pr-3 font-semibold">
+                      Sztuk w kartonie
+                    </th>
+                    <th scope="col" className="py-3 pr-3 font-semibold">
+                      Kartonów na palecie
                     </th>
                     <th scope="col" className="py-3 font-semibold">
-                      Karton
+                      Sztuk na palecie
                     </th>
                   </tr>
                 </thead>
                 <tbody>
                   {products.map((product) => (
                     <tr key={product.id} className="border-b border-border">
-                      <td className="py-3 pr-4">
+                      <td className="py-3 pr-3">
                         <Link
                           href={`/produkty/${product.slug}`}
                           className="font-semibold text-primary hover:underline"
                         >
-                          {product.catalogNumber ?? product.id}
+                          {product.catalogNumber ?? product.name}
                         </Link>
                       </td>
-                      <td className="py-3 pr-4 text-muted">
-                        {formatSpec(product, ["Pojemność"])}
+                      <td className="py-3 pr-3 text-muted">
+                        {getSpecValue(product, ["Pojemność"])}
                       </td>
-                      <td className="py-3 pr-4 text-muted">
-                        {formatSpec(product, [
-                          "Średnica zewnętrzna",
-                          "Wymiar zewnętrzny",
+                      <td className="py-3 pr-3 text-muted">
+                        {formatOuterDimension(product) ?? "—"}
+                      </td>
+                      <td className="py-3 pr-3 text-muted">
+                        {getSpecValue(product, [
+                          "Średnica wewnętrzna",
+                          "Wymiar wewnętrzny",
                         ])}
                       </td>
-                      <td className="py-3 pr-4 text-muted">
-                        {formatSpec(product, ["Wysokość"])}
+                      <td className="py-3 pr-3 text-muted">
+                        {getSpecValue(product, ["Wysokość"])}
+                      </td>
+                      <td className="py-3 pr-3 text-muted">
+                        {getSpecValue(product, ["Średnica dna", "Wymiar dna"])}
+                      </td>
+                      <td className="py-3 pr-3 text-muted">
+                        {getSpecValue(product, [
+                          "Wymiar wieczka aluminiowego zgrzewanego do puszki",
+                          "Wieczko",
+                        ])}
+                      </td>
+                      <td className="py-3 pr-3 text-muted">
+                        {getSpecValue(product, [
+                          "Sztuk w kartonie",
+                          "Pakowanie — karton",
+                        ])}
+                      </td>
+                      <td className="py-3 pr-3 text-muted">
+                        {getSpecValue(product, ["Kartonów na palecie"])}
                       </td>
                       <td className="py-3 text-muted">
-                        {formatSpec(product, ["Pakowanie — karton"])}
+                        {getSpecValue(product, ["Sztuk na palecie"])}
                       </td>
                     </tr>
                   ))}

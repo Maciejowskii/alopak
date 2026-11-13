@@ -10,6 +10,9 @@ import { ProcessSteps } from "@/components/sections/ProcessSteps";
 import { homeFaq } from "@/data/site";
 import { createMetadata } from "@/lib/seo/metadata";
 
+/** Ensure homepage rebuilds with content (Z1 — avoid stale edge cache of old copy). */
+export const revalidate = 60;
+
 export const metadata = createMetadata({
   title: "ALOPAK – puszki aluminiowe i folie, producent z Ostrzeszowa",
   description:

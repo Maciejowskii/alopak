@@ -7,9 +7,9 @@ export const categories: Category[] = [
     shortName: "Puszki",
     tagline: "Do przetworów spożywczych",
     description:
-      "Puszki aluminiowe w różnych kształtach i pojemnościach, zamykane wieczkami zgrzewanymi do puszki. Do przetworów mięsnych, rybnych, mleczarskich i owocowo-warzywnych.",
+      "Puszki dla firm z branży spożywczej: producentów żywności, zakładów przetwórczych i działów zakupów.",
     heroDescription:
-      "Puszki w różnych kształtach i pojemnościach dla firm z branży spożywczej. Do przetworów mięsnych, rybnych, mleczarskich oraz owocowo-warzywnych.",
+      "Puszki aluminiowe w różnych kształtach i pojemnościach, zamykane wieczkami zgrzewanymi do puszki. Do przetworów mięsnych, rybnych, mleczarskich i owocowo-warzywnych.",
     applications: [
       "Przetwory mięsne",
       "Przetwory rybne",
@@ -23,9 +23,13 @@ export const categories: Category[] = [
       "Działy zakupów i opakowań",
     ],
     highlights: [
-      "Różne kształty i pojemności",
-      "Wieczka aluminiowe zgrzewane do puszki",
-      "Do przetworów poddawanych pasteryzacji i sterylizacji",
+      "Do wszechstronnego zastosowania — w różnych kształtach i kolorach",
+      "Łatwe do otwierania, nowoczesne, estetyczne, trwałe i lekkie",
+      "Można je pasteryzować, sterylizować, a także podgrzewać w opakowaniu w mikrofalówce",
+      "Zamykane aluminiowymi wieczkami zgrzewanymi do puszki",
+      "Zużyte opakowania można zgnieść — zajmują mało miejsca",
+      "Dla dżemów, konfitur i koncentratu pomidorowego mamy opracowaną technologię pakowania i pasteryzowania (Akademia Rolnicza we Wrocławiu)",
+      "Realizujemy też projekty na zamówienie z tworzyw sztucznych, papieru, tektury i innych metali",
     ],
     inquiryTips: [
       "Pojemność lub numer katalogowy",
@@ -37,7 +41,7 @@ export const categories: Category[] = [
       {
         question: "Do jakich produktów przeznaczone są puszki aluminiowe?",
         answer:
-          "Do przetworów mięsnych, rybnych, mleczarskich i owocowo-warzywnych. Czy puszka sprawdzi się w Twoim przypadku, ustalimy na podstawie zapytania.",
+          "Do przetworów mięsnych, rybnych, mleczarskich i owocowo-warzywnych (lista wyżej). Czy puszka sprawdzi się w Twoim przypadku, ustalimy na podstawie zapytania.",
       },
       {
         question: "Czy mogę otrzymać parametry techniczne wybranych wariantów?",
@@ -53,6 +57,21 @@ export const categories: Category[] = [
         question: "Czym zamykane są puszki?",
         answer: "Wieczkami aluminiowymi zgrzewanymi do puszki.",
       },
+      {
+        question: "Czy puszki można podgrzewać w mikrofalówce?",
+        answer:
+          "Tak. Produkty można pasteryzować, sterylizować, a nawet podgrzewać w opakowaniu w kuchenkach mikrofalowych.",
+      },
+      {
+        question: "Czy macie technologię pakowania dżemów i koncentratu?",
+        answer:
+          "Tak. Dla produktów owocowo-warzywnych (dżemy, konfitury, koncentrat pomidorowy) mamy opracowaną przez Akademię Rolniczą we Wrocławiu technologię pakowania i pasteryzowania w oferowanych puszkach.",
+      },
+      {
+        question: "Czy realizujecie projekty na zamówienie?",
+        answer:
+          "Tak. Realizujemy projekty także z tworzyw sztucznych, papieru, tektury i innych metali — napisz, czego potrzebujesz.",
+      },
     ],
     ctaLabel: "Zapytaj o puszki aluminiowe",
     seoTitle: "Puszki aluminiowe do przetworów spożywczych | ALOPAK",
@@ -64,6 +83,63 @@ export const categories: Category[] = [
     },
   },
   {
+    slug: "opakowania-swiecowe",
+    name: "Opakowania świecowe",
+    shortName: "Świecowe",
+    tagline: "Kubki, podstawki i pojemniki",
+    description:
+      "Opakowania aluminiowe do świec: kubki do podgrzewaczy, podstawki i pojemniki na świece ogrodowe.",
+    heroDescription:
+      "Pojemniki na świece ogrodowe, podstawki pod świece oraz aluminiowe kubki do podgrzewaczy (Alucups i MaxiCups). Opisz potrzeby – przygotujemy ofertę.",
+    applications: [
+      "Podgrzewacze świecowe (tealight)",
+      "Podstawki pod świece",
+      "Świece ogrodowe",
+    ],
+    audience: [
+      "Producenci świec",
+      "Hurtownie i dystrybutorzy",
+      "Firmy pakujące świece",
+    ],
+    highlights: [
+      "Aluminiowe kubki do podgrzewaczy — Alucups i MaxiCups",
+      "Podstawki AT i ATT",
+      "Pojemniki na świece ogrodowe — kształty i wielkości jak dla puszek",
+      "Blaszki do knotów — wymiary na zapytanie",
+    ],
+    inquiryTips: [
+      "Numer katalogowy lub nazwa produktu",
+      "Szacowana ilość",
+      "Wymiary (jeśli inne niż katalogowe)",
+      "Specyfikacja lub rysunek (opcjonalnie)",
+    ],
+    faq: [
+      {
+        question: "Jakie produkty świecowe oferujecie?",
+        answer:
+          "Kubki Alucups i MaxiCups do podgrzewaczy, podstawki AT/ATT, pojemniki na świece ogrodowe oraz blaszki do knotów.",
+      },
+      {
+        question: "Czy pojemniki na świece ogrodowe mają te same wymiary co puszki?",
+        answer:
+          "Kształty i wielkości są takie jak dla puszek aluminiowych. Konkretny wariant ustalimy na podstawie zapytania.",
+      },
+      {
+        question: "Czy dostępne są blaszki do knotów?",
+        answer:
+          "Tak. Różne wymiary — parametry podamy w odpowiedzi na zapytanie.",
+      },
+    ],
+    ctaLabel: "Zapytaj o opakowania świecowe",
+    seoTitle: "Opakowania świecowe aluminiowe | ALOPAK",
+    seoDescription:
+      "Alucups, MaxiCups, podstawki pod świece i pojemniki na świece ogrodowe. Wyślij zapytanie – przygotujemy ofertę.",
+    image: {
+      src: "/images/categories/opakowania-swiecowe.jpg",
+      alt: "Aluminiowe kubki do podgrzewaczy świecowych",
+    },
+  },
+  {
     slug: "folia-spozywcza",
     name: "Folia spożywcza",
     shortName: "Folia spożywcza",
@@ -72,18 +148,14 @@ export const categories: Category[] = [
       "Folia spożywcza dla hurtowni, gastronomii i innych firm. Parametry i warunki ustalamy po poznaniu Twoich potrzeb.",
     heroDescription:
       "Folia spożywcza dla hurtowni, gastronomii i firm zaopatrujących obiekty profesjonalne. Opisz, czego potrzebujesz – przygotujemy ofertę.",
-    applications: ["Gastronomia", "Hurtownie i dystrybucja", "Obiekty profesjonalne"],
+    applications: [],
     audience: [
       "Hurtownie spożywcze",
       "Gastronomia",
       "Dystrybutorzy",
       "Firmy zaopatrujące obiekty profesjonalne",
     ],
-    highlights: [
-      "Oferta dla hurtowni i gastronomii",
-      "Parametry ustalane po zapytaniu",
-      "Możliwość dołączenia wymagań w formularzu",
-    ],
+    highlights: [],
     inquiryTips: [
       "Do czego folia będzie używana",
       "Szacowana ilość lub częstotliwość dostaw",

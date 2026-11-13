@@ -37,7 +37,10 @@ function parsePairMm(value: string): [number, number] | null {
 }
 
 function isFoilProduct(product: Product) {
-  return product.category === "folia-fryzjerska" || product.category === "folia-spozywcza";
+  return (
+    product.category === "folia-fryzjerska" ||
+    product.category === "folia-spozywcza"
+  );
 }
 
 function isRectangularProfile(product: Product, outer?: SpecValue) {

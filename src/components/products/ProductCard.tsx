@@ -2,10 +2,12 @@ import Link from "next/link";
 import type { Product } from "@/types";
 import { getCategory } from "@/data/categories";
 import { ProductImage } from "@/components/products/ProductImage";
+import { formatProductCardLine } from "@/lib/products/format";
 
 export function ProductCard({ product }: { product: Product }) {
   const category = getCategory(product.category);
   const contactHref = `/kontakt?produkt=${encodeURIComponent(product.slug)}&kategoria=${encodeURIComponent(product.category)}`;
+  const line = formatProductCardLine(product);
 
   return (
     <article className="card-lift group flex h-full flex-col border border-border bg-white hover:border-brand/40">
@@ -28,9 +30,7 @@ export function ProductCard({ product }: { product: Product }) {
             {product.name}
           </Link>
         </h3>
-        <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">
-          {product.shortDescription}
-        </p>
+        <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">{line}</p>
         <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm font-semibold">
           <Link href={`/produkty/${product.slug}`} className="text-navy hover:underline">
             Zobacz

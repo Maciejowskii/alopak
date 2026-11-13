@@ -161,7 +161,7 @@ export function HeroClient({ photoSrc }: { photoSrc: string }) {
       </section>
 
       <div className="relative z-20 -mt-14 bg-transparent pb-6 sm:-mt-28 sm:pb-12 lg:-mt-32">
-        <div className="container-wide grid gap-3 sm:grid-cols-3 sm:gap-5">
+        <div className="container-wide grid gap-3 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
           {categories.map((category, index) => (
             <Link
               key={category.slug}

@@ -22,6 +22,13 @@ export function organizationSchema() {
       addressLocality: contact.city,
       addressCountry: "PL",
     },
+    geo: contact.coordinates
+      ? {
+          "@type": "GeoCoordinates",
+          latitude: Number(contact.coordinates.lat),
+          longitude: Number(contact.coordinates.lng),
+        }
+      : undefined,
     taxID: contact.nip,
     identifier: [
       { "@type": "PropertyValue", name: "KRS", value: contact.krs },
