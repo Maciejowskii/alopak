@@ -4,7 +4,7 @@ export const siteConfig = {
   name: "ALOPAK",
   tagline: "Puszki aluminiowe i folie, producent z Ostrzeszowa",
   description:
-    "Producent puszek aluminiowych, folii spożywczej i folii fryzjerskiej z Ostrzeszowa. Działamy od 1997 roku. Opisz potrzeby – przygotujemy ofertę.",
+    "Producent puszek aluminiowych, folii spożywczej i folii fryzjerskiej z Ostrzeszowa. Działamy od 1997 roku. Opisz potrzeby - przygotujemy ofertę.",
   locale: "pl_PL",
   foundedYear: 1997,
   /** Official site confirms ISO 9001:2015 certificates. */
@@ -80,12 +80,12 @@ export const homeFaq: FaqItem[] = [
   {
     question: "Jak wysłać zapytanie?",
     answer:
-      "Wypełnij formularz na stronie Kontakt albo napisz na alopak@alopak.com.pl. Opisz, czego potrzebujesz — szczegóły doprecyzujemy przy ofercie.",
+      "Wypełnij formularz na stronie Kontakt albo napisz na alopak@alopak.com.pl. Opisz, czego potrzebujesz. Szczegóły doprecyzujemy przy ofercie.",
   },
   {
     question: "Czy publikujecie cennik online?",
     answer:
-      "Nie. Warunki ustalamy indywidualnie – wyślij zapytanie, a przygotujemy ofertę.",
+      "Nie. Warunki ustalamy indywidualnie - wyślij zapytanie, a przygotujemy ofertę.",
   },
   {
     question: "Czy mogę dołączyć specyfikację do zapytania?",

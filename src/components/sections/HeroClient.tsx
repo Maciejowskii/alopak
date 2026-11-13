@@ -127,7 +127,7 @@ export function HeroClient({ photoSrc }: { photoSrc: string }) {
               style={reduced ? undefined : { transitionDelay: "420ms" }}
             >
               Puszki do przetworów spożywczych, folia spożywcza i folia
-              fryzjerska. Opisz, czego potrzebujesz – przygotujemy ofertę.
+              fryzjerska. Opisz, czego potrzebujesz - przygotujemy ofertę.
             </p>
 
             <div

@@ -30,37 +30,44 @@ const categoryLabels: Record<(typeof quoteCategoryValues)[number], string> = {
 export function QuoteForm({
   defaultCategory,
   defaultProduct,
+  variant = "full",
 }: {
   defaultCategory?: string;
   defaultProduct?: string;
+  variant?: "full" | "compact";
 }) {
+  const compact = variant === "compact";
   const [state, formAction, pending] = useActionState(submitQuote, initialState);
   const [started, setStarted] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
-  const statusId = useId();
-  const hintId = useId();
+  const uid = useId();
+  const statusId = `${uid}-status`;
+  const hintId = `${uid}-hint`;
+  const categoryId = `${uid}-category`;
+  const messageId = `${uid}-message`;
+  const websiteId = `${uid}-website`;
 
   const messageDefault = defaultProduct
     ? `Produkt / wariant: ${defaultProduct}.\n`
     : undefined;
 
   useEffect(() => {
-    trackEvent("quote_form_view");
-  }, []);
+    trackEvent("quote_form_view", { variant });
+  }, [variant]);
 
   useEffect(() => {
     if (state.ok) {
-      trackEvent("quote_form_success");
+      trackEvent("quote_form_success", { variant });
       formRef.current?.reset();
     } else if (state.message && !state.ok) {
-      trackEvent("quote_form_error", { message: state.message });
+      trackEvent("quote_form_error", { message: state.message, variant });
     }
-  }, [state]);
+  }, [state, variant]);
 
   function markStart() {
     if (!started) {
       setStarted(true);
-      trackEvent("quote_form_start");
+      trackEvent("quote_form_start", { variant });
     }
   }
 
@@ -72,15 +79,20 @@ export function QuoteForm({
   if (state.ok) {
     return (
       <div
-        className="rounded-lg border border-success/30 bg-success/5 p-6 sm:p-8"
+        className={cn(
+          "border border-success/30 bg-success/5",
+          compact ? "p-5" : "rounded-lg p-6 sm:p-8",
+        )}
         role="status"
         aria-live="polite"
       >
-        <p className="text-lg font-semibold text-ink">Dziękujemy — zapytanie przyjęte</p>
+        <p className="text-lg font-semibold text-ink">
+          Dziękujemy. Zapytanie przyjęte
+        </p>
         <p className="mt-2 text-sm leading-relaxed text-muted">{state.message}</p>
         <p className="mt-4 text-sm text-muted">
-          Odpowiemy na podany adres e-mail. Jeśli sprawa jest pilna, zadzwoń lub napisz
-          bezpośrednio.
+          Odpowiemy na podany adres e-mail. Jeśli sprawa jest pilna, zadzwoń lub
+          napisz bezpośrednio.
         </p>
       </div>
     );
@@ -90,10 +102,10 @@ export function QuoteForm({
     <form
       ref={formRef}
       action={(formData) => {
-        trackEvent("quote_form_submit");
+        trackEvent("quote_form_submit", { variant });
         formAction(formData);
       }}
-      className="relative space-y-3.5"
+      className={cn("relative", compact ? "space-y-3" : "space-y-3.5")}
       noValidate
       onFocus={markStart}
       aria-describedby={`${hintId} ${statusId}`}
@@ -102,8 +114,14 @@ export function QuoteForm({
         {!state.ok && state.message ? state.message : ""}
       </div>
 
-      <div className="grid gap-3.5 sm:grid-cols-2">
+      <div
+        className={cn(
+          "grid gap-3",
+          compact ? "sm:grid-cols-2" : "gap-3.5 sm:grid-cols-2",
+        )}
+      >
         <Field
+          id={`${uid}-name`}
           label="Imię i nazwisko"
           name="name"
           required
@@ -111,6 +129,7 @@ export function QuoteForm({
           errors={state.fieldErrors?.name}
         />
         <Field
+          id={`${uid}-company`}
           label="Nazwa firmy"
           name="company"
           required
@@ -119,31 +138,34 @@ export function QuoteForm({
         />
       </div>
 
-      <Field
-        label="Adres e-mail"
-        name="email"
-        type="email"
-        required
-        autoComplete="email"
-        errors={state.fieldErrors?.email}
-      />
-
-      <Field
-        label="Telefon"
-        name="phone"
-        type="tel"
-        inputMode="tel"
-        autoComplete="tel"
-        errors={state.fieldErrors?.phone}
-      />
+      <div className={cn("grid gap-3", compact && "sm:grid-cols-2")}>
+        <Field
+          id={`${uid}-email`}
+          label={compact ? "E-mail" : "Adres e-mail"}
+          name="email"
+          type="email"
+          required
+          autoComplete="email"
+          errors={state.fieldErrors?.email}
+        />
+        <Field
+          id={`${uid}-phone`}
+          label="Telefon"
+          name="phone"
+          type="tel"
+          inputMode="tel"
+          autoComplete="tel"
+          errors={state.fieldErrors?.phone}
+        />
+      </div>
 
       <div>
-        <label htmlFor="category" className={labelClass}>
-          Czego dotyczy zapytanie?
+        <label htmlFor={categoryId} className={labelClass}>
+          {compact ? "Kategoria" : "Czego dotyczy zapytanie?"}
           <RequiredMark />
         </label>
         <select
-          id="category"
+          id={categoryId}
           name="category"
           required
           aria-required="true"
@@ -163,21 +185,26 @@ export function QuoteForm({
       </div>
 
       <div>
-        <label htmlFor="message" className={labelClass}>
+        <label htmlFor={messageId} className={labelClass}>
           Wiadomość
           <RequiredMark />
         </label>
         <textarea
-          id="message"
+          id={messageId}
           name="message"
           required
           aria-required="true"
-          rows={4}
+          rows={compact ? 3 : 4}
           defaultValue={messageDefault}
           className={cn(
             inputClass(Boolean(state.fieldErrors?.message), { multiline: true }),
+            compact && "min-h-[5.5rem]",
           )}
-          placeholder="Napisz, czego potrzebujesz — produkt lub wariant, ilość oraz dodatkowe wymagania"
+          placeholder={
+            compact
+              ? "Czego potrzebujesz? Produkt, ilość, termin..."
+              : "Napisz, czego potrzebujesz: produkt lub wariant, ilość oraz dodatkowe wymagania"
+          }
         />
         <FieldError errors={state.fieldErrors?.message} />
       </div>
@@ -205,13 +232,13 @@ export function QuoteForm({
       </label>
       <FieldError errors={state.fieldErrors?.consent} />
 
-      {/* Honeypot — off-screen, hidden from AT (no visible label) */}
+      {/* Honeypot: off-screen, hidden from AT */}
       <div
         className="pointer-events-none absolute left-[-9999px] top-auto h-px w-px overflow-hidden opacity-0"
         aria-hidden="true"
       >
         <input
-          id="website"
+          id={websiteId}
           name="website"
           type="text"
           tabIndex={-1}
@@ -229,16 +256,28 @@ export function QuoteForm({
         </p>
       ) : null}
 
-      <p id={hintId} className="text-xs text-muted">
-        Pola oznaczone <span aria-hidden="true">*</span> są wymagane. Telefon jest opcjonalny.
-      </p>
+      {!compact ? (
+        <p id={hintId} className="text-xs text-muted">
+          Pola oznaczone <span aria-hidden="true">*</span> są wymagane. Telefon
+          jest opcjonalny.
+        </p>
+      ) : (
+        <p id={hintId} className="sr-only">
+          Pola oznaczone gwiazdką są wymagane. Telefon jest opcjonalny.
+        </p>
+      )}
 
       <Button
         type="submit"
         size="lg"
         variant="primary"
         disabled={pending}
-        className="w-full bg-navy hover:bg-navy-hover sm:w-auto"
+        className={cn(
+          "btn-premium bg-navy hover:bg-navy-hover",
+          compact
+            ? "mt-1 h-12 w-full rounded-none text-sm font-semibold sm:w-auto sm:px-8"
+            : "w-full rounded-none font-bold uppercase tracking-[0.04em] sm:w-auto",
+        )}
       >
         {pending ? "Wysyłanie..." : "Wyślij zapytanie"}
       </Button>
@@ -260,6 +299,7 @@ function RequiredMark() {
 const labelClass = "mb-1.5 block text-sm font-medium text-ink";
 
 function Field({
+  id,
   label,
   name,
   type = "text",
@@ -269,6 +309,7 @@ function Field({
   defaultValue,
   errors,
 }: {
+  id?: string;
   label: string;
   name: string;
   type?: string;
@@ -278,14 +319,15 @@ function Field({
   defaultValue?: string;
   errors?: string[];
 }) {
+  const fieldId = id || name;
   return (
     <div>
-      <label htmlFor={name} className={labelClass}>
+      <label htmlFor={fieldId} className={labelClass}>
         {label}
         {required ? <RequiredMark /> : null}
       </label>
       <input
-        id={name}
+        id={fieldId}
         name={name}
         type={type}
         inputMode={inputMode}

@@ -17,9 +17,14 @@ export function useCountUp(
   const [value, setValue] = useState(0);
 
   useEffect(() => {
-    if (!active || reduced) return;
+    if (!active) return;
+    if (reduced) {
+      setValue(target);
+      return;
+    }
 
     let frame = 0;
+    let done = false;
     const start = performance.now();
 
     const tick = (now: number) => {
@@ -28,14 +33,20 @@ export function useCountUp(
       setValue(Math.round(target * eased));
       if (progress < 1) {
         frame = requestAnimationFrame(tick);
+      } else {
+        done = true;
+        setValue(target);
       }
     };
 
     frame = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frame);
+    return () => {
+      cancelAnimationFrame(frame);
+      if (!done) setValue(target);
+    };
   }, [active, duration, reduced, target]);
 
-  if (!active) return 0;
+  if (!active && value === 0) return 0;
   if (reduced) return target;
   return value;
 }

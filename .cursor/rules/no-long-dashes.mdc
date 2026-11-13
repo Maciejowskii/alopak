@@ -1,0 +1,16 @@
+---
+description: Zakaz długich myślników (em/en dash) w copy i UI
+alwaysApply: true
+---
+
+# Bez długich myślników
+
+Nie używaj znaków `—` (em dash) ani `–` (en dash) w tekstach widocznych dla użytkownika, meta, aria-label, e-mailach ani w treści bloga/produktów.
+
+Zamiast tego:
+- przecinek, kropka, dwukropek albo zwykły łącznik `-`
+- puste wartości tabel: `-` (nie `—`)
+
+Przykłady:
+- źle: `Opisz potrzeby — przygotujemy ofertę`
+- dobrze: `Opisz potrzeby. Przygotujemy ofertę` albo `Opisz potrzeby - przygotujemy ofertę`

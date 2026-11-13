@@ -67,7 +67,7 @@ export function Header() {
         <Link
           href="/"
           className="group flex shrink-0 items-center gap-2.5 sm:gap-3"
-          aria-label="ALOPAK — strona główna"
+          aria-label="ALOPAK - strona główna"
           onClick={() => {
             setMega(null);
             closeMobile();
